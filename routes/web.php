@@ -21,3 +21,11 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::get('/', [FrontendController::class, 'index'])->name('frontend.index');
+
+Route::get('/banner', function(){
+    return view('admin.banners.index');
+});
+Route::get('/banner/edit', function(){
+    return view('admin.banners.edit');
+});
+
