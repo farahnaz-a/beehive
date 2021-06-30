@@ -4203,6 +4203,7 @@ input[type='submit'].btn-block, input[type='reset'].btn-block, input[type='butto
   height : 2.714rem;
   margin : 0;
   opacity : 0;
+  cursor: pointer;
 }
 
 .custom-file-input:focus ~ .custom-file-label {
@@ -4250,7 +4251,7 @@ input[type='submit'].btn-block, input[type='reset'].btn-block, input[type='butto
   line-height : 1.45;
   color : #6E6B7B;
   content : 'Browse';
-  background-color : white;
+  background-color : transparent;
   border-left : inherit;
   border-radius : 0 0.357rem 0.357rem 0;
 }

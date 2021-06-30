@@ -24,37 +24,26 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label for="first-name-vertical">First Name</label>
-                                    <input type="text" id="first-name-vertical" class="form-control" name="fname" placeholder="First Name">
+                                    <label for="title">Title</label>
+                                    <input type="text" id="title" class="form-control" name="title" placeholder="Enter Title">
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label for="email-id-vertical">Email</label>
-                                    <input type="email" id="email-id-vertical" class="form-control" name="email-id" placeholder="Email">
+                                    <label for="description">Description</label>
+                                    <input type="text" id="description" class="form-control" name="description" placeholder="Enter Description">
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label for="contact-info-vertical">Mobile</label>
-                                    <input type="number" id="contact-info-vertical" class="form-control" name="contact" placeholder="Mobile">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label for="password-vertical">Password</label>
-                                    <input type="password" id="password-vertical" class="form-control" name="contact" placeholder="Password">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="customCheck3">
-                                        <label class="custom-control-label" for="customCheck3">Remember me</label>
+                                    <label for="customFile">Image</label>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="customFile">
+                                        <label class="custom-file-label" for="customFile">Choose file</label>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12">
+                            <div class="col-12 pt-1">
                                 <button type="reset" class="btn btn-primary mr-1 waves-effect waves-float waves-light">Submit</button>
                                 <button type="reset" class="btn btn-outline-secondary waves-effect">Reset</button>
                             </div>

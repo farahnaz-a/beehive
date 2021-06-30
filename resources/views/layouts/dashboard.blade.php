@@ -48,21 +48,6 @@
                 <ul class="nav navbar-nav d-xl-none">
                     <li class="nav-item"><a class="nav-link menu-toggle" href="javascript:void(0);"><i class="ficon" data-feather="menu"></i></a></li>
                 </ul>
-                <ul class="nav navbar-nav bookmark-icons">
-                    <li class="nav-item d-none d-lg-block"><a class="nav-link" href="app-email.html" data-toggle="tooltip" data-placement="top" title="Email"><i class="ficon" data-feather="mail"></i></a></li>
-                    <li class="nav-item d-none d-lg-block"><a class="nav-link" href="app-chat.html" data-toggle="tooltip" data-placement="top" title="Chat"><i class="ficon" data-feather="message-square"></i></a></li>
-                    <li class="nav-item d-none d-lg-block"><a class="nav-link" href="app-calendar.html" data-toggle="tooltip" data-placement="top" title="Calendar"><i class="ficon" data-feather="calendar"></i></a></li>
-                    <li class="nav-item d-none d-lg-block"><a class="nav-link" href="app-todo.html" data-toggle="tooltip" data-placement="top" title="Todo"><i class="ficon" data-feather="check-square"></i></a></li>
-                </ul>
-                <ul class="nav navbar-nav">
-                    <li class="nav-item d-none d-lg-block"><a class="nav-link bookmark-star"><i class="ficon text-warning" data-feather="star"></i></a>
-                        <div class="bookmark-input search-input">
-                            <div class="bookmark-input-icon"><i data-feather="search"></i></div>
-                            <input class="form-control input" type="text" placeholder="Bookmark" tabindex="0" data-search="search">
-                            <ul class="search-list search-list-bookmark"></ul>
-                        </div>
-                    </li>
-                </ul>
             </div>
             <ul class="nav navbar-nav align-items-center ml-auto">
                 <li class="nav-item d-none d-lg-block"><a class="nav-link nav-link-style"><i class="ficon" data-feather="moon"></i></a></li>
@@ -157,13 +142,17 @@
                     </ul>
                 </li>
                 <li class="nav-item dropdown dropdown-user"><a class="nav-link dropdown-toggle dropdown-user-link" id="dropdown-user" href="javascript:void(0);" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <div class="user-nav d-sm-flex d-none"><span class="user-name font-weight-bolder">John Doe</span><span class="user-status">Admin</span></div><span class="avatar"><img class="round" src="../../../app-assets/images/portrait/small/avatar-s-11.jpg" alt="avatar" height="40" width="40"><span class="avatar-status-online"></span></span>
+                        <div class="user-nav d-sm-flex d-none"><span class="user-name font-weight-bolder">{{ ucfirst(Auth::user()->name)  }}</span><span class="user-status">Admin</span></div><span class="avatar"><img class="round" src="{{ Auth::user()->profile_photo_url }}" alt="avatar" height="40" width="40"><span class="avatar-status-online"></span></span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-user">
-                        <a class="dropdown-item" href="page-profile.html"><i class="mr-50" data-feather="user"></i> Profile</a>
+                        <a class="dropdown-item" href="{{ url('/user/profile') }}"><i class="mr-50" data-feather="user"></i> Profile</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="page-faq.html"><i class="mr-50" data-feather="help-circle"></i> FAQ</a>
-                        <a class="dropdown-item" href="page-auth-login-v2.html"><i class="mr-50" data-feather="power"></i> Logout</a>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <a class="dropdown-item"href="{{ route('logout') }}" onclick="event.preventDefault();
+                               this.closest('form').submit();"><i class="mr-50" data-feather="power"></i> Logout
+                            </a>
+                        </form>
                     </div>
                 </li>
             </ul>
@@ -208,16 +197,6 @@
         <li class="d-flex align-items-center">
             <a href="javascript:void(0);">
                 <h6 class="section-label mt-75 mb-0">Members</h6>
-            </a>
-        </li>
-        <li class="auto-suggestion">
-            <a class="d-flex align-items-center justify-content-between py-50 w-100" href="app-user-view.html">
-                <div class="d-flex align-items-center">
-                    <div class="avatar mr-75"><img src="../../../app-assets/images/portrait/small/avatar-s-8.jpg" alt="png" height="32"></div>
-                    <div class="search-data">
-                        <p class="search-data-title mb-0">John Doe</p><small class="text-muted">UI designer</small>
-                    </div>
-                </div>
             </a>
         </li>
         <li class="auto-suggestion">
@@ -300,17 +279,19 @@
         <div class="main-menu-content">
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
                 <li class=" nav-item">
-                    <a class="d-flex align-items-center" href="index.html">
+                    <a class="d-flex align-items-center" href="{{ route('dashboard') }}">
                         <i data-feather="home"></i>
-                        <span class="menu-title text-truncate" data-i18n="Users">User Pannel</span>
+                        <span class="menu-title text-truncate" data-i18n="Users">Admin Pannel</span>
                         {{-- <span class="badge badge-light-warning badge-pill ml-auto mr-1">2</span> --}}
                     </a>
                 </li>
                 <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Apps &amp; Pages</span><i data-feather="more-horizontal"></i>
                 </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="app-email.html"><i data-feather="mail"></i><span class="menu-title text-truncate" data-i18n="Email">Email</span></a>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('banners.index') }}"><i data-feather="settings"></i><span class="menu-title text-truncate" data-i18n="Email">Banner</span></a>
                 </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="app-chat.html"><i data-feather="message-square"></i><span class="menu-title text-truncate" data-i18n="Chat">Chat</span></a>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="mail"></i><span class="menu-title text-truncate" data-i18n="Email">Email</span></a>
+                </li>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="#""><i data-feather="message-square"></i><span class="menu-title text-truncate" data-i18n="Chat">Chat</span></a>
                 </li>
                 <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="file-text"></i><span class="menu-title text-truncate" data-i18n="Invoice">Invoice</span></a>
                     <ul class="menu-content">
