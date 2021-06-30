@@ -24,10 +24,27 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $users = User::where('id', '!=', Auth::id())->paginate(10);
+        $users = User::paginate(10);
         $total = User::count();
 
         return view('admin.index', compact('users' , 'total'));
 
     }
+
+    // public function store(Request $request)
+    // {
+        
+    //     $banners = Banner::all();
+
+    //     if($banners->count() == 0)
+    //     {
+
+    //         Banner:create();
+    //     }
+    //     else 
+    //     {
+    //          return back()->withWarning('Please edit or delete your existing data in order to add new');
+    //     }
+
+    // }
 }
