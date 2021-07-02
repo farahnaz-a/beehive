@@ -10,7 +10,7 @@
     <meta name="description" content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>Beehive Admin Dashboard</title>
+    <title> @yield('title') </title>
 
     <link rel="apple-touch-icon" href="{{ asset('dashboard_assets/app-assets/images/ico/apple-icon-120.png') }}">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('dashboard_assets/app-assets/images/ico/favicon.ico') }}">
@@ -287,11 +287,13 @@
                 </li>
                 <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Apps &amp; Pages</span><i data-feather="more-horizontal"></i>
                 </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('banners.index') }}"><i data-feather="settings"></i><span class="menu-title text-truncate" data-i18n="Email">Banner</span></a>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('banners.index') }}"><i data-feather='shield'></i><span class="menu-title text-truncate" data-i18n="Email">Banner</span></a>
                 </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="mail"></i><span class="menu-title text-truncate" data-i18n="Email">Email</span></a>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('works.index') }}"><i data-feather='wind'></i><span class="menu-title text-truncate" data-i18n="Email">How it Works</span></a>
                 </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="#""><i data-feather="message-square"></i><span class="menu-title text-truncate" data-i18n="Chat">Chat</span></a>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('workSteps.index') }}"><i data-feather='wind'></i><span class="menu-title text-truncate" data-i18n="Email">How it Works Steps</span></a>
+                </li>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="message-square"></i><span class="menu-title text-truncate" data-i18n="Chat">Chat</span></a>
                 </li>
                 <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="file-text"></i><span class="menu-title text-truncate" data-i18n="Invoice">Invoice</span></a>
                     <ul class="menu-content">

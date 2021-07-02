@@ -2,12 +2,12 @@
 
 {{-- Title --}}
 @section('title')
-    {{ config('app.name') }} | Banner
+    {{ config('app.name') }} | How It Works
 @endsection
 
 {{-- Breadcrumb --}}
 @section('breadcrumb')
-    <h2 class="content-header-title float-left mb-0">Banner</h2>
+    <h2 class="content-header-title float-left mb-0">How It Works</h2>
     <div class="breadcrumb-wrapper">
         <ol class="breadcrumb">
             {{-- <li class="breadcrumb-item active">Layout Empty</li> --}}
@@ -21,7 +21,7 @@
         <div class="col-lg-4">    
             <div class="card"> 
                 <div class="card-header">
-                    <h4 class="card-title d-block">Add Banner</h4>
+                    <h4 class="card-title d-block">Add How It Works</h4>
                     <div class="pt-1">
                         @if (session('success'))
                             <div class="alert alert-success">
@@ -36,7 +36,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form class="form form-vertical" action="{{ route('banners.store') }}" method="POST" enctype="multipart/form-data">
+                    <form class="form form-vertical" action="{{ route('works.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-12">
@@ -90,7 +90,7 @@
         <div class="col-lg-8">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">All Banner Lists </h4>
+                    <h4 class="card-title">How It Works List</h4>
                 </div>
                 <div class="card-body">
                 </div>
@@ -107,28 +107,28 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($banners as $banner)
+                            @forelse ($works as $work)
                             <tr>
                                 <td><span class="mr-1">{{ $loop -> index + 1 }}</td>
-                                <td>{{ $banner->title }}</td>
-                                <td>{{ $banner->subtitle }}</td>
-                                <td>{{ $banner->description }}</td>
-                                <td><img src="{{ asset('uploads/banners/') }}/{{ $banner->image }}" width="100" alt="Not-found"></td>
+                                <td>{{ $work->title }}</td>
+                                <td>{{ $work->subtitle }}</td>
+                                <td>{{ $work->description }}</td>
+                                <td><img src="{{ asset('uploads/works/') }}/{{ $work->image }}" width="100" alt="Not-found"></td>
                                 <td>
                                     <div class="dropdown">
                                         <button type="button" class="btn btn-sm dropdown-toggle hide-arrow waves-effect waves-float waves-light" data-toggle="dropdown">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
                                         </button>
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="{{ route('banners.edit', $banner->id) }}">
+                                            <a class="dropdown-item" href="{{ route('works.edit', $work->id) }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 mr-50"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
                                                 <span>Edit</span>
                                             </a>
-                                            <form action="{{ route('banners.destroy', $banner->id) }}" method="POST">
+                                            <form action="{{ route('works.destroy', $work->id) }}" method="POST">
                                                 {{-- Initiate Delete method --}}
                                                 {{ method_field('DELETE') }}
                                                 @csrf 
-                                                <a class="dropdown-item" href="{{ route('banners.destroy', $banner->id) }}" onclick="event.preventDefault(); this.closest('form').submit();">
+                                                <a class="dropdown-item" href="{{ route('works.destroy', $work->id) }}" onclick="event.preventDefault(); this.closest('form').submit();">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash mr-50"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
                                                     <span>Delete</span>
                                                 </a>

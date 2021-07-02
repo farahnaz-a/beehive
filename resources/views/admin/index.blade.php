@@ -1,5 +1,10 @@
 @extends('layouts.dashboard')
 
+{{-- Title --}}
+@section('title')
+    {{ config('app.name') }} | Admin Pannel
+@endsection
+
 {{-- Breadcrumb --}}
 @section('breadcrumb')
     <h2 class="content-header-title float-left mb-0">Admin Pannel</h2>

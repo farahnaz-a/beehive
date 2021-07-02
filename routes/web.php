@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\WorkController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BannerController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\WorkStepController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,21 +18,36 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-
-// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-//     return view('admin.index');
-// })->name('dashboard');
-
-Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
-
 Route::get('/', [FrontendController::class, 'index'])->name('frontend.index');
 
-Route::get('/banner', function(){
-    return view('admin.banners.index');
-})->name('banners.index');
 
-Route::get('/banner/edit', function(){
-    return view('admin.banners.edit');
-})->name('banners.edit');
+
+// Admin Prefix 
+Route::group(['prefix' => 'admin'], function (){
+
+    //AdminController
+    Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
+    
+    //BannerController
+    Route::resource('banners', BannerController::class);
+
+    //WorkController
+    Route::resource('works', WorkController::class);
+
+    //WorkStepsController
+    Route::resource('workSteps', WorkStepController::class);
+
+
+});
+
+
+
+
+// Route::get('/banner', function(){
+//     return view('admin.banners.index');
+// })->name('banners.index');
+
+// Route::get('/banner/edit', function(){
+//     return view('admin.banners.edit');
+// })->name('banners.edit');
 

@@ -3,7 +3,7 @@
 
 {{-- Title --}}
 @section('title')
-    {{ config('app.name') }} | {{ $banner->title }}
+    {{ config('app.name') }} | {{ $work->title }}
 @endsection
 
 {{-- Breadcrumb --}}
@@ -26,14 +26,14 @@
                     <h4 class="card-title">Edit Banner</small></h4>
                 </div>
                 <div class="card-body">
-                    <form method="post" action="{{ route('banners.update', $banner->id) }}" enctype="multipart/form-data" class="form form-vertical">
+                    <form method="post" action="{{ route('works.update', $work->id) }}" enctype="multipart/form-data" class="form form-vertical">
                         {{ method_field('PUT') }}
                         @csrf
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group">
                                     <label for="title">Title</label>
-                                    <input type="text" value="{{ $banner->title }}" id="title" class="form-control" name="title" placeholder="Enter Title">
+                                    <input type="text" value="{{ $work->title }}" id="title" class="form-control" name="title" placeholder="Enter Title">
                                     @error('title')
                                         <small class="alert alert-danger">{{ $message }}</small>
                                     @enderror
@@ -42,7 +42,7 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     <label for="subtitle">Sub Title</label>
-                                    <input type="text" value="{{ $banner->subtitle }}" id="subtitle" class="form-control" name="subtitle" placeholder="Enter Title">
+                                    <input type="text" value="{{ $work->subtitle }}" id="subtitle" class="form-control" name="subtitle" placeholder="Enter Title">
                                     @error('subtitle')
                                         <small class="alert alert-danger">{{ $message }}</small>
                                     @enderror
@@ -51,7 +51,7 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     <label for="description">Description</label>
-                                    <textarea name="description" id="description" class="form-control">{{ $banner->description }}</textarea>
+                                    <textarea name="description" id="description" class="form-control">{{ $work->description }}</textarea>
                                     @error('description')
                                         <small class="alert alert-danger">{{ $message }}</small>
                                     @enderror
@@ -61,7 +61,7 @@
                                 <div class="form-group">
                                     <label for="">Existing Image:</label>
                                     <br>
-                                    <img src="{{ asset('uploads/banners/') }}/{{ $banner->image }}" width="100" alt="No Image">
+                                    <img src="{{ asset('uploads/works/') }}/{{ $work->image }}" width="100" alt="No Image">
                                 </div>
                             </div>
                             <div class="col-12">
