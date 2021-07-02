@@ -291,9 +291,11 @@
                 </li>
                 <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('works.index') }}"><i data-feather='wind'></i><span class="menu-title text-truncate" data-i18n="Email">How it Works</span></a>
                 </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('workSteps.index') }}"><i data-feather='wind'></i><span class="menu-title text-truncate" data-i18n="Email">How it Works Steps</span></a>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('workSteps.index') }}"><i data-feather='git-pull-request'></i><span class="menu-title text-truncate" data-i18n="Email">How it Works Steps</span></a>
                 </li>
                 <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('portfolios.index') }}"><i data-feather='pocket'></i></i><span class="menu-title text-truncate" data-i18n="Email">Portfolio</span></a>
+                </li>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('faqs.index') }}"><i data-feather='help-circle'></i></i><span class="menu-title text-truncate" data-i18n="Email">Frequently Asked Questions</span></a>
                 </li>
                 <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="message-square"></i><span class="menu-title text-truncate" data-i18n="Chat">Chat</span></a>
                 </li>

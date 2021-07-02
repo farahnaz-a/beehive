@@ -138,7 +138,7 @@ class WorkController extends Controller
 
          // Return Back to Banner List With Success Session Message
 
-        return redirect()->route('works.index')->withSuccess('Work updated successfully');
+        return redirect()->route('works.index')->withSuccess('Updated successfully');
 
     }
 

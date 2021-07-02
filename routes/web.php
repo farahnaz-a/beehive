@@ -6,6 +6,7 @@ use App\Http\Controllers\BannerController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\WorkStepController;
+use App\Http\Controllers\FaqController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,6 +41,11 @@ Route::group(['prefix' => 'admin'], function (){
 
     //PortfolioController
     Route::resource('portfolios', PortfolioController::class);
+
+    //TestimonialController
+
+    //FaqController
+    Route::resource('faqs', FaqController::class);
 
 
 });
