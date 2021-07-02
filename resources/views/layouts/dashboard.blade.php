@@ -293,6 +293,8 @@
                 </li>
                 <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('workSteps.index') }}"><i data-feather='wind'></i><span class="menu-title text-truncate" data-i18n="Email">How it Works Steps</span></a>
                 </li>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('portfolios.index') }}"><i data-feather='pocket'></i></i><span class="menu-title text-truncate" data-i18n="Email">Portfolio</span></a>
+                </li>
                 <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="message-square"></i><span class="menu-title text-truncate" data-i18n="Chat">Chat</span></a>
                 </li>
                 <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="file-text"></i><span class="menu-title text-truncate" data-i18n="Invoice">Invoice</span></a>

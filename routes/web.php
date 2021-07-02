@@ -4,6 +4,7 @@ use App\Http\Controllers\WorkController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\WorkStepController;
 use Illuminate\Support\Facades\Route;
 
@@ -36,6 +37,9 @@ Route::group(['prefix' => 'admin'], function (){
 
     //WorkStepsController
     Route::resource('workSteps', WorkStepController::class);
+
+    //PortfolioController
+    Route::resource('portfolios', PortfolioController::class);
 
 
 });

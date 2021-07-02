@@ -42,7 +42,7 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     <label for="title">Title</label>
-                                    <input type="text" id="title" class="form-control" name="title" placeholder="Enter Title">
+                                    <input type="text" id="title" class="form-control" name="title" value="{{ old('title') }}" placeholder="Enter Title">
                                     @error('title')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
@@ -51,7 +51,7 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     <label for="description">Description</label>
-                                    <textarea name="description" id="description" class="form-control"></textarea>
+                                    <textarea name="description" id="description" value="{{ old('description') }}" class="form-control"></textarea>
                                     @error('description')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
