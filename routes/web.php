@@ -7,6 +7,8 @@ use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\WorkStepController;
 use App\Http\Controllers\FaqController;
+use App\Http\Controllers\PricefreeController;
+use App\Http\Controllers\PricepremiumController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,6 +45,13 @@ Route::group(['prefix' => 'admin'], function (){
     Route::resource('portfolios', PortfolioController::class);
 
     //TestimonialController
+
+
+    //PricefreeController
+    Route::resource('pricefrees', PricefreeController::class);
+
+    //PricepremiumController
+    Route::resource('pricepremiums', PricepremiumController::class);
 
     //FaqController
     Route::resource('faqs', FaqController::class);

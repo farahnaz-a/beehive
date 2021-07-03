@@ -51,15 +51,11 @@ class BannerController extends Controller
     public function store(Request $request)
     {
         $request -> validate([
-            'title'       =>'required',
+            'title'       => 'required',
             'subtitle'    => 'required',
             'description' => 'required',
             'image'       => 'required|image',
         ]);
-
-        $banner_all = Banner::all();
-
-        if($banner_all->count() == 0){
 
             $banners = Banner::create($request->except('_token') + ['created_at' => Carbon::now()]);
 
@@ -74,12 +70,6 @@ class BannerController extends Controller
             $banners->save();
            
             return back()->withSuccess('Added Successfully');
-        }
-
-        else{
-             return back()->withWarning('Please edit or delete your existing data in order to add new');
-        }
-
 
     }
 
