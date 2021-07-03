@@ -287,23 +287,23 @@
                 </li>
                 <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Apps &amp; Pages</span><i data-feather="more-horizontal"></i>
                 </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('banners.index') }}"><i data-feather='shield'></i><span class="menu-title text-truncate" data-i18n="Email">Banner</span></a>
+                <li class="nav-item @yield('banners')"><a class="d-flex align-items-center" href="{{ route('banners.index') }}"><i data-feather='shield'></i><span class="menu-title text-truncate" data-i18n="Email">Banner</span></a>
                 </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('works.index') }}"><i data-feather='wind'></i><span class="menu-title text-truncate" data-i18n="Email">How it Works</span></a>
+                <li class="nav-item @yield('works')"><a class="d-flex align-items-center" href="{{ route('works.index') }}"><i data-feather='wind'></i><span class="menu-title text-truncate" data-i18n="Email">How it Works</span></a>
                 </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('workSteps.index') }}"><i data-feather='git-pull-request'></i><span class="menu-title text-truncate" data-i18n="Email">How it Works Steps</span></a>
+                <li class=" nav-item @yield('workSteps')"><a class="d-flex align-items-center" href="{{ route('workSteps.index') }}"><i data-feather='git-pull-request'></i><span class="menu-title text-truncate" data-i18n="Email">How it Works Steps</span></a>
                 </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('portfolios.index') }}"><i data-feather='pocket'></i></i><span class="menu-title text-truncate" data-i18n="Email">Portfolio</span></a>
+                <li class=" nav-item @yield('portfolios')"><a class="d-flex align-items-center" href="{{ route('portfolios.index') }}"><i data-feather='pocket'></i></i><span class="menu-title text-truncate" data-i18n="Email">Portfolio</span></a>
                 </li>
                 <li class=" nav-item"><a class="d-flex align-items-center" href=""><i data-feather='grid'></i></i><span class="menu-title text-truncate" data-i18n="Email">Testimonial</span></a>
                 </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('pricefrees.index') }}"><i data-feather='target'></i></i><span class="menu-title text-truncate" data-i18n="Email">Fee Price</span></a>
+                <li class=" nav-item @yield('pricefrees')"><a class="d-flex align-items-center" href="{{ route('pricefrees.index') }}"><i data-feather='target'></i></i><span class="menu-title text-truncate" data-i18n="Email">Free Price</span></a>
                 </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('pricepremiums.index') }}"><i data-feather='dollar-sign'></i></i><span class="menu-title text-truncate" data-i18n="Email">Premium Price</span></a>
+                <li class=" nav-item @yield('pricepremiums')"><a class="d-flex align-items-center" href="{{ route('pricepremiums.index') }}"><i data-feather='dollar-sign'></i></i><span class="menu-title text-truncate" data-i18n="Email">Premium Price</span></a>
                 </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('faqs.index') }}"><i data-feather='help-circle'></i></i><span class="menu-title text-truncate" data-i18n="Email">Frequently Asked Questions</span></a>
+                <li class=" nav-item @yield('faqs')"><a class="d-flex align-items-center" href="{{ route('faqs.index') }}"><i data-feather='help-circle'></i></i><span class="menu-title text-truncate" data-i18n="Email">Frequently Asked Questions</span></a>
                 </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="message-square"></i><span class="menu-title text-truncate" data-i18n="Chat">Chat</span></a>
+                {{-- <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="message-square"></i><span class="menu-title text-truncate" data-i18n="Chat">Chat</span></a>
                 </li>
                 <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="file-text"></i><span class="menu-title text-truncate" data-i18n="Invoice">Invoice</span></a>
                     <ul class="menu-content">
@@ -316,7 +316,7 @@
                         <li><a class="d-flex align-items-center" href="app-invoice-add.html"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Add">Add</span></a>
                         </li>
                     </ul>
-                </li>
+                </li> --}}
             </ul>
         </div>
     </div>

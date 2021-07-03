@@ -6,6 +6,10 @@
     {{ config('app.name') }} | {{ $faq->question }}
 @endsection
 
+@section('pricefees')
+    active
+@endsection
+
 {{-- Breadcrumb --}}
 @section('breadcrumb')
     <h2 class="content-header-title float-left mb-0">Frequently Asked Questions</h2>

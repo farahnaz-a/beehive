@@ -6,6 +6,10 @@
     {{ config('app.name') }} | {{ $portfolio->title }}
 @endsection
 
+@section('portfolios')
+    active
+@endsection
+
 {{-- Breadcrumb --}}
 @section('breadcrumb')
     <h2 class="content-header-title float-left mb-0">Portfolio Edit</h2>

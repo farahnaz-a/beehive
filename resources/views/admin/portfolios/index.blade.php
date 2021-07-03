@@ -4,6 +4,9 @@
 @section('title')
     {{ config('app.name') }} | Portfolios
 @endsection
+@section('portfolios')
+    active
+@endsection
 
 {{-- Breadcrumb --}}
 @section('breadcrumb')

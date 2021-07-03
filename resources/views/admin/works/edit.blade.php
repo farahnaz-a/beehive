@@ -6,6 +6,10 @@
     {{ config('app.name') }} | {{ $work->title }}
 @endsection
 
+@section('works')
+    active
+@endsection
+
 {{-- Breadcrumb --}}
 @section('breadcrumb')
     <h2 class="content-header-title float-left mb-0">Banner</h2>

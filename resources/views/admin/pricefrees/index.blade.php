@@ -5,6 +5,10 @@
     {{ config('app.name') }} | Free Price
 @endsection
 
+@section('pricefees')
+    active
+@endsection
+
 {{-- Breadcrumb --}}
 @section('breadcrumb')
     <h2 class="content-header-title float-left mb-0">Free Price</h2>

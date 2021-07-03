@@ -5,6 +5,10 @@
     {{ config('app.name') }} | How It Works
 @endsection
 
+@section('works')
+    active
+@endsection
+
 {{-- Breadcrumb --}}
 @section('breadcrumb')
     <h2 class="content-header-title float-left mb-0">How It Works</h2>
