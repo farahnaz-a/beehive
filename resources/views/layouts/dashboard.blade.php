@@ -295,13 +295,15 @@
                 </li>
                 <li class=" nav-item @yield('portfolios')"><a class="d-flex align-items-center" href="{{ route('portfolios.index') }}"><i data-feather='pocket'></i></i><span class="menu-title text-truncate" data-i18n="Email">Portfolio</span></a>
                 </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href=""><i data-feather='grid'></i></i><span class="menu-title text-truncate" data-i18n="Email">Testimonial</span></a>
+                <li class=" nav-item @yield('testimonials')"><a class="d-flex align-items-center" href="{{ route('testimonials.index') }}"><i data-feather='grid'></i></i><span class="menu-title text-truncate" data-i18n="Email">Testimonial</span></a>
                 </li>
                 <li class=" nav-item @yield('pricefrees')"><a class="d-flex align-items-center" href="{{ route('pricefrees.index') }}"><i data-feather='target'></i></i><span class="menu-title text-truncate" data-i18n="Email">Free Price</span></a>
                 </li>
                 <li class=" nav-item @yield('pricepremiums')"><a class="d-flex align-items-center" href="{{ route('pricepremiums.index') }}"><i data-feather='dollar-sign'></i></i><span class="menu-title text-truncate" data-i18n="Email">Premium Price</span></a>
                 </li>
                 <li class=" nav-item @yield('faqs')"><a class="d-flex align-items-center" href="{{ route('faqs.index') }}"><i data-feather='help-circle'></i></i><span class="menu-title text-truncate" data-i18n="Email">Frequently Asked Questions</span></a>
+                </li>
+                <li class=" nav-item @yield('invests')"><a class="d-flex align-items-center" href="{{ route('invests.index') }}"><i data-feather='help-circle'></i></i><span class="menu-title text-truncate" data-i18n="Email">Where To Invest</span></a>
                 </li>
                 {{-- <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="message-square"></i><span class="menu-title text-truncate" data-i18n="Chat">Chat</span></a>
                 </li>

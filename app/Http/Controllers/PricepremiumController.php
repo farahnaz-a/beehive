@@ -96,7 +96,7 @@ class PricepremiumController extends Controller
             'features'  => 'required',
         ]);
 
-        // Update Other Fields
+        // Update Fields
         $pricepremium->title     = $request->title;
         $pricepremium->price     = $request->price;
         $pricepremium->features  = $request->features;
