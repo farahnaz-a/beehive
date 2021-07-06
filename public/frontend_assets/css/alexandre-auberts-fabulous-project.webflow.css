@@ -2995,7 +2995,7 @@ strong {
   -ms-flex-pack: end;
   justify-content: flex-end;
   border-radius: 12px;
-  background-image: url('../images/kelsey-chance-CutTQTt2HyI-unsplash.jpg');
+
   background-position: 0px 0px;
   background-size: cover;
 }
@@ -3008,7 +3008,6 @@ strong {
   min-height: 550px;
   margin-right: 50px;
   border-radius: 13px;
-  background-image: url('../images/bruce-mars-FWVMhUa_wbY-unsplash.jpg');
   background-position: 50% 50%;
   background-size: cover;
 }
@@ -3016,7 +3015,6 @@ strong {
 .content-image-wrapper._3.content-image {
   height: 550px;
   margin-right: 50px;
-  background-image: url('../images/guilherme-stecanella-_dH-oQF9w-Y-unsplash.jpg');
   background-position: 0px -100px;
   background-size: cover;
   box-shadow: none;

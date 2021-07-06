@@ -6,13 +6,19 @@
 <div class="slider-container">
   <div data-delay="4000" data-animation="slide" data-autoplay="1" data-nav-spacing="2" data-duration="1000" data-infinite="1" class="hero-slider w-slider">
     <div class="mask-5 w-slider-mask">
-      <div class="slide-9 w-slide">
+      @php
+          $key = 1; 
+      @endphp
+       @foreach ($banners as  $banner)
+       <div class="slide-9 w-slide">
         <div class="slide-center">
           <div class="slide-content">
             <div class="flex-vertical max-50">
-              <h1 class="h1">Investir dans l&#x27;immobilier,<br></h1>
-              <h2 class="h2">devrait être <br>pour tout le monde</h2>
-              <p class="paragraph-31">Plus d&#x27;excuses pour ne pas investir dans l&#x27;immobilier.<br>Ca prend 5 min pour créer ton compte et c&#x27;est gratuit.</p>
+              <h1 class="h1">{{ $banner->title }}<br></h1>
+              <h2 class="h2">{{ $banner->subtitle }}</h2>
+              <p class="paragraph-31">
+                {{ $banner->description }}
+              </p>
               <div class="spacer40"></div>
               <div class="div-block-6357">
                 <div>
@@ -24,7 +30,13 @@
               </div>
             </div>
             <div class="flex-fix">
-              <div class="content-image-wrapper _1">
+              <div class="content-image-wrapper _{{ $key }} 
+
+                @if($key == 1 || $key == 3)
+                content-image
+                @endif
+
+              " style="background-image: url({{ asset('uploads/banners') }}/{{ $banner->image }}) !important;">
                 <div class="hero-video-button">
                   <div data-w-id="a02d2bd4-a580-86c9-8560-74433824309f" class="video-button-background">
                     <div data-poster-url="https://uploads-ssl.webflow.com/60675f13ea324fdd4af9ef2a/60785e47c656dc751d6416ef_Video002-poster-00001.jpg" data-video-urls="videos/Video002-poster-00001.jpg,videos/Video002-transcode.mp4,videos/Video002-transcode.webm" data-autoplay="true" data-loop="true" data-wf-ignore="true" data-w-id="a02d2bd4-a580-86c9-8560-7443382430a0" class="button-video w-background-video w-background-video-atom"><video autoplay="" loop="" style="background-image:url(&quot;https://uploads-ssl.webflow.com/60675f13ea324fdd4af9ef2a/60785e47c656dc751d6416ef_Video002-poster-00001.jpg&quot;)" muted="" playsinline="" data-wf-ignore="true" data-object-fit="cover">
@@ -48,38 +60,10 @@
           </div>
         </div>
       </div>
-      <div class="slide-9 w-slide">
-        <div class="slide-center">
-          <div class="slide-content">
-            <div class="flex-vertical max-50">
-              <h1 class="h1">Trouve des projets <br></h1>
-              <h2 class="h2">qui conviennent a tes envies</h2>
-              <p class="paragraph-31">Un projet de rénovation, un achat entre ami(e)s, un investissement ?Choisis le ou les projets qui conviennent a tes envies.</p>
-              <div class="spacer40"></div>
-              <a href="#" class="button w-button">Créer un compte</a>
-            </div>
-            <div class="flex-fix">
-              <div class="content-image-wrapper _2"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="slide-9 w-slide">
-        <div class="slide-center">
-          <div class="slide-content">
-            <div class="flex-vertical max-50">
-              <h1 class="h1">Pas de frontières, <br></h1>
-              <h2 class="h2">pourquoi se priver</h2>
-              <p class="paragraph-31">France, Italie, Portugal, Angleterre, Espagne, ... <br>Tous les avantages d&#x27;être propriétaire, <br>sans les inconvénients ni les frontières.</p>
-              <div class="spacer40"></div>
-              <a href="#" class="button w-button">Créer un compte</a>
-            </div>
-            <div class="flex-fix">
-              <div class="content-image-wrapper _3 content-image"></div>
-            </div>
-          </div>
-        </div>
-      </div>
+      @php
+          $key++;
+      @endphp
+       @endforeach
     </div>
     <div class="left-arrow-4 w-slider-arrow-left">
       <div class="fontawesome"></div>
