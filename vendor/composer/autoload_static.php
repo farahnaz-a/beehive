@@ -574,6 +574,7 @@ class ComposerStaticInit7c037eabb002b38fedec69fb6aa9185c
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\FaqController' => __DIR__ . '/../..' . '/app/Http/Controllers/FaqController.php',
         'App\\Http\\Controllers\\FrontendController' => __DIR__ . '/../..' . '/app/Http/Controllers/FrontendController.php',
+        'App\\Http\\Controllers\\InvestController' => __DIR__ . '/../..' . '/app/Http/Controllers/InvestController.php',
         'App\\Http\\Controllers\\PortfolioController' => __DIR__ . '/../..' . '/app/Http/Controllers/PortfolioController.php',
         'App\\Http\\Controllers\\PricefreeController' => __DIR__ . '/../..' . '/app/Http/Controllers/PricefreeController.php',
         'App\\Http\\Controllers\\PricepremiumController' => __DIR__ . '/../..' . '/app/Http/Controllers/PricepremiumController.php',

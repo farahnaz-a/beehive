@@ -90,6 +90,21 @@
                                     @enderror
                                 </div>
                             </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="city_name">City name</label>
+                                    <select name="city_name" id="city_name" class="form-control">
+                                        <option value="">-Select City name-</option>
+                                        <option value="Paris">Paris</option>
+                                        <option value="Lyon">Lyon</option>
+                                        <option value="Marseille">Marseille</option>
+                                        <option value="Bordeaux">Bordeaux</option>
+                                    </select>
+                                    @error('city_name')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
+                            </div>
                             <div class="col-12 pt-1">
                                 <button type="submit" class="btn btn-primary mr-1 waves-effect waves-float waves-light">Submit</button>
                                 <button type="reset" class="btn btn-outline-secondary waves-effect">Reset</button>

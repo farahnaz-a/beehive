@@ -46,6 +46,7 @@ class PortfolioController extends Controller
             'minititle'  =>'required',
             'miniprice'  => 'required',
             'image'      => 'required|image',
+            'city_name'  => 'required',
         ]);
 
         $portfolio = Portfolio::create($request->except('_token') + ['created_at' => Carbon::now()]);
@@ -101,6 +102,7 @@ class PortfolioController extends Controller
             'minititle'  =>'required',
             'miniprice'  => 'required',
             'image'      => 'image',
+            'city_name'  => 'required',
         ]);
 
          // Check if request has image 

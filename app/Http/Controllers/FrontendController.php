@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Banner;
+use App\Models\Portfolio;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
@@ -14,6 +15,7 @@ class FrontendController extends Controller
    {
       return view('frontend.index', [
          'banners' => Banner::all(),
+         // 'paris'   => Portfolio::where('city_name', 'Paris')->get(),
       ]);
    }
 
