@@ -24563,7 +24563,6 @@ strong {
   bottom: 0%;
   width: 100%;
   height: 100%;
-  background-image: url('../images/keith-hardy-UVyavSwslOg-unsplash.jpg');
   background-position: 50% 50%;
   background-size: cover;
   background-repeat: no-repeat;
@@ -24571,10 +24570,6 @@ strong {
 
 .hero-background-image-4.journal-hero-background {
   background-image: none;
-}
-
-.hero-background-image-4.steps-background {
-  background-image: url('../images/image-01.png');
 }
 
 .xxl-heading-3 {

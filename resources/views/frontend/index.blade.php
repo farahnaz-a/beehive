@@ -111,7 +111,7 @@
   <div id="w-node-bd33aa0e-369d-1483-425c-3f198faa0930-a11c4038" class="steps-grid">
     <div id="w-node-bd33aa0e-369d-1483-425c-3f198faa0931-a11c4038" data-w-id="bd33aa0e-369d-1483-425c-3f198faa0931" class="steps-sticky-card">
       <div class="how-to-image">
-        <div class="hero-background-image-4 steps-background">
+        <div class="hero-background-image-4 steps-background" style="background-image: url({{ asset('uploads/works') }}/{{ $works->image }})">
           <div style="display:block;-webkit-transform:translate3d(0, 0%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 0%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="background-load-top"></div>
           <div style="display:block;-webkit-transform:translate3d(0, 0%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 0%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="background-load-bottom"></div>
         </div>
@@ -122,9 +122,9 @@
             <div class="subtitle-wrapper">
               <div class="text-block-489">Besoin d&#x27;aide ?</div>
             </div>
-            <h2 class="heading-156">Une équipe,<br><span class="text-span-229">à ton écoute</span></h2>
+            <h2 class="heading-156">{{ $works->title }},<br><span class="text-span-229">{{ $works->subtitle }}</span></h2>
           </div>
-          <div class="paragraph left">Donec sed auctor orci. In a nisl vel nisi egestas efficitur nec ac neque. Sed vitae sollicitudin elit, ac tristique nisi.</div>
+          <div class="paragraph left">{{ $works->description }}</div>
         </div>
         <a href="#" id="w-node-bd33aa0e-369d-1483-425c-3f198faa0940-a11c4038" data-w-id="bd33aa0e-369d-1483-425c-3f198faa0940" class="button w-inline-block">
           <div>Contacte-nous !</div>
@@ -146,70 +146,99 @@
             <div class="card-arrow"></div>
             <div class="steps-circle-outline"></div>
           </div>
-          <div id="w-node-bd33aa0e-369d-1483-425c-3f198faa0950-a11c4038" class="steps-content">
-            <div id="w-node-bd33aa0e-369d-1483-425c-3f198faa0951-a11c4038" class="steps-icon">
-              <div>1</div>
+          @foreach ($worksteps as $key => $workstep)
+            <div id="w-node-bd33aa0e-369d-1483-425c-3f198faa0950-a11c4038" class="steps-content">
+              <div id="w-node-bd33aa0e-369d-1483-425c-3f198faa0951-a11c4038" class="steps-icon">
+                <div>{{ $loop -> index + 1 }}</div>
+              </div>
+              <div id="w-node-bd33aa0e-369d-1483-425c-3f198faa0954-a11c4038" class="steps-description">
+                <h3 class="heading-157">{{ $workstep->title }}</h3>
+                <img src="{{ asset('uploads/worksteps') }}/{{ $workstep->image }}" width="150px"  loading="lazy" alt="">
+                <div class="paragraph left">
+                  {{ $workstep->description }}
+                </div>
+              </div>
             </div>
-            <div id="w-node-bd33aa0e-369d-1483-425c-3f198faa0954-a11c4038" class="steps-description">
-              <h3 class="heading-157">Crée ton compte sur B.hives</h3><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" alt="">
-              <div class="paragraph left">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sollicitudin eget velit ut sollicitudin. Nunc ullamcorper nibh nulla. In viverra id felis id tincidunt.</div>
-            </div>
-          </div>
-        </div>
-        <div class="steps-card">
-          <div class="steps-circle center">
-            <div class="card-arrow"></div>
-            <div class="steps-circle-outline two"></div>
-            <div class="steps-dot"></div>
-          </div>
-          <div id="w-node-bd33aa0e-369d-1483-425c-3f198faa095e-a11c4038" class="steps-content">
-            <div id="w-node-bd33aa0e-369d-1483-425c-3f198faa095f-a11c4038" class="steps-icon">
-              <div>2</div>
-            </div>
-            <div id="w-node-bd33aa0e-369d-1483-425c-3f198faa0962-a11c4038" class="steps-description">
-              <h3>Commence a chercher des projets qui te plaisent.</h3><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" alt="">
-              <div class="paragraph left">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sollicitudin eget velit ut sollicitudin. Nunc ullamcorper nibh nulla. In viverra id felis id tincidunt.</div>
-            </div>
-          </div>
-        </div>
-        <div class="steps-card">
-          <div class="steps-circle center">
-            <div class="card-arrow"></div>
-            <div class="steps-circle-outline three"></div>
-            <div class="steps-dot"></div>
-          </div>
-          <div id="w-node-bd33aa0e-369d-1483-425c-3f198faa096c-a11c4038" class="steps-content">
-            <div id="w-node-bd33aa0e-369d-1483-425c-3f198faa096d-a11c4038" class="steps-icon">
-              <div>3</div>
-            </div>
-            <div id="w-node-bd33aa0e-369d-1483-425c-3f198faa0970-a11c4038" class="steps-description">
-              <h3>Suit l&#x27;evolution de tes investissements</h3><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" alt="">
-              <div class="paragraph left">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sollicitudin eget velit ut sollicitudin. Nunc ullamcorper nibh nulla. In viverra id felis id tincidunt.</div>
-            </div>
-          </div>
-        </div>
-        <div class="steps-card">
-          <div class="steps-circle end">
-            <div class="card-arrow"></div>
-            <div class="steps-circle-outline four"></div>
-            <div class="steps-dot"></div>
-          </div>
-          <div id="w-node-bd33aa0e-369d-1483-425c-3f198faa097a-a11c4038" class="steps-content">
-            <div id="w-node-bd33aa0e-369d-1483-425c-3f198faa097b-a11c4038" class="steps-icon">
-              <div>4</div>
-            </div>
-            <div id="w-node-bd33aa0e-369d-1483-425c-3f198faa097e-a11c4038" class="steps-description">
-              <h3>Garde tes briques sur la durée ou vend les sur le marché public.</h3><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" alt="">
-              <div class="paragraph left">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sollicitudin eget velit ut sollicitudin. Nunc ullamcorper nibh nulla. In viverra id felis id tincidunt.</div>
-            </div>
-          </div>
+          @endforeach
         </div>
       </div>
     </div>
   </div>
 </div>
 </div>
-<div class="section-16 grey"><div class="title-wrap-4"><h1>Derniers projets sur</h1><div class="paragraph">Pricing built for people just like you.</div></div><div class="grid-wrapper-4"><div id="w-node-c4774a9a-6739-ccd0-58df-67e2ea1b807a-a11c4038" class="membership-plans-wrapper-2"><div class="popular-vacations-2"><div class="vacations-tabs-wrapper"><div data-duration-out="500" data-duration-in="500" class="vacations-tabs w-tabs"><div class="vacations-tab-menu w-tab-menu" role="tablist"><a data-w-tab="Tab 1" id="w-node-c4774a9a-6739-ccd0-58df-67e2ea1b8083-a11c4038" data-w-id="c4774a9a-6739-ccd0-58df-67e2ea1b8083" class="vacations-tab-link-2 w-inline-block w-tab-link w--current" href="#w-tabs-0-data-w-pane-0" role="tab" aria-controls="w-tabs-0-data-w-pane-0" aria-selected="true" cursorshover="true"><div class="membership-circle"><div class="membership-dot one" style="background-color: rgb(8, 28, 58);"></div><div class="membership-outline-circle" style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d; border-color: rgb(8, 28, 58);" cursorshover="true"></div></div><div class="text-block-490" cursorshover="true">Paris</div></a><a data-w-tab="Tab 3" id="w-node-c4774a9a-6739-ccd0-58df-67e2ea1b8089-a11c4038" data-w-id="c4774a9a-6739-ccd0-58df-67e2ea1b8089" class="vacations-tab-link-2 w-inline-block w-tab-link" href="#w-tabs-0-data-w-pane-1" role="tab" aria-controls="w-tabs-0-data-w-pane-1" aria-selected="false" cursorshover="true" tabindex="-1"><div class="membership-circle"><div class="membership-dot two" style="background-color: rgb(230, 230, 243);"></div><div class="membership-outline-circle" style="transform: translate3d(0px, 0px, 0px) scale3d(0, 0, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d; border-color: rgb(230, 230, 243);"></div></div><div class="text-block-491" cursorshover="true">Lyon</div></a><a data-w-tab="Tab 4" id="w-node-c4774a9a-6739-ccd0-58df-67e2ea1b808f-a11c4038" data-w-id="c4774a9a-6739-ccd0-58df-67e2ea1b808f" class="vacations-tab-link-2 w-inline-block w-tab-link" href="#w-tabs-0-data-w-pane-2" role="tab" aria-controls="w-tabs-0-data-w-pane-2" aria-selected="false" cursorshover="true" tabindex="-1"><div class="membership-circle" cursorshover="true"><div class="membership-dot three" style="background-color: rgb(230, 230, 243);"></div><div class="membership-outline-circle" style="transform: translate3d(0px, 0px, 0px) scale3d(0, 0, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d; border-color: rgb(230, 230, 243);"></div></div><div class="text-block-492" cursorshover="true">Marseille</div></a><a data-w-tab="Tab 5" id="w-node-c4774a9a-6739-ccd0-58df-67e2ea1b8095-a11c4038" data-w-id="c4774a9a-6739-ccd0-58df-67e2ea1b8095" class="vacations-tab-link-2 w-inline-block w-tab-link" href="#w-tabs-0-data-w-pane-3" role="tab" aria-controls="w-tabs-0-data-w-pane-3" aria-selected="false" cursorshover="true" tabindex="-1"><div class="membership-circle"><div class="membership-dot four" style="background-color: rgb(230, 230, 243);"></div><div class="membership-outline-circle" style="transform: translate3d(0px, 0px, 0px) scale3d(0, 0, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d; border-color: rgb(230, 230, 243);"></div></div><div class="text-block-493" cursorshover="true">Bordeaux</div></a></div><div class="vacations-tabs-content w-tab-content"><div data-w-tab="Tab 1" class="w-tab-pane w--tab-active" id="w-tabs-0-data-w-pane-0" role="tabpanel" aria-labelledby="w-node-c4774a9a-6739-ccd0-58df-67e2ea1b8083-a11c4038" style="opacity: 1; transition: opacity 500ms ease 0s;"><div class="collection-list-wrapper-17 w-dyn-list"><div role="list" class="popular-vacations-wrapper w-dyn-items"><div role="listitem" class="popular-location-item w-dyn-item"><div data-w-id="e062cad8-7165-6a07-2c9e-83b34a98c8ae" class="vacations-verticle-card-2" style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d; background-color: rgba(255, 255, 255, 0); border-color: rgba(192, 192, 211, 0.2);"><div class="verticle-card-image"><div data-w-id="e062cad8-7165-6a07-2c9e-83b34a98c8b0" style="background-image: url(&quot;https://uploads-ssl.webflow.com/604b733d887fc7116420f235/605709d7dad564d9874d0418_604b7f93a93db1080381f027_12.jpeg&quot;); transform: translate3d(-0.0012px, -0.0012px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d; will-change: transform;" class="hero-background-image-4"></div></div><div class="vacation-card-bottom"><div class="vacation-card-info"><h4 class="heading-158">My Villa 250m2 Prague</h4><div class="body-display small">€ 250,000</div></div><div class="vacation-details"><div id="w-node-e062cad8-7165-6a07-2c9e-83b34a98c8b8-a11c4038" class="vacation-price-2"><div class="subtitle-5 small">Investissement<br>moyen</div><div class="dynamic-price-text"><div>$</div><div>130</div></div></div><a id="w-node-e062cad8-7165-6a07-2c9e-83b34a98c8c0-a11c4038" href="#" class="outline-button small w-inline-block" style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;" cursorshover="true"><div>Details</div></a></div></div></div></div><div role="listitem" class="popular-location-item w-dyn-item"><div data-w-id="e062cad8-7165-6a07-2c9e-83b34a98c8ae" class="vacations-verticle-card-2" style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d; background-color: rgba(255, 255, 255, 0); border-color: rgba(192, 192, 211, 0.2);"><div class="verticle-card-image"><div data-w-id="e062cad8-7165-6a07-2c9e-83b34a98c8b0" style="background-image: url(&quot;https://uploads-ssl.webflow.com/604b733d887fc7116420f235/60d1c6cba747e2a02799062b_5Penthouse-5.jpeg&quot;); transform: translate3d(-0.0012px, -0.0012px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d; will-change: transform;" class="hero-background-image-4"></div></div><div class="vacation-card-bottom"><div class="vacation-card-info"><h4 class="heading-158">Malto House</h4><div class="body-display small">€ 350,000</div></div><div class="vacation-details"><div id="w-node-e062cad8-7165-6a07-2c9e-83b34a98c8b8-a11c4038" class="vacation-price-2"><div class="subtitle-5 small">Investissement<br>moyen</div><div class="dynamic-price-text"><div>$</div><div>130</div></div></div><a id="w-node-e062cad8-7165-6a07-2c9e-83b34a98c8c0-a11c4038" href="#" class="outline-button small w-inline-block" style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;" cursorshover="true"><div>Details</div></a></div></div></div></div><div role="listitem" class="popular-location-item w-dyn-item"><div data-w-id="e062cad8-7165-6a07-2c9e-83b34a98c8ae" class="vacations-verticle-card-2" style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d; background-color: rgba(255, 255, 255, 0); border-color: rgba(192, 192, 211, 0.2);"><div class="verticle-card-image"><div data-w-id="e062cad8-7165-6a07-2c9e-83b34a98c8b0" style="background-image: url(&quot;https://uploads-ssl.webflow.com/604b733d887fc7116420f235/60d1c6a5a02be121c7665898_airbnb-prague-sun-filled-penthouse.jpeg&quot;); transform: translate3d(-0.0012px, -0.0012px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d; will-change: transform;" class="hero-background-image-4"></div></div><div class="vacation-card-bottom"><div class="vacation-card-info"><h4 class="heading-158">Arden House</h4><div class="body-display small">€ 132,000</div></div><div class="vacation-details"><div id="w-node-e062cad8-7165-6a07-2c9e-83b34a98c8b8-a11c4038" class="vacation-price-2"><div class="subtitle-5 small">Investissement<br>moyen</div><div class="dynamic-price-text"><div>$</div><div>130</div></div></div><a id="w-node-e062cad8-7165-6a07-2c9e-83b34a98c8c0-a11c4038" href="#" class="outline-button small w-inline-block" style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;"><div>Details</div></a></div></div></div></div></div></div></div><div data-w-tab="Tab 3" class="w-tab-pane" id="w-tabs-0-data-w-pane-1" role="tabpanel" aria-labelledby="w-node-c4774a9a-6739-ccd0-58df-67e2ea1b8089-a11c4038" style=""><div class="collection-list-wrapper-17 w-dyn-list"><div class="w-dyn-empty"><div>No items found.</div></div></div></div><div data-w-tab="Tab 4" class="w-tab-pane" id="w-tabs-0-data-w-pane-2" role="tabpanel" aria-labelledby="w-node-c4774a9a-6739-ccd0-58df-67e2ea1b808f-a11c4038" style=""><div class="collection-list-wrapper-17 w-dyn-list"><div class="w-dyn-empty"><div>No items found.</div></div></div></div><div data-w-tab="Tab 5" class="w-tab-pane" id="w-tabs-0-data-w-pane-3" role="tabpanel" aria-labelledby="w-node-c4774a9a-6739-ccd0-58df-67e2ea1b8095-a11c4038" style=""><div class="collection-list-wrapper-17 w-dyn-list"><div class="w-dyn-empty"><div>No items found.</div></div></div></div></div></div><div class="location-indicator"><div style="width: 25%; height: 2px;" class="location-indicator-fill"></div></div></div></div></div></div></div>
+<div class="section-16 grey">
+  <div class="title-wrap-4">
+    <h1>Derniers projets sur</h1>
+    <div class="paragraph">Pricing built for people just like you.</div>
+  </div>
+  <div class="grid-wrapper-4">
+    <div id="w-node-c4774a9a-6739-ccd0-58df-67e2ea1b807a-a11c4038" class="membership-plans-wrapper-2">
+      <div class="popular-vacations-2">
+        <div class="vacations-tabs-wrapper">
+          <div data-duration-out="500" data-duration-in="500" class="vacations-tabs w-tabs">
+            <div class="vacations-tab-menu w-tab-menu" role="tablist">
+              <a data-w-tab="Tab 1" id="w-node-c4774a9a-6739-ccd0-58df-67e2ea1b8083-a11c4038" data-w-id="c4774a9a-6739-ccd0-58df-67e2ea1b8083" class="vacations-tab-link-2 w-inline-block w-tab-link w--current" href="#w-tabs-0-data-w-pane-0" role="tab" aria-controls="w-tabs-0-data-w-pane-0" aria-selected="true" cursorshover="true">
+                <div class="membership-circle">
+                  <div class="membership-dot one" style="background-color: rgb(8, 28, 58);"></div>
+                  <div class="membership-outline-circle" style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d; border-color: rgb(8, 28, 58);" cursorshover="true">
+                  </div>
+                </div>
+                <div class="text-block-490" cursorshover="true">Paris</div>
+              </a>
+              <a data-w-tab="Tab 3" id="w-node-c4774a9a-6739-ccd0-58df-67e2ea1b8089-a11c4038" data-w-id="c4774a9a-6739-ccd0-58df-67e2ea1b8089" class="vacations-tab-link-2 w-inline-block w-tab-link" href="#w-tabs-0-data-w-pane-1" role="tab" aria-controls="w-tabs-0-data-w-pane-1" aria-selected="false" cursorshover="true" tabindex="-1">
+                <div class="membership-circle">
+                  <div class="membership-dot two" style="background-color: rgb(230, 230, 243);">
+                  </div>
+                  <div class="membership-outline-circle" style="transform: translate3d(0px, 0px, 0px) scale3d(0, 0, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d; border-color: rgb(230, 230, 243);">
+                  </div>
+                </div>
+                <div class="text-block-491" cursorshover="true">Lyon</div>
+              </a>
+              <a data-w-tab="Tab 4" id="w-node-c4774a9a-6739-ccd0-58df-67e2ea1b808f-a11c4038" data-w-id="c4774a9a-6739-ccd0-58df-67e2ea1b808f" class="vacations-tab-link-2 w-inline-block w-tab-link" href="#w-tabs-0-data-w-pane-2" role="tab" aria-controls="w-tabs-0-data-w-pane-2" aria-selected="false" cursorshover="true" tabindex="-1">
+                <div class="membership-circle" cursorshover="true">
+                  <div class="membership-dot three" style="background-color: rgb(230, 230, 243);">
+                  </div>
+                  <div class="membership-outline-circle" style="transform: translate3d(0px, 0px, 0px) scale3d(0, 0, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d; border-color: rgb(230, 230, 243);">
+                  </div>
+                </div>
+                <div class="text-block-492" cursorshover="true">Marseille</div>
+              </a>
+              <a data-w-tab="Tab 5" id="w-node-c4774a9a-6739-ccd0-58df-67e2ea1b8095-a11c4038" data-w-id="c4774a9a-6739-ccd0-58df-67e2ea1b8095" class="vacations-tab-link-2 w-inline-block w-tab-link" href="#w-tabs-0-data-w-pane-3" role="tab" aria-controls="w-tabs-0-data-w-pane-3" aria-selected="false" cursorshover="true" tabindex="-1">
+                <div class="membership-circle">
+                  <div class="membership-dot four" style="background-color: rgb(230, 230, 243);">
+                  </div>
+                  <div class="membership-outline-circle" style="transform: translate3d(0px, 0px, 0px) scale3d(0, 0, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d; border-color: rgb(230, 230, 243);">
+                  </div>
+                </div>
+                <div class="text-block-493" cursorshover="true">Bordeaux</div>
+              </a>
+            </div>
+            <div class="vacations-tabs-content w-tab-content">
+              <div data-w-tab="Tab 1" class="w-tab-pane w--tab-active" id="w-tabs-0-data-w-pane-0" role="tabpanel" aria-labelledby="w-node-c4774a9a-6739-ccd0-58df-67e2ea1b8083-a11c4038" style="opacity: 1; transition: opacity 500ms ease 0s;">
+                <div class="collection-list-wrapper-17 w-dyn-list">
+                  <div role="list" class="popular-vacations-wrapper w-dyn-items">
+                    <div role="listitem" class="popular-location-item w-dyn-item">
+                      <div data-w-id="e062cad8-7165-6a07-2c9e-83b34a98c8ae" class="vacations-verticle-card-2" style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d; background-color: rgba(255, 255, 255, 0); border-color: rgba(192, 192, 211, 0.2);">
+                        <div class="verticle-card-image">
+                          <div data-w-id="e062cad8-7165-6a07-2c9e-83b34a98c8b0" style="background-image: url(&quot;https://uploads-ssl.webflow.com/604b733d887fc7116420f235/605709d7dad564d9874d0418_604b7f93a93db1080381f027_12.jpeg&quot;); transform: translate3d(-0.0012px, -0.0012px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d; will-change: transform;" class="hero-background-image-4">
+                          </div>
+                        </div>
+                        <div class="vacation-card-bottom">
+                          <div class="vacation-card-info">
+                            <h4 class="heading-158">My Villa 250m2 Prague</h4>
+                            <div class="body-display small">€ 250,000</div>
+                          </div>
+                          <div class="vacation-details">
+                            <div id="w-node-e062cad8-7165-6a07-2c9e-83b34a98c8b8-a11c4038" class="vacation-price-2">
+                              <div class="subtitle-5 small">Investissement<br>moyen</div>
+                              <div class="dynamic-price-text">
+                                  <div>$</div>
+                                  <div>130</div>
+                                </div>
+                              </div>
+                              <a id="w-node-e062cad8-7165-6a07-2c9e-83b34a98c8c0-a11c4038" href="#" class="outline-button small w-inline-block" style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;" cursorshover="true">
+                                <div>Details</div>
+                              </a></div></div></div></div><div role="listitem" class="popular-location-item w-dyn-item"><div data-w-id="e062cad8-7165-6a07-2c9e-83b34a98c8ae" class="vacations-verticle-card-2" style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d; background-color: rgba(255, 255, 255, 0); border-color: rgba(192, 192, 211, 0.2);"><div class="verticle-card-image"><div data-w-id="e062cad8-7165-6a07-2c9e-83b34a98c8b0" style="background-image: url(&quot;https://uploads-ssl.webflow.com/604b733d887fc7116420f235/60d1c6cba747e2a02799062b_5Penthouse-5.jpeg&quot;); transform: translate3d(-0.0012px, -0.0012px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d; will-change: transform;" class="hero-background-image-4"></div></div><div class="vacation-card-bottom"><div class="vacation-card-info"><h4 class="heading-158">Malto House</h4><div class="body-display small">€ 350,000</div></div><div class="vacation-details"><div id="w-node-e062cad8-7165-6a07-2c9e-83b34a98c8b8-a11c4038" class="vacation-price-2"><div class="subtitle-5 small">Investissement<br>moyen</div><div class="dynamic-price-text"><div>$</div><div>130</div></div></div><a id="w-node-e062cad8-7165-6a07-2c9e-83b34a98c8c0-a11c4038" href="#" class="outline-button small w-inline-block" style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;" cursorshover="true"><div>Details</div></a></div></div></div></div><div role="listitem" class="popular-location-item w-dyn-item"><div data-w-id="e062cad8-7165-6a07-2c9e-83b34a98c8ae" class="vacations-verticle-card-2" style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d; background-color: rgba(255, 255, 255, 0); border-color: rgba(192, 192, 211, 0.2);"><div class="verticle-card-image"><div data-w-id="e062cad8-7165-6a07-2c9e-83b34a98c8b0" style="background-image: url(&quot;https://uploads-ssl.webflow.com/604b733d887fc7116420f235/60d1c6a5a02be121c7665898_airbnb-prague-sun-filled-penthouse.jpeg&quot;); transform: translate3d(-0.0012px, -0.0012px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d; will-change: transform;" class="hero-background-image-4"></div></div><div class="vacation-card-bottom"><div class="vacation-card-info"><h4 class="heading-158">Arden House</h4><div class="body-display small">€ 132,000</div></div><div class="vacation-details"><div id="w-node-e062cad8-7165-6a07-2c9e-83b34a98c8b8-a11c4038" class="vacation-price-2"><div class="subtitle-5 small">Investissement<br>moyen</div><div class="dynamic-price-text"><div>$</div><div>130</div></div></div><a id="w-node-e062cad8-7165-6a07-2c9e-83b34a98c8c0-a11c4038" href="#" class="outline-button small w-inline-block" style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;"><div>Details</div></a></div></div></div></div></div></div></div><div data-w-tab="Tab 3" class="w-tab-pane" id="w-tabs-0-data-w-pane-1" role="tabpanel" aria-labelledby="w-node-c4774a9a-6739-ccd0-58df-67e2ea1b8089-a11c4038" style=""><div class="collection-list-wrapper-17 w-dyn-list"><div class="w-dyn-empty"><div>No items found.</div></div></div></div><div data-w-tab="Tab 4" class="w-tab-pane" id="w-tabs-0-data-w-pane-2" role="tabpanel" aria-labelledby="w-node-c4774a9a-6739-ccd0-58df-67e2ea1b808f-a11c4038" style=""><div class="collection-list-wrapper-17 w-dyn-list"><div class="w-dyn-empty"><div>No items found.</div></div></div></div><div data-w-tab="Tab 5" class="w-tab-pane" id="w-tabs-0-data-w-pane-3" role="tabpanel" aria-labelledby="w-node-c4774a9a-6739-ccd0-58df-67e2ea1b8095-a11c4038" style=""><div class="collection-list-wrapper-17 w-dyn-list"><div class="w-dyn-empty"><div>No items found.</div></div></div></div></div></div><div class="location-indicator"><div style="width: 25%; height: 2px;" class="location-indicator-fill"></div></div></div></div></div></div></div>
 <div class="section-16">
 <div data-animation="cross" data-easing="ease-out" data-disable-swipe="1" data-duration="400" id="flowbaseSlider" class="testimonial-slider w-slider">
   <div class="mask-4 w-slider-mask">
