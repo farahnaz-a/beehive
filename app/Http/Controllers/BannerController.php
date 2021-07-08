@@ -18,6 +18,7 @@ class BannerController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('verified');
+        $this->middleware('checkrole');
     }
 
     /**

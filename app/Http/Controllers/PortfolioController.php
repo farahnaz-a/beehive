@@ -10,6 +10,15 @@ use Illuminate\Support\Facades\Auth;
 
 class PortfolioController extends Controller
 {
+     /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('verified');
+        $this->middleware('checkrole');
+    }
     /**
      * Display a listing of the resource.
      *

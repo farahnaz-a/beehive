@@ -59,7 +59,7 @@
                         <ul class="search-list search-list-main"></ul>
                     </div>
                 </li>
-                <li class="nav-item dropdown dropdown-notification mr-25"><a class="nav-link" href="javascript:void(0);" data-toggle="dropdown"><i class="ficon" data-feather="bell"></i><span class="badge badge-pill badge-danger badge-up">5</span></a>
+                {{-- <li class="nav-item dropdown dropdown-notification mr-25"><a class="nav-link" href="javascript:void(0);" data-toggle="dropdown"><i class="ficon" data-feather="bell"></i><span class="badge badge-pill badge-danger badge-up">5</span></a>
                     <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
                         <li class="dropdown-menu-header">
                             <div class="dropdown-header d-flex">
@@ -140,7 +140,7 @@
                         </li>
                         <li class="dropdown-menu-footer"><a class="btn btn-primary btn-block" href="javascript:void(0)">Read all notifications</a></li>
                     </ul>
-                </li>
+                </li> --}}
                 <li class="nav-item dropdown dropdown-user"><a class="nav-link dropdown-toggle dropdown-user-link" id="dropdown-user" href="javascript:void(0);" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <div class="user-nav d-sm-flex d-none"><span class="user-name font-weight-bolder">{{ ucfirst(Auth::user()->name)  }}</span><span class="user-status">Admin</span></div><span class="avatar"><img class="round" src="{{ Auth::user()->profile_photo_url }}" alt="avatar" height="40" width="40"><span class="avatar-status-online"></span></span>
                     </a>
@@ -281,7 +281,7 @@
                 <li class=" nav-item">
                     <a class="d-flex align-items-center" href="{{ route('dashboard') }}">
                         <i data-feather="home"></i>
-                        <span class="menu-title text-truncate" data-i18n="Users">Admin Pannel</span>
+                        <span class="menu-title text-truncate" data-i18n="Users">Admin Panel</span>
                         {{-- <span class="badge badge-light-warning badge-pill ml-auto mr-1">2</span> --}}
                     </a>
                 </li>
@@ -304,6 +304,8 @@
                 <li class=" nav-item @yield('faqs')"><a class="d-flex align-items-center" href="{{ route('faqs.index') }}"><i data-feather='help-circle'></i></i><span class="menu-title text-truncate" data-i18n="Email">Frequently Asked Questions</span></a>
                 </li>
                 <li class=" nav-item @yield('invests')"><a class="d-flex align-items-center" href="{{ route('invests.index') }}"><i data-feather='help-circle'></i></i><span class="menu-title text-truncate" data-i18n="Email">Where To Invest</span></a>
+                </li>
+                <li class=" nav-item @yield('cities')"><a class="d-flex align-items-center" href="{{ route('cities.index') }}"><i data-feather='cpu'></i></i><span class="menu-title text-truncate" data-i18n="Email">City</span></a>
                 </li>
                 {{-- <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="message-square"></i><span class="menu-title text-truncate" data-i18n="Chat">Chat</span></a>
                 </li>
@@ -355,6 +357,7 @@
 
     <!-- BEGIN: Vendor JS-->
     <script src="{{ asset('dashboard_assets/app-assets/vendors/js/vendors.min.js') }}"></script>
+    @yield('js')
     <!-- BEGIN Vendor JS-->
 
     <!-- BEGIN: Page Vendor JS-->

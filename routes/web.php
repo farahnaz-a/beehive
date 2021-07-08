@@ -1,17 +1,20 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FaqController;
+use App\Http\Controllers\CityController;
 use App\Http\Controllers\WorkController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BannerController;
-use App\Http\Controllers\FrontendController;
-use App\Http\Controllers\PortfolioController;
-use App\Http\Controllers\WorkStepController;
-use App\Http\Controllers\TestimonialController;
-use App\Http\Controllers\FaqController;
+use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\InvestController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\WorkStepController;
+use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\PricefreeController;
+use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\PricepremiumController;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,17 +64,25 @@ Route::group(['prefix' => 'admin'], function (){
     //InvestController
     Route::resource('invests', InvestController::class);
 
+    //CityController 
+    Route::resource('cities', CityController::class);
+
 
 });
 
+// Customer Prefix
+Route::group(['prefix' => 'customer'], function () {
 
+    //CustomerController 
+    Route::get('/dashboard', [CustomerController::class, 'index'])->name('customer.index');
+    Route::post('/customer-info', [CustomerController::class, 'customerInfo'])->name('customer.information');
+    Route::post('/customer-doc', [CustomerController::class, 'customerDoc'])->name('customer.doc');
+    Route::get('/documents', [CustomerController::class, 'customerDocuments'])->name('customer.document');
+    Route::get('/thankyou', [CustomerController::class, 'complete'])->name('customer.thanks');
 
+});
 
-// Route::get('/banner', function(){
-//     return view('admin.banners.index');
-// })->name('banners.index');
-
-// Route::get('/banner/edit', function(){
-//     return view('admin.banners.edit');
-// })->name('banners.edit');
+// GoogleController
+Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
+Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 

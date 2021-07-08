@@ -150,7 +150,15 @@
           <div>
             {{-- <a data-authpack="open" href="#" class="button small-button">Connexion</a> --}}
             @auth
-            <a  href="{{ route('dashboard') }}" class="button small-button">Account</a>
+            <div style="float: left;margin-right:20px;">
+              <form action="{{ route('logout') }}" method="POST">
+                @csrf 
+                <a  href="{{ route('logout') }}" onclick="event.preventDefault();this.closest('form').submit();" class="button small-button">Log out</a>
+              </form>
+            </div>
+            <div style="float:right;">
+              <a  href="{{ route('dashboard') }}" class="button small-button">Account</a>
+            </div>
             @endauth
             @guest
             <a  href="{{ route('login') }}" class="button small-button">Login</a>

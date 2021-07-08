@@ -1,0 +1,137 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\CustomerDocument;
+use App\Models\UserInformation;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Auth;
+
+class CustomerController extends Controller
+{
+    /**
+     * Constructor 
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('verified'); 
+    }
+
+    /**
+     *  Customer  Dashboard
+     */
+    public function index()
+    {
+        if(UserInformation::where('user_id', Auth::id())->doesntExist())
+        {
+            return view('customer.index');
+        } 
+        elseif(CustomerDocument::where('user_id', Auth::id())->doesntExist())
+        {
+            return redirect()->route('customer.document');
+        }
+        else 
+        {
+            return redirect()->route('customer.thanks');
+        }
+    }
+
+    /**
+     *  Store customer information 
+     */
+    public function customerInfo(Request $request)
+    {
+        if(UserInformation::where('user_id', Auth::id())->doesntExist())
+        {
+            $request->validate([
+                'full_name' => 'required', 
+                'dob'       => 'required', 
+                'city'      => 'required', 
+                'country'   => 'required', 
+            ],[
+                'dob.required' => 'Date of birth is required',
+            ]);
+    
+            UserInformation::create([
+                'full_name' => $request->full_name, 
+                'dob'       => $request->dob, 
+                'city'      => $request->city, 
+                'country'   => $request->country,
+                'created_at'=> Carbon::now(),
+                'user_id'   => Auth::id(),
+            ]);
+
+            return redirect()->route('customer.document');
+        }
+
+        else 
+        {
+            return redirect()->route('customer.document');
+        }
+    }
+
+    /**
+     * Customer Document Form 
+     */
+    public function customerDocuments()
+    {
+        if(CustomerDocument::where('user_id', Auth::id())->doesntExist())
+        {
+            return view('customer.document');
+        }
+        else 
+        {
+            return redirect()->route('customer.thanks');
+        }
+    }
+
+    /**
+     *  Customer Documents 
+     */
+    public function customerDoc(Request $request)
+    {
+        if(CustomerDocument::where('user_id', Auth::id())->doesntExist())
+        {
+            $request->validate([
+                'pid' => 'required', 
+                'doc' => 'required|file',
+            ],[
+                'pid.required' => 'Please provide your Personal Identification Number',
+                'doc.required' => 'A supported document to prove your identity is required', 
+                'doc.file'     => 'Your document must be a file type',  
+            ]);
+    
+            $data = CustomerDocument::create([
+                'pid'      => $request->pid, 
+                'doc'      => 'file', 
+                'user_id'  => Auth::id(), 
+            ]);
+    
+            $doc = $request->file('doc');
+            $filename = $data->id. '.' .$doc->extension('doc');
+            $location = public_path('uploads/documents'); 
+            $doc->move($location, $filename); 
+    
+            $data->doc = $filename; 
+            $data->save(); 
+    
+            return redirect()->route('customer.thanks');
+        }
+        else
+        {
+            return redirect()->route('customer.thanks'); 
+        }
+    }
+
+    /**
+     *  Registration Complete 
+     */
+    public function complete()
+    {
+        return view('customer.thankyou');
+    }
+
+// END    
+}
