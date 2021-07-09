@@ -36,6 +36,7 @@ Route::group(['prefix' => 'admin'], function (){
 
     //AdminController
     Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
+    Route::get('/delete/{id}/user', [AdminController::class, 'delete'])->name('user.delete');
     
     //BannerController
     Route::resource('banners', BannerController::class);

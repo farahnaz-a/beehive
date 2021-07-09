@@ -7,6 +7,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\CustomerDocument;
+use App\Models\UserInformation;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
@@ -48,6 +50,27 @@ class AdminController extends Controller
 
         return view('admin.index', compact('users' , 'admins', 'total', 'data'));
 
+    }
+
+    /**
+     *  User delete 
+     */
+    public function delete($id)
+    {
+        $user = User::find($id);
+
+        if($user->getInfo)
+        {
+            UserInformation::where('user_id', $id)->first()->delete(); 
+        }
+        if($user->getDocument)
+        {
+            CustomerDocument::where('user_id', $id)->first()->delete();
+        }
+
+        $user->delete(); 
+
+        return back()->withSuccess('User deleted');
     }
 
     // public function store(Request $request)
