@@ -34,8 +34,15 @@ class CustomerController extends Controller
         }
         else 
         {
-            return redirect()->route('customer.thanks');
+            return redirect()->route('customer.dashboard');
         }
+    }
+    /**
+     * Customer account page 
+     */
+    public function account()
+    {
+        return view('customer.dashboard');
     }
 
     /**

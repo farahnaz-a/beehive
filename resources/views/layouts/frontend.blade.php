@@ -113,7 +113,7 @@
         </div>
       </div>
       <div id="w-node-b3d7021c-264f-bd4f-2676-ef0afccf27af-fccf2769" class="navigation-content-2">
-        <a href="#" class="brand-7 w-nav-brand">
+        <a href="{{ url('/') }}" class="brand-7 w-nav-brand">
           <div class="text-block-494"><span class="thin-span-2">B</span>.hives</div>
         </a>
         <nav role="navigation" class="nav-menu-11 w-nav-menu">
@@ -150,7 +150,8 @@
           <div>
             {{-- <a data-authpack="open" href="#" class="button small-button">Connexion</a> --}}
             @auth
-            <div style="float: left;margin-right:20px;">
+             @if(Auth::user()->getDocument)
+             <div style="float: left;margin-right:20px;">
               <form action="{{ route('logout') }}" method="POST">
                 @csrf 
                 <a  href="{{ route('logout') }}" onclick="event.preventDefault();this.closest('form').submit();" class="button small-button">Log out</a>
@@ -159,6 +160,9 @@
             <div style="float:right;">
               <a  href="{{ route('dashboard') }}" class="button small-button">Account</a>
             </div>
+            @else
+            <a  href="{{ route('dashboard') }}" class="button small-button">Complete Registration</a>
+             @endif
             @endauth
             @guest
             <a  href="{{ route('login') }}" class="button small-button">Login</a>

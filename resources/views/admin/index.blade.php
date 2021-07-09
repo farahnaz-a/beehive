@@ -114,7 +114,7 @@
                                   <tr>
                                       <th>
                                           ID#  : {{ $user->getDocument->pid }} <br>
-                                          File : {{ $user->getDocument->doc }} 
+                                          File : <a href="{{ url('/uploads/documents') }}/{{ $user->getDocument->doc }}" target="_blank">View Documents</a> 
                                       </th>
                                   </tr>
                                   @endif

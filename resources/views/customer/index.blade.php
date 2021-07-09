@@ -15,19 +15,19 @@
             <form  action="{{ route('customer.information') }}" data-name="Register Form" method="POST">
                 @csrf
               <div class="form-wrap">
-                  <input type="text" class="input-field w-input" maxlength="256" name="full_name" data-name="Nom complet" placeholder="Nom complet" id="Nom-complet" required="">
+                  <input type="text" class="input-field w-input" maxlength="256" name="full_name" data-name="Nom complet" value="{{ Auth::user()->name }}" id="Nom-complet" required="">
                     @error('full_name')
                         <small style="color:red;">{{ $message }}</small>
                     @enderror
                 </div>
               <div class="form-wrap">
-                  <input type="text" class="input-field w-input" maxlength="256" name="dob" data-name="Date De Naissance 2" placeholder="Date de naissance " id="Date-de-naissance-2" required="">
+                  <input type="date" max="{{ \Carbon\Carbon::now()->subYear(18)->format('Y-m-d')  }}" class="input-field w-input" maxlength="256" id="dob" name="dob" data-name="Date De Naissance 2" placeholder="Date de naissance " id="Date-de-naissance-2" required="">
                   @error('dob')
                         <small style="color:red;">{{ $message }}</small>
                     @enderror
                 </div>
               <div class="form-wrap">
-                  <select id="Select-Country" name="country" data-name="Select Country" required="" class="select-field-4 w-select">
+                  <select id="Select-Country" autocomplete="" name="country" data-name="Select Country" required="" class="select-field-4 w-select">
                   <option value="">Select country</option>
                   <option value="Afghanistan">Afghanistan</option>
                   <option value="Akrotiri">Akrotiri</option>
@@ -293,7 +293,7 @@
                     @enderror
             </div>
               <div class="form-wrap">
-                  <input type="text" class="input-field w-input" maxlength="256" name="city" data-name="Ville" placeholder="Ville" id="Ville" required="">
+                  <input type="text" class="input-field w-input" maxlength="256" name="city" data-name="Ville" placeholder="Ville" id="Ville" autocomplete="" required="">
                   @error('city')
                   <small style="color:red;">{{ $message }}</small>
                 @enderror
