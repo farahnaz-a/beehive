@@ -6,13 +6,13 @@
     {{ config('app.name') }} | {{ $portfolio->title }}
 @endsection
 
-@section('portfolios')
+@section('portfolios_edit')
     active
 @endsection
 
 {{-- Breadcrumb --}}
 @section('breadcrumb')
-    <h2 class="content-header-title float-left mb-0">Portfolio Edit</h2>
+    <h2 class="content-header-title float-left mb-0">Project Edit</h2>
     <div class="breadcrumb-wrapper">
         <ol class="breadcrumb">
             <li class="breadcrumb-item active">Edit
@@ -27,7 +27,12 @@
         <div class="col-lg-6">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Edit Portfolio</small></h4>
+                    <h4 class="card-title">Edit Project</small></h4>
+                    @if (session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
                 </div>
                 <div class="card-body">
                     <form method="post" action="{{ route('portfolios.update', $portfolio->id) }}" enctype="multipart/form-data" class="form form-vertical">
@@ -75,7 +80,7 @@
                                 <div class="form-group">
                                     <label for="minititle">Mini Title</label>
                                     <input type="text" value="{{ $portfolio->minititle }}" id="minititle" class="form-control" name="minititle">
-                                    @error('title')
+                                    @error('minititle')
                                         <small class="alert alert-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
@@ -84,7 +89,7 @@
                                 <div class="form-group">
                                     <label for="miniprice">Mini Price</label>
                                     <textarea name="miniprice" id="miniprice" class="form-control">{{ $portfolio->miniprice }}</textarea>
-                                    @error('description')
+                                    @error('miniprice')
                                         <small class="alert alert-danger">{{ $message }}</small>
                                     @enderror
                                 </div>

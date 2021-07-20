@@ -32,13 +32,7 @@
                             </div>
                         </div>
                         <div class="flex-fix">
-                            <div class="content-image-wrapper _{{ $key }} 
-
-                @if($key == 1 || $key == 3)
-                content-image
-                @endif
-
-              " style="background-image: url({{ asset('uploads/banners') }}/{{ $banner->image }}) !important;">
+                            <div class="content-image-wrapper _{{ $key }} @if($key == 1 || $key == 3) content-image @endif " style="background-image: url({{ asset('uploads/banners') }}/{{ $banner->image }}) !important;">
                                 <div class="hero-video-button">
                                     <div data-w-id="a02d2bd4-a580-86c9-8560-74433824309f"
                                         class="video-button-background">
@@ -298,10 +292,8 @@
                                                               <div>{{ $pari->miniprice }}</div>
                                                           </div>
                                                       </div>
-                                                      <a id="w-node-e062cad8-7165-6a07-2c9e-83b34a98c8c0-a11c4038"
-                                                          href="#" class="outline-button small w-inline-block"
-                                                          style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;"
-                                                          cursorshover="true">
+                                                      <a id="w-node-e062cad8-7165-6a07-2c9e-83b34a98c8c0-a11c4038" href="#" class="outline-button small w-inline-block"  style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;"  cursorshover="true">
+                                                        Details
                                                       </a>
                                                   </div>
                                               </div>

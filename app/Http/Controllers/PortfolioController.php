@@ -38,7 +38,7 @@ class PortfolioController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.portfolios.create');
     }
 
     /**
@@ -50,9 +50,9 @@ class PortfolioController extends Controller
     public function store(Request $request)
     {
         $request -> validate([
-            'title'      =>'required',
+            'title'      => 'required',
             'price'      => 'required',
-            'minititle'  =>'required',
+            'minititle'  => 'required',
             'miniprice'  => 'required',
             'image'      => 'required|image',
             'city_name'  => 'required',
@@ -106,12 +106,15 @@ class PortfolioController extends Controller
     {
          // Update Validation 
          $request -> validate([
-            'title'      =>'required',
-            'price'      => 'required',
-            'minititle'  =>'required',
-            'miniprice'  => 'required',
-            'image'      => 'image',
-            'city_name'  => 'required',
+            'city_name'          => 'required',
+            'image'              => 'image|required',
+            'title'              => 'required',
+            'price'              => 'required',
+            'minititle'          => 'required',
+            'miniprice'          => 'required',
+            'short_desc'         => 'required',
+            'about_desc'         => 'required',
+            'next_desc_1'        => 'required',
         ]);
 
          // Check if request has image 

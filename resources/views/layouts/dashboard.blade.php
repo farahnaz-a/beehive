@@ -285,15 +285,23 @@
                         {{-- <span class="badge badge-light-warning badge-pill ml-auto mr-1">2</span> --}}
                     </a>
                 </li>
-                <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Apps &amp; Pages</span><i data-feather="more-horizontal"></i>
+                <li class="navigation-header"><span data-i18n="Apps &amp; Pages">Apps &amp; Pages</span><i data-feather="more-horizontal"></i>
                 </li>
                 <li class="nav-item @yield('banners')"><a class="d-flex align-items-center" href="{{ route('banners.index') }}"><i data-feather='shield'></i><span class="menu-title text-truncate" data-i18n="Email">Banner</span></a>
                 </li>
                 <li class="nav-item @yield('works')"><a class="d-flex align-items-center" href="{{ route('works.index') }}"><i data-feather='wind'></i><span class="menu-title text-truncate" data-i18n="Email">How it Works</span></a>
                 </li>
-                <li class=" nav-item @yield('workSteps')"><a class="d-flex align-items-center" href="{{ route('workSteps.index') }}"><i data-feather='git-pull-request'></i><span class="menu-title text-truncate" data-i18n="Email">How it Works Steps</span></a>
+                <li class="nav-item @yield('workSteps')"><a class="d-flex align-items-center" href="{{ route('workSteps.index') }}"><i data-feather='git-pull-request'></i><span class="menu-title text-truncate" data-i18n="Email">How it Works Steps</span></a>
                 </li>
-                <li class=" nav-item @yield('portfolios')"><a class="d-flex align-items-center" href="{{ route('portfolios.index') }}"><i data-feather='pocket'></i></i><span class="menu-title text-truncate" data-i18n="Email">Portfolio</span></a>
+                <li class="nav-item has-sub"><a class="d-flex align-items-center" href=""><i data-feather='pocket'></i></i><span class="menu-title text-truncate" data-i18n="Email">Projects</span></a>
+                    <ul class="menu-content">
+                        <li class=" @yield('portfolios_show')">
+                            <a class="d-flex align-items-center" href="{{ route('portfolios.index') }}"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle"><circle cx="12" cy="12" r="10"></circle></svg><span class="menu-item text-truncate" data-i18n="List">Show</span></a>
+                        </li>
+                        <li class=" @yield('portfolios_create')">
+                            <a class="d-flex align-items-center" href="{{ route('portfolios.create') }}"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle"><circle cx="12" cy="12" r="10"></circle></svg><span class="menu-item text-truncate" data-i18n="List">Create</span></a>
+                        </li>
+                    </ul>
                 </li>
                 <li class=" nav-item @yield('testimonials')"><a class="d-flex align-items-center" href="{{ route('testimonials.index') }}"><i data-feather='grid'></i></i><span class="menu-title text-truncate" data-i18n="Email">Testimonial</span></a>
                 </li>
