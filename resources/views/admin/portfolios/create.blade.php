@@ -106,8 +106,17 @@
                         </div>
                         <div class="col-12">
                             <div class="form-group">
+                                <label for="ry">Returns of investment</label>
+                                <input name="ry" id="ry" class="form-control" name="ry" value="{{ old('ry') }}" placeholder="Enter returns of investment">
+                                @error('ry')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
                                 <label for="quantity_of_bricks">Quantity Of bricks</label>
-                                <input name="quantity_of_bricks" id="quantity_of_bricks" class="form-control" name="quantity_of_bricks" value="{{ old('quantity_of_bricks') }}" placeholder="Enter quantity of bricks">
+                                <input name="quantity_of_bricks" id="quantity_of_bricks" class="form-control" value="{{ old('quantity_of_bricks') }}" placeholder="Enter quantity of bricks">
                                 @error('quantity_of_bricks')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror

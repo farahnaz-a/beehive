@@ -21,8 +21,8 @@ class CreatePortfoliosTable extends Migration
             $table->string('price');
             $table->string('minititle');
             $table->string('miniprice');
-            $table->string('quantity_of_bricks')->nullable();
             $table->string('ry')->nullable();
+            $table->string('quantity_of_bricks')->nullable();
             $table->string('map')->nullable();
             $table->string('short_desc');
             $table->string('long_desc')->nullable();

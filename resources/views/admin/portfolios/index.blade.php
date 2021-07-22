@@ -21,7 +21,7 @@
 {{-- Content --}}
 @section('content')
     <div class="row justify-content-center">
-        <div class="col-lg-10">
+        <div class="col-12">
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">Project List</h4>
@@ -33,11 +33,24 @@
                         <thead class="thead-dark">
                             <tr>
                                 <th>Sl</th>
-                                <th>Image</th>
+                                <th>City Name</th>
                                 <th>Title</th>
+                                <th>Image</th>
                                 <th>Price</th>
                                 <th>Mini Title</th>
                                 <th>Mini Price</th>
+                                <th>R.I</th>
+                                <th>Q.B</th>
+                                <th>Map</th>
+                                <th>S Desc</th>
+                                <th>L Desc</th>
+                                <th>A Desc</th>
+                                <th>A image 1</th>
+                                <th>A image 2</th>
+                                <th>A image 3</th>
+                                <th>N Desc 1</th>
+                                <th>N Desc 2</th>
+                                <th>N Desc 3</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -45,11 +58,24 @@
                             @forelse ($portfolios as $portfolio)
                             <tr>
                                 <td><span class="mr-1">{{ $loop -> index + 1 }}</td>
-                                <td><img src="{{ asset('uploads/portfolios/') }}/{{ $portfolio->image }}" width="100" alt="Not-found"></td>
+                                <td>{{ $portfolio->city_name }}</td>
                                 <td>{{ $portfolio->title }}</td>
+                                <td><img src="{{ asset('uploads/portfolios/') }}/{{ $portfolio->image }}" width="100" alt="Not-found"></td>
                                 <td>{{ $portfolio->price }}</td>
                                 <td>{{ $portfolio->minititle }}</td>
                                 <td>{{ $portfolio->miniprice }}</td>
+                                <td>{{ $portfolio->ry }}</td>
+                                <td>{{ $portfolio->quantity_of_bricks }}</td>
+                                <td>{{ $portfolio->map }}</td>
+                                <td>{{ $portfolio->short_desc }}</td>
+                                <td>{{ $portfolio->long_desc }}</td>
+                                <td>{{ $portfolio->about_desc }}</td>
+                                <td><img src="{{ asset('uploads/portfolios/') }}/{{ $portfolio->about_image_1 }}" width="100" alt="Not-found"></td>
+                                <td><img src="{{ asset('uploads/portfolios/') }}/{{ $portfolio->about_image_2 }}" width="100" alt="Not-found"></td>
+                                <td><img src="{{ asset('uploads/portfolios/') }}/{{ $portfolio->about_image_3 }}" width="100" alt="Not-found"></td>
+                                <td>{{ $portfolio->next_desc_1 }}</td>
+                                <td>{{ $portfolio->next_desc_2 }}</td>
+                                <td>{{ $portfolio->next_desc_3 }}</td>
                                 <td>
                                     <div class="dropdown">
                                         <button type="button" class="btn btn-sm dropdown-toggle hide-arrow waves-effect waves-float waves-light" data-toggle="dropdown">

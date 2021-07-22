@@ -41,14 +41,29 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label for="">Existing Image:</label>
-                                    <br>
-                                    <img src="{{ asset('uploads/portfolios/') }}/{{ $portfolio->image }}" width="100" alt="No Image">
+                                    <label for="city_name">City name</label>
+                                    <select name="city_name" id="city_name" class="form-control">
+                                        <option value="{{ $portfolio->city_name }}">{{ $portfolio->city_name }}</option>
+                                        <option value="Paris">Paris</option>
+                                        <option value="Lyon">Lyon</option>
+                                        <option value="Marseille">Marseille</option>
+                                        <option value="Bordeaux">Bordeaux</option>
+                                    </select>
+                                    @error('city_name')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label for="customFile">Image</label>
+                                    <label for="">Existing Image:</label>
+                                    <br>
+                                    <img src="{{ asset('uploads/portfolios/') }}/{{ $portfolio->image }}" width="120" alt="No Image">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="customFile">Main image</label>
                                     <div class="custom-file">
                                         <input type="file" name="image" class="custom-file-input" id="customFile">
                                         <label class="custom-file-label" for="customFile">Choose file</label>
@@ -91,6 +106,144 @@
                                     <textarea name="miniprice" id="miniprice" class="form-control">{{ $portfolio->miniprice }}</textarea>
                                     @error('miniprice')
                                         <small class="alert alert-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="ry">Returns of investment</label>
+                                    <input name="ry" id="ry" class="form-control" name="ry" value="{{ $portfolio->ry }}" placeholder="Enter returns of investment">
+                                    @error('ry')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="quantity_of_bricks">Quantity Of bricks</label>
+                                    <input name="quantity_of_bricks" id="quantity_of_bricks" class="form-control" name="quantity_of_bricks" value="{{ $portfolio->quantity_of_bricks }}" placeholder="Enter quantity of bricks">
+                                    @error('quantity_of_bricks')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="map">Map</label>
+                                    <input type="text" id="map" class="form-control" name="map" value="{{ $portfolio->map }}" placeholder="Enter Map">
+                                    @error('map')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="short_desc">Short Description</label>
+                                    <textarea id="short_desc" class="form-control" name="short_desc" value="{{ $portfolio->short_desc }}" placeholder="Enter short description"></textarea>
+                                    @error('short_desc')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="long_desc">Long Description</label>
+                                    <textarea id="long_desc" class="form-control" name="long_desc" value="{{ $portfolio->long_desc }}" placeholder="Enter long description"></textarea>
+                                    @error('long_desc')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="about_desc">About Description</label>
+                                    <textarea id="about_desc" class="form-control" name="about_desc" value="{{ $portfolio->about_desc }}" placeholder="Enter about description"></textarea>
+                                    @error('about_desc')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="">Existing Image:</label>
+                                    <br>
+                                    <img src="{{ asset('uploads/portfolios/') }}/{{ $portfolio->about_image_1 }}" width="120" alt="No Image">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="image-1">About Image 1</label>
+                                    <div class="custom-file">
+                                        <input type="file" name="about_image_1" class="custom-file-input" id="image-1">
+                                        <label class="custom-file-label" for="customFile">Choose file</label>
+                                    </div>
+                                    @error('about_image_1')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="">Existing Image:</label>
+                                    <br>
+                                    <img src="{{ asset('uploads/portfolios/') }}/{{ $portfolio->about_image_2 }}" width="120" alt="No Image">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="image-2">About Image 2</label>
+                                    <div class="custom-file">
+                                        <input type="file" name="about_image_2" class="custom-file-input" id="image-2">
+                                        <label class="custom-file-label" for="customFile">Choose file</label>
+                                    </div>
+                                    @error('about_image_2')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="">Existing Image:</label>
+                                    <br>
+                                    <img src="{{ asset('uploads/portfolios/') }}/{{ $portfolio->about_image_3 }}" width="120" alt="No Image">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="image-3">About Image 3</label>
+                                    <div class="custom-file">
+                                        <input type="file" name="about_image_3" class="custom-file-input" id="image-3">
+                                        <label class="custom-file-label" for="customFile">Choose file</label>
+                                    </div>
+                                    @error('about_image_2')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="next_desc_1">Next Step Description 1</label>
+                                    <textarea id="next_desc_1" class="form-control" name="next_desc_1" value="{{ $portfolio->next_desc_1 }}" placeholder="Enter next description 1"></textarea>
+                                    @error('next_desc_1')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="next_desc_2">Next Step Description 2</label>
+                                    <textarea id="next_desc_2" class="form-control" name="next_desc_2" value="{{ $portfolio->next_desc_2 }}" placeholder="Enter next description 2"></textarea>
+                                    @error('next_desc_2')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="next_desc_3">Next Step Description 3</label>
+                                    <textarea id="next_desc_3" class="form-control" name="next_desc_3" value="{{ $portfolio->next_desc_3 }}" placeholder="Enter next description 3"></textarea>
+                                    @error('next_desc_3')
+                                        <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
                             </div>

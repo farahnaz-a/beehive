@@ -113,9 +113,6 @@ class PortfolioController extends Controller
             // save image in the database
             $portfolio->about_image_3 = $about_filename_3;
         }
-        
-
-
 
         $portfolio->save();
            
@@ -156,7 +153,7 @@ class PortfolioController extends Controller
          // Update Validation 
          $request -> validate([
             'city_name'          => 'required',
-            'image'              => 'image|required',
+            'image'              => 'image',
             'title'              => 'required',
             'price'              => 'required',
             'minititle'          => 'required',
@@ -169,28 +166,89 @@ class PortfolioController extends Controller
             'next_desc_1'        => 'required',
         ]);
 
-         // Check if request has image 
+        // Check if request has image 
         if($request->has('image'))
         {
-              // Delete existing image
+            // Delete existing image
             $existing = public_path('uploads/portfolios/' . $portfolio->image); 
             unlink($existing);
               
-             // Upload new image 
+            // Upload new image 
             $image    = $request->file('image');
             $filename = $portfolio->id. '.' .$image->extension();
             $location = public_path('uploads/portfolios/');
             $image->move($location, $filename);  
 
-              // Declare new name for saving in database 
+            // Declare new name for saving in database 
             $portfolio->image = $filename; 
         } 
 
+        // update about image 1
+        if($request->has('about_image_1'))
+        {
+            // Delete existing image
+            $about_image_existing_1 = public_path('uploads/portfolios/' . $portfolio->image); 
+            unlink($about_image_existing_1);
+              
+           //upload image
+           $about_image_1    = $request->file('about_image_1');
+           $about_filename_1 = $portfolio->id. '.about-1.' .$about_image_1->extension();
+           $about_location_1 = public_path('uploads/portfolios/');
+           $about_image_1->move($about_location_1, $about_filename_1);
+
+           // save image in the database
+           $portfolio->about_image_1 = $about_filename_1;
+        } 
+
+        // update about image 2
+        if($request->has('about_image_2')){
+
+             // Delete existing image
+             $about_image_existing_2 = public_path('uploads/portfolios/' . $portfolio->image); 
+             unlink($about_image_existing_2);
+
+            //upload image
+            $about_image_2    = $request->file('about_image_2');
+            $about_filename_2 = $portfolio->id. '.about-2.' .$about_image_2->extension();
+            $about_location_2 = public_path('uploads/portfolios/');
+            $about_image_2->move($about_location_2, $about_filename_2);
+
+            // save image in the database
+            $portfolio->about_image_2 = $about_filename_2;
+        }
+
+        // update about image 3
+        if($request->has('about_image_3')){
+
+            // Delete existing image
+            $about_image_existing_3 = public_path('uploads/portfolios/' . $portfolio->image); 
+            unlink($about_image_existing_3);
+
+            //upload image
+            $about_image_3    = $request->file('about_image_3');
+            $about_filename_3 = $portfolio->id. '.about-3.' .$about_image_3->extension();
+            $about_location_3 = public_path('uploads/portfolios/');
+            $about_image_3->move($about_location_3, $about_filename_3);
+
+            // save image in the database
+            $portfolio->about_image_3 = $about_filename_3;
+        }
+
         // Update Other Fields
-        $portfolio->title      = $request->title;
-        $portfolio->price      = $request->price; 
-        $portfolio->minititle  = $request->minititle;
-        $portfolio->miniprice  = $request->miniprice; 
+        $portfolio->city_name           = $request->city_name;
+        $portfolio->title               = $request->title;
+        $portfolio->price               = $request->price; 
+        $portfolio->minititle           = $request->minititle;
+        $portfolio->miniprice           = $request->miniprice; 
+        $portfolio->ry                  = $request->ry; 
+        $portfolio->quantity_of_bricks  = $request->quantity_of_bricks; 
+        $portfolio->map                 = $request->map; 
+        $portfolio->long_desc           = $request->long_desc; 
+        $portfolio->short_desc          = $request->short_desc; 
+        $portfolio->about_desc          = $request->about_desc; 
+        $portfolio->next_desc_1         = $request->next_desc_1; 
+        $portfolio->next_desc_2         = $request->next_desc_2; 
+        $portfolio->next_desc_3         = $request->next_desc_3; 
 
          // Save Everything in database 
         $portfolio->save(); 
@@ -212,6 +270,24 @@ class PortfolioController extends Controller
         // Remove Image from server 
         $existing = public_path('uploads/portfolios/' . $portfolio->image);
         unlink($existing); 
+
+        if($portfolio) {
+
+            $about_image_existing_1 = public_path('uploads/portfolios/' . $portfolio->about_image_1);
+            unlink($about_image_existing_1); 
+        }
+
+        if($portfolio) {
+
+            $about_image_existing_2 = public_path('uploads/portfolios/' . $portfolio->about_image_2);
+            unlink($about_image_existing_2); 
+        }
+
+        if($portfolio) {
+
+            $about_image_existing_3 = public_path('uploads/portfolios/' . $portfolio->about_image_3);
+            unlink($about_image_existing_3);
+        }
 
         // Delete from database
         $portfolio->delete(); 
