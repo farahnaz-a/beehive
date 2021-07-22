@@ -135,7 +135,7 @@
                             <div class="form-group">
                                 <label for="long_desc">Long Description</label>
                                 <textarea id="long_desc" class="form-control" name="long_desc" value="{{ old('long_desc') }}" placeholder="Enter long description"></textarea>
-                                @error('short_desc')
+                                @error('long_desc')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>

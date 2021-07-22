@@ -50,12 +50,18 @@ class PortfolioController extends Controller
     public function store(Request $request)
     {
         $request -> validate([
-            'title'      => 'required',
-            'price'      => 'required',
-            'minititle'  => 'required',
-            'miniprice'  => 'required',
-            'image'      => 'required|image',
-            'city_name'  => 'required',
+            'city_name'          => 'required',
+            'image'              => 'image|required',
+            'title'              => 'required',
+            'price'              => 'required',
+            'minititle'          => 'required',
+            'miniprice'          => 'required',
+            'short_desc'         => 'required',
+            'about_image_1'      => 'image',
+            'about_image_2'      => 'image',
+            'about_image_3'      => 'image',
+            'about_desc'         => 'required',
+            'next_desc_1'        => 'required',
         ]);
 
         $portfolio = Portfolio::create($request->except('_token') + ['created_at' => Carbon::now()]);
@@ -68,6 +74,49 @@ class PortfolioController extends Controller
 
         // Save Image name in the database 
         $portfolio->image = $filename; 
+
+        // about image 1
+        if($request->has('about_image_1')){
+
+            //upload image
+            $about_image_1    = $request->file('about_image_1');
+            $about_filename_1 = $portfolio->id. '.about-1.' .$about_image_1->extension();
+            $about_location_1 = public_path('uploads/portfolios/');
+            $about_image_1->move($about_location_1, $about_filename_1);
+
+            // save image in the database
+            $portfolio->about_image_1 = $about_filename_1;
+        }
+
+        // about image 2
+        if($request->has('about_image_2')){
+
+            //upload image
+            $about_image_2    = $request->file('about_image_2');
+            $about_filename_2 = $portfolio->id. '.about-2.' .$about_image_2->extension();
+            $about_location_2 = public_path('uploads/portfolios/');
+            $about_image_2->move($about_location_2, $about_filename_2);
+
+            // save image in the database
+            $portfolio->about_image_2 = $about_filename_2;
+        }
+
+        // about image 3
+        if($request->has('about_image_3')){
+
+            //upload image
+            $about_image_3    = $request->file('about_image_3');
+            $about_filename_3 = $portfolio->id. '.about-3.' .$about_image_3->extension();
+            $about_location_3 = public_path('uploads/portfolios/');
+            $about_image_3->move($about_location_3, $about_filename_3);
+
+            // save image in the database
+            $portfolio->about_image_3 = $about_filename_3;
+        }
+        
+
+
+
         $portfolio->save();
            
         return back()->withSuccess('Added Successfully');
@@ -113,6 +162,9 @@ class PortfolioController extends Controller
             'minititle'          => 'required',
             'miniprice'          => 'required',
             'short_desc'         => 'required',
+            'about_image_1'      => 'image',
+            'about_image_2'      => 'image',
+            'about_image_3'      => 'image',
             'about_desc'         => 'required',
             'next_desc_1'        => 'required',
         ]);
