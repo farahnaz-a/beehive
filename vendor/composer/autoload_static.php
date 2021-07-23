@@ -616,6 +616,7 @@ class ComposerStaticInit7c037eabb002b38fedec69fb6aa9185c
         'App\\Models\\Faq' => __DIR__ . '/../..' . '/app/Models/Faq.php',
         'App\\Models\\Invest' => __DIR__ . '/../..' . '/app/Models/Invest.php',
         'App\\Models\\Portfolio' => __DIR__ . '/../..' . '/app/Models/Portfolio.php',
+        'App\\Models\\PortfolioImage' => __DIR__ . '/../..' . '/app/Models/PortfolioImage.php',
         'App\\Models\\Pricefree' => __DIR__ . '/../..' . '/app/Models/Pricefree.php',
         'App\\Models\\Pricepremium' => __DIR__ . '/../..' . '/app/Models/Pricepremium.php',
         'App\\Models\\Testimonial' => __DIR__ . '/../..' . '/app/Models/Testimonial.php',

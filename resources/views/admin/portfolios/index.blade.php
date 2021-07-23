@@ -37,8 +37,8 @@
                                 <th>Title</th>
                                 <th>Image</th>
                                 <th>Price</th>
-                                <th>Mini Title</th>
-                                <th>Mini Price</th>
+                                <th>M. Title</th>
+                                <th>M. Price</th>
                                 <th>R.I</th>
                                 <th>Q.B</th>
                                 <th>Map</th>
@@ -48,6 +48,7 @@
                                 <th>A image 1</th>
                                 <th>A image 2</th>
                                 <th>A image 3</th>
+                                <th>Multi image</th>
                                 <th>N Desc 1</th>
                                 <th>N Desc 2</th>
                                 <th>N Desc 3</th>
@@ -73,6 +74,7 @@
                                 <td><img src="{{ asset('uploads/portfolios/') }}/{{ $portfolio->about_image_1 }}" width="100" alt="Not-found"></td>
                                 <td><img src="{{ asset('uploads/portfolios/') }}/{{ $portfolio->about_image_2 }}" width="100" alt="Not-found"></td>
                                 <td><img src="{{ asset('uploads/portfolios/') }}/{{ $portfolio->about_image_3 }}" width="100" alt="Not-found"></td>
+                                <td><img src="" width="100" alt="Not-found">Multi image</td>
                                 <td>{{ $portfolio->next_desc_1 }}</td>
                                 <td>{{ $portfolio->next_desc_2 }}</td>
                                 <td>{{ $portfolio->next_desc_3 }}</td>

@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Portfolio;
 use App\Http\Controllers\Controller;
+use App\Models\PortfolioImage;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Image;
 
 class PortfolioController extends Controller
 {
@@ -60,11 +62,14 @@ class PortfolioController extends Controller
             'about_image_1'      => 'image',
             'about_image_2'      => 'image',
             'about_image_3'      => 'image',
+            'multi_image'        => 'image',
             'about_desc'         => 'required',
             'next_desc_1'        => 'required',
         ]);
 
-        $portfolio = Portfolio::create($request->except('_token') + ['created_at' => Carbon::now()]);
+        $portfolio = Portfolio::create($request->except('_token', 'multi_image') + [
+            'created_at' => Carbon::now(), 
+        ]);
 
         // Upload Image
         $image    = $request->file('image');
@@ -115,6 +120,31 @@ class PortfolioController extends Controller
         }
 
         $portfolio->save();
+
+        if($request->has('multi_image')){
+
+            $counter = 1;
+ 
+             foreach($request->file('multi_image') as $images)
+             {
+                $multi_image = $images;
+                $multi_filename    = $portfolio->id. '-'. $counter  . '.' .$multi_image->extension();
+                $multi_location    = public_path('uploads/portfolios/' . $multi_filename);
+ 
+                Image::make($multi_image)->save($multi_location);
+ 
+                PortfolioImage::create([
+                    'multi_image'  => $multi_filename,
+                    'portfolio_id' => $portfolio->id,
+                    'created_at'   => Carbon::now(),
+                ]);
+ 
+                $counter++;
+ 
+             }
+        }
+
+        
            
         return back()->withSuccess('Added Successfully');
     }

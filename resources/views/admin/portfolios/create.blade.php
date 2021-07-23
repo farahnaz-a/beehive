@@ -196,6 +196,18 @@
                         </div>
                         <div class="col-12">
                             <div class="form-group">
+                                <label for="multi_image">Multiple Image</label>
+                                <div class="custom-file">
+                                    <input type="file" name="multi_image" class="custom-file-input" id="multi_image" multiple>
+                                    <label class="custom-file-label" for="multi_image">Choose multiple image</label>
+                                </div>
+                                @error('about_image_2')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
                                 <label for="next_desc_1">Next Step Description 1</label>
                                 <textarea id="next_desc_1" class="form-control" name="next_desc_1" value="{{ old('next_desc_1') }}" placeholder="Enter next description 1"></textarea>
                                 @error('next_desc_1')
