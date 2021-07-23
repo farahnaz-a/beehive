@@ -121,7 +121,7 @@ class PortfolioController extends Controller
 
         $portfolio->save();
 
-        if($request->has('multi_image')){
+        if($request->multi_image){
 
             $counter = 1;
  

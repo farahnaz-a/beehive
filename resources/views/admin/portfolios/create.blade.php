@@ -198,10 +198,10 @@
                             <div class="form-group">
                                 <label for="multi_image">Multiple Image</label>
                                 <div class="custom-file">
-                                    <input type="file" name="multi_image" class="custom-file-input" id="multi_image" multiple>
+                                    <input type="file" name="multi_image[]" class="custom-file-input" id="multi_image" multiple>
                                     <label class="custom-file-label" for="multi_image">Choose multiple image</label>
                                 </div>
-                                @error('about_image_2')
+                                @error('multi_image')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
