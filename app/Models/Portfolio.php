@@ -10,4 +10,9 @@ class Portfolio extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function get_images()
+    {
+        return $this->hasMany('App\Models\PortfolioImage');
+    }
 }

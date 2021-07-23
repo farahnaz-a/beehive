@@ -71,10 +71,16 @@
                                 <td>{{ $portfolio->short_desc }}</td>
                                 <td>{{ $portfolio->long_desc }}</td>
                                 <td>{{ $portfolio->about_desc }}</td>
-                                <td><img src="{{ asset('uploads/portfolios/') }}/{{ $portfolio->about_image_1 }}" width="100" alt="Not-found"></td>
-                                <td><img src="{{ asset('uploads/portfolios/') }}/{{ $portfolio->about_image_2 }}" width="100" alt="Not-found"></td>
-                                <td><img src="{{ asset('uploads/portfolios/') }}/{{ $portfolio->about_image_3 }}" width="100" alt="Not-found"></td>
-                                <td><img src="" width="100" alt="Not-found">Multi image</td>
+                                <td><img src="{{ asset('uploads/portfolios') }}/{{ $portfolio->about_image_1 }}" width="100" alt="Not-found"></td>
+                                <td><img src="{{ asset('uploads/portfolios') }}/{{ $portfolio->about_image_2 }}" width="100" alt="Not-found"></td>
+                                <td><img src="{{ asset('uploads/portfolios') }}/{{ $portfolio->about_image_3 }}" width="100" alt="Not-found"></td>
+                                <td>
+                                    @foreach ($portfolio->get_images as $item)
+                                    
+                                    <img src="{{ asset('uploads/portfolios') }}/{{ $item->multi_image }}" alt="Not found" width="100">
+
+                                    @endforeach
+                                </td>
                                 <td>{{ $portfolio->next_desc_1 }}</td>
                                 <td>{{ $portfolio->next_desc_2 }}</td>
                                 <td>{{ $portfolio->next_desc_3 }}</td>

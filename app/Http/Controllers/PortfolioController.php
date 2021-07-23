@@ -62,13 +62,29 @@ class PortfolioController extends Controller
             'about_image_1'      => 'image',
             'about_image_2'      => 'image',
             'about_image_3'      => 'image',
-            'multi_image'        => 'image',
             'about_desc'         => 'required',
             'next_desc_1'        => 'required',
         ]);
 
-        $portfolio = Portfolio::create($request->except('_token', 'multi_image') + [
-            'created_at' => Carbon::now(), 
+        $portfolio = Portfolio::create([
+            'city_name'             => $request->city_name,
+            'image'                 => $request->image,
+            'title'                 => $request->title,
+            'price'                 => $request->price,
+            'minititle'             => $request->minititle,
+            'miniprice'             => $request->miniprice,
+            'short_desc'            => $request->short_desc,
+            'about_image_1'         => 'foo',
+            'about_image_2'         => 'foo1',
+            'about_image_3'         => 'foo2',
+            'about_desc'            => $request->about_desc,
+            'next_desc_1'           => $request->next_desc_1,
+            'ry'                    => $request->ry,
+            'quantity_of_bricks'    => $request->quantity_of_bricks,
+            'map'                   => $request->map,
+            'long_desc'             => $request->long_desc,
+            'next_desc_2'           => $request->next_desc_2,
+            'next_desc_3'           => $request->next_desc_3,
         ]);
 
         // Upload Image
@@ -81,7 +97,7 @@ class PortfolioController extends Controller
         $portfolio->image = $filename; 
 
         // about image 1
-        if($request->has('about_image_1')){
+        if($request->hasFile('about_image_1')){
 
             //upload image
             $about_image_1    = $request->file('about_image_1');
@@ -94,7 +110,7 @@ class PortfolioController extends Controller
         }
 
         // about image 2
-        if($request->has('about_image_2')){
+        if($request->hasFile('about_image_2')){
 
             //upload image
             $about_image_2    = $request->file('about_image_2');
@@ -107,7 +123,7 @@ class PortfolioController extends Controller
         }
 
         // about image 3
-        if($request->has('about_image_3')){
+        if($request->hasFile('about_image_3')){
 
             //upload image
             $about_image_3    = $request->file('about_image_3');
@@ -129,9 +145,9 @@ class PortfolioController extends Controller
              {
                 $multi_image = $images;
                 $multi_filename    = $portfolio->id. '-'. $counter  . '.' .$multi_image->extension();
-                $multi_location    = public_path('uploads/portfolios/' . $multi_filename);
+                $multi_location    = public_path('uploads/portfolios/');
  
-                Image::make($multi_image)->save($multi_location);
+                $multi_image->move($multi_location, $multi_filename);
  
                 PortfolioImage::create([
                     'multi_image'  => $multi_filename,
@@ -146,7 +162,7 @@ class PortfolioController extends Controller
 
         
            
-        return back()->withSuccess('Added Successfully');
+        return redirect()->route('portfolios.index')->withSuccess('Added Successfully');
     }
 
     /**
@@ -200,8 +216,8 @@ class PortfolioController extends Controller
         if($request->has('image'))
         {
             // Delete existing image
-            $existing = public_path('uploads/portfolios/' . $portfolio->image); 
-            unlink($existing);
+            // $existing = public_path('uploads/portfolios/' . $portfolio->image); 
+            // unlink($existing);
               
             // Upload new image 
             $image    = $request->file('image');
@@ -217,8 +233,8 @@ class PortfolioController extends Controller
         if($request->has('about_image_1'))
         {
             // Delete existing image
-            $about_image_existing_1 = public_path('uploads/portfolios/' . $portfolio->image); 
-            unlink($about_image_existing_1);
+            // $about_image_existing_1 = public_path('uploads/portfolios/' . $portfolio->image); 
+            // unlink($about_image_existing_1);
               
            //upload image
            $about_image_1    = $request->file('about_image_1');
@@ -234,8 +250,8 @@ class PortfolioController extends Controller
         if($request->has('about_image_2')){
 
              // Delete existing image
-             $about_image_existing_2 = public_path('uploads/portfolios/' . $portfolio->image); 
-             unlink($about_image_existing_2);
+            //  $about_image_existing_2 = public_path('uploads/portfolios/' . $portfolio->image); 
+            //  unlink($about_image_existing_2);
 
             //upload image
             $about_image_2    = $request->file('about_image_2');
@@ -251,8 +267,8 @@ class PortfolioController extends Controller
         if($request->has('about_image_3')){
 
             // Delete existing image
-            $about_image_existing_3 = public_path('uploads/portfolios/' . $portfolio->image); 
-            unlink($about_image_existing_3);
+            // $about_image_existing_3 = public_path('uploads/portfolios/' . $portfolio->image); 
+            // unlink($about_image_existing_3);
 
             //upload image
             $about_image_3    = $request->file('about_image_3');
