@@ -41,5 +41,14 @@ class FrontendController extends Controller
       ]);
    }
 
+   /**
+    * Project Details 
+    */
+   public function details($id)
+   {
+      $data = Portfolio::find($id); 
+      return view('frontend.details', compact('data'));
+   }
+
 // END   
 }

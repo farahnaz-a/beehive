@@ -292,7 +292,7 @@
                                                               <div>{{ $pari->miniprice }}</div>
                                                           </div>
                                                       </div>
-                                                      <a id="w-node-e062cad8-7165-6a07-2c9e-83b34a98c8c0-a11c4038" href="#" class="outline-button small w-inline-block"  style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;"  cursorshover="true">
+                                                      <a id="w-node-e062cad8-7165-6a07-2c9e-83b34a98c8c0-a11c4038" href="{{ route('project.details', $pari->id) }}" class="outline-button small w-inline-block"  style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;"  cursorshover="true">
                                                         Details
                                                       </a>
                                                   </div>
@@ -337,9 +337,10 @@
                                                       </div>
                                                   </div>
                                                   <a id="w-node-e062cad8-7165-6a07-2c9e-83b34a98c8c0-a11c4038"
-                                                      href="#" class="outline-button small w-inline-block"
+                                                      href="{{ route('project.details', $pari->id) }}" class="outline-button small w-inline-block"
                                                       style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;"
                                                       cursorshover="true">
+                                                      Details
                                                   </a>
                                               </div>
                                           </div>
@@ -383,9 +384,10 @@
                                                       </div>
                                                   </div>
                                                   <a id="w-node-e062cad8-7165-6a07-2c9e-83b34a98c8c0-a11c4038"
-                                                      href="#" class="outline-button small w-inline-block"
+                                                      href="{{ route('project.details', $pari->id) }}" class="outline-button small w-inline-block"
                                                       style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;"
                                                       cursorshover="true">
+                                                      Details
                                                   </a>
                                               </div>
                                           </div>
@@ -429,9 +431,10 @@
                                                     </div>
                                                 </div>
                                                 <a id="w-node-e062cad8-7165-6a07-2c9e-83b34a98c8c0-a11c4038"
-                                                    href="#" class="outline-button small w-inline-block"
+                                                    href="{{ route('project.details', $pari->id) }}" class="outline-button small w-inline-block"
                                                     style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;"
                                                     cursorshover="true">
+                                                    Details
                                                 </a>
                                             </div>
                                         </div>

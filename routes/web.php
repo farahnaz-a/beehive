@@ -28,6 +28,7 @@ use App\Http\Controllers\PricepremiumController;
 */
 
 Route::get('/', [FrontendController::class, 'index'])->name('frontend.index');
+Route::get('/project/{id}/details', [FrontendController::class, 'details'])->name('project.details');
 
 
 
