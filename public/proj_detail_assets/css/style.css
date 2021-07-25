@@ -1,0 +1,895 @@
+/* 1.---------------------------------------------
+                Template default css
+------------------------------------------------*/
+
+@font-face {
+    font-family: GothamRounded-bold;
+    src: url(../font-family/gothamrounded/GothamRounded-Bold.otf);
+}
+
+@font-face {
+    font-family: GothamRounded-medium;
+    src: url(../font-family/gothamrounded/GothamRounded-Medium.otf);
+}
+
+@font-face {
+    font-family: GothamRounded-light;
+    src: url(../font-family/gothamrounded/GothamRounded-Light.otf);
+}
+
+@font-face {
+    font-family: GothamRounded-book;
+    src: url(../font-family/gothamrounded/GothamRounded-Book.otf);
+}
+
+@font-face {
+    font-family: Gotham-book;
+    src: url(../font-family/gothambook/Gotham\ Book.otf);
+    font-weight: 400;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    color: #2d3958;
+    font-family: GothamRounded-medium;
+}
+
+img {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+a {
+    text-decoration: none;
+    display: inline-block;
+    outline: 0;
+}
+
+a:hover {
+    text-decoration: none;
+    outline: 0;
+}
+
+ul,
+li,
+ol {
+    list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+ol,
+li,
+p,
+a {
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    font-family: 'GothamRounded-light', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'GothamRounded-medium', sans-serif;
+}
+
+
+h2 {
+    font-size: 40px;
+    line-height: 1.15;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+}
+
+h2 span {
+    color: #4bf4b0;
+}
+
+
+a:focus,
+.btn:focus,
+.button:focus,
+select:focus {
+    text-decoration: none;
+    outline: 0;
+    box-shadow: none;
+}
+
+button:focus {
+    outline: 0;
+}
+
+.overflow_x {
+    overflow-x: hidden;
+}
+
+.form-control:focus {
+    outline: 0;
+    box-shadow: none;
+}
+
+.slick-active:focus {
+    outline: 0;
+}
+
+.color_green {
+    color: #4bf4b0;
+}
+
+.color_purple {
+    color: #6a35ff;
+}
+
+
+
+/* 2.-------------------------------------------
+                    Heder Section
+-----------------------------------------------*/
+
+.main_menu {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 99999999;
+    background: #fff;
+    border-bottom: 1px solid rgba(192, 192, 211, 0.2);
+}
+
+.menu_fix {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    transition: all linear .5s;
+    z-index: 9999;
+}
+
+.menu_fix .navbar-toggler i {
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.navbar-brand {
+    font-size: 20px;
+    color: #222;
+    font-weight: 700;
+    padding: 20px 0;
+}
+
+.navbar-toggler i {
+    color: #222;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+
+.navbar-nav .nav-item .nav-link {
+    color: #2d3958;
+    font-size: 14px;
+    padding: 30px 35px;
+    font-family: Gotham-book;
+    font-weight: 600;
+    text-transform: capitalize;
+    transition: all linear .3s;
+    -webkit-transition: all linear .3s;
+    -moz-transition: all linear .3s;
+    -os-transition: all linear .3s;
+    -ms-transition: all linear .3s;
+}
+
+@media screen and (max-width:991px) {
+
+    .navbar-nav .nav-item .nav-link {
+        padding: 10px 0;
+        text-align: center;
+    }
+}
+
+.button a {
+    background-color: #6a35ff;
+    -webkit-transition: background-color 300ms ease;
+    transition: background-color 300ms ease;
+    color: #4bf4b0;
+    font-family: GothamRounded-medium;
+    font-size: 15px;
+    border-radius: 5px;
+    text-align: center;
+    letter-spacing: 0px;
+    text-transform: none;
+    padding: 17px 45px;
+}
+.card .button a {
+    width: 100%;
+}
+
+.button a:hover {
+    background-color: #4bf4b0;
+    color: #6a35ff;
+}
+
+@media screen and (max-width:575px) {
+
+    .button a {
+        font-size: 14px;
+        padding: 12px 40px;
+    }
+
+    h2 {
+        font-size: 26px;
+        letter-spacing: 0;
+    }
+
+}
+
+
+
+/* 3.-------------------------------------------
+                    Project Banner
+-----------------------------------------------*/
+
+#project_page {
+    margin-top: 130px;
+}
+
+.project_banner {
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-position: 0px -70px;
+    border-radius: 10px;
+    padding-bottom: 40px;
+    padding-left: 25px;
+    padding-top: 250px;
+    position: relative;
+    z-index: 1;
+}
+
+.project_banner::after {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.1);
+    z-index: -1;
+}
+
+.project_icon h4 {
+    font-size: 14px;
+    font-weight: 500;
+    margin-left: 20px;    
+    transition:all linear .2s;
+    -webkit-transition: all linear .2s;
+    -moz-transition: all linear .2s;
+    -os-transition: all linear .2s;
+    -ms-transition: all linear .2s;
+}
+
+.project_icon h4 i {
+    font-size: 20px;
+    margin-right: 12px;
+
+}
+.project_icon h4:hover {
+   color: #4bf4b0;
+}
+
+.project_banner {
+    color: #fff;
+}
+
+.project_banner .location {
+    color: #fff;
+}
+
+.project_banner .location p {
+    font-size: 20px;
+    padding: 7px 0;
+}
+
+.project_banner .location p i {
+    padding-right: 10px;
+}
+
+.project_banner h5 {
+    font-size: 15px;
+    margin-right: 20px;
+}
+
+
+@media screen and (max-width:575px) {
+    .project_banner {
+        padding-left: 20px;
+        padding-top: 120px;
+        padding-bottom: 30px;
+    }
+
+    .project_banner .location p {
+        font-size: 16px;
+        padding: 7px 0;
+    }
+
+    .project_banner h5 {
+        font-size: 12px;
+        margin-right: 15px;
+    }
+}
+
+/* 4.-------------------------------------------
+                    Project Tab
+-----------------------------------------------*/
+
+.project_tab {
+    padding-top: 65px;
+}
+
+.project_tab .nav-pills {
+    border-bottom: 1px solid #e1e6f0;
+    margin-bottom: 50px;
+}
+
+.project_tab .nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+    background: transparent;
+    color: #222;
+    border-bottom: 2px solid #6a35ff;
+    border-radius: 0;
+}
+
+.project_tab .nav-link {
+    font-size: 15px;
+    padding: 10px 30px;
+    color: #222;
+    border-radius: 0;
+}
+
+.project_tab .nav-link:focus,
+.nav-link:hover {
+    text-decoration: none;
+    color: #222;
+}
+
+.project_tab .gmap_canvas {
+    overflow: hidden;
+    background: none !important;
+    height: 400px;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.project_tab .mapouter {
+    position: relative;
+    text-align: right;
+    height: 400px;
+    width: 100%;
+}
+
+.project_tab .description p {
+    color: #2d3958;
+    font-size: 16px;
+    line-height: 1.4;
+    font-weight: 400;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.project_tab .profile_avatar {
+    display: flex;
+    padding-top: 20px;
+}
+
+.sticky_tab {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    padding-top: 80px;
+    z-index: 2333;
+    background: #fff;
+    transition:all linear .3s;
+    -webkit-transition: all linear .3s;
+    -moz-transition: all linear .3s;
+    -os-transition: all linear .3s;
+    -ms-transition: all linear .3s;
+  }
+
+/* .card_sticky {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    padding-top: 80px;
+    z-index: 2333;
+    background: #fff;
+    transition:all linear .3s;
+    -webkit-transition: all linear .3s;
+    -moz-transition: all linear .3s;
+    -os-transition: all linear .3s;
+    -ms-transition: all linear .3s;
+  } */
+
+
+.project_tab .profile_avatar img {
+    width: 94px;
+    height: 94px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.project_tab .profile_avatar .info {
+    padding-left: 15px;
+}
+
+.project_tab .profile_avatar p {
+    font-size: 20px;
+    margin-bottom: 5px;
+    margin-top: 2px;
+}
+
+.project_tab .profile_avatar p i {
+    padding-right: 5px;
+    color: #4bf4b0;
+}
+
+.project_tab .profile_avatar h3 {
+    margin-bottom: 2px;
+    font-size: 30px;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+}
+
+.project_tab .profile_avatar h5 {
+    display: inline-block;
+    font-size: 15px;
+    padding-right: 10px;
+}
+
+.project_tab .profile_avatar h5 span {
+    color: #4bf4b0;
+    padding-left: 5px;
+}
+
+.project_tab .card {
+    padding: 30px 25px;
+    margin-bottom: 20px;
+    border: 1px solid #edebeb;
+    border-radius: 12px;
+    background-color: #fff;
+    box-shadow: 1px 1px 10px 2px rgb(192 192 211 / 30%);
+}
+
+.project_tab .card h2 {
+    font-size: 24px;
+}
+
+.project_tab .card h5 {
+    font-size: 24px;
+    color: #4bf4b0;
+    padding-top: 20px;
+    font-family: GothamRounded-light;
+    font-weight: 600;
+}
+
+.project_tab .card-2 h5 {
+    color: #6a35ff;
+}
+
+.project_tab .card p {
+    padding-top: 7px;
+}
+
+.project_tab .photos .image {
+    margin-bottom: 30px;
+    border-radius: 7px;
+    background-size: auto;
+}
+
+.project_tab .photos .image-1 {
+    height: 350px;
+
+}
+
+.project_tab .photos .image-2 {
+    overflow: hidden;
+
+    height: 600px;
+}
+
+.project_tab .photos .image-3 {
+    
+    height: 285px;
+}
+
+.project_tab .photos .image-4 {
+    height: 285px;
+}
+
+.investors_card {
+    text-align: center;
+    margin-top: 30px;
+    padding: 20px;
+    border-radius: 32px;
+    background-color: #fff;
+    box-shadow: 0 9px 57px -6px #c0c0d3;
+    text-align: center;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+
+.investors_card .img img {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+}
+
+.investors_card h4 {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    text-transform: capitalize;
+}
+
+.investors_card p {
+    margin-top: 10px;
+    margin-left: 5px;
+    padding-bottom: 10px;
+    color: #7b88a8;
+    font-size: 14px;
+}
+
+.investors_card p i {
+    color: #6a35ff;
+    font-size: 18px;
+    padding-right: 5px;
+    padding-bottom: 10px;
+}
+
+.investors_card .number {
+    padding: 7px 20px;
+    border-radius: 15px;
+    background-color: #f3efff;
+    color: rgba(106, 53, 255, 0.49);
+    font-size: 20px;
+    margin: auto;
+    display: inline-block;
+}
+
+.investors_card .number i {
+    color: #6a35ff;
+}
+
+.all_investors {
+    position: relative;
+    z-index: 515;
+    padding-bottom: 40px;
+}
+
+.investors_bg {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 40px;
+    left: 100px;
+    right: 100px;
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 auto;
+    -ms-flex: 0 auto;
+    flex: 0 auto;
+    background-color: #f3efff;
+    background-image: url(../images/project/investor-bg.svg);
+    background-size: 290%;
+    border-radius: 30px;
+}
+
+@media screen and (max-width:991px) {
+    .investors_bg {
+        left: 0;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}
+
+@media screen and (max-width:575px) {
+    .project_tab .nav-pills .nav-link {
+        font-size: 14px;
+        padding: 10px 11px;
+    }
+
+    .project_tab .gmap_canvas {
+        height: 250px;
+        width: 100%;
+        border-radius: 10px;
+    }
+
+    .project_tab .mapouter {
+        height: 250px;
+        width: 100%;
+    }
+
+    .project_tab .description p {
+        font-size: 14px;
+    }
+
+    .project_tab .profile_avatar h3 {
+        font-size: 20px;
+    }
+
+    .project_tab .profile_avatar p {
+        font-size: 16px;
+    }
+
+    .project_tab .profile_avatar h5 {
+        font-size: 12px;
+    }
+
+    .project_tab .card h2 {
+        font-size: 20px;
+    }
+
+    .project_tab .card h5 {
+        font-size: 20px;
+        padding-top: 10px;
+    }
+}
+
+
+/* ------Modal------*/
+
+.invest_modal .modal-dialog {
+    max-width: 550px;
+}
+
+.invest_modal .modal-content {
+    padding: 40px;
+}
+
+
+.invest_modal .modal-header {
+    border: 0;
+}
+
+.modal_btn {
+    position: fixed;
+    z-index: 5468;
+    bottom: 50px;
+    right: 50px;
+    background-color: #6a35ff;
+    -webkit-transition: background-color 300ms ease;
+    transition: background-color 300ms ease;
+    color: #4bf4b0;
+    font-family: GothamRounded-medium;
+    font-size: 14px;
+    border-radius: 20px;
+    border: none;
+    text-align: center;
+    text-transform: none;
+    padding: 10px 30px;
+}
+.modal_btn:hover {
+    color: #6a35ff;
+    background-color: #4bf4b0;
+}
+
+.modal_btn:focus {
+    box-shadow: none;
+    outline: 0;
+    border: none;
+}
+
+.invest_modal form {
+    padding-top: 40px;
+}
+
+.invest_modal form .form-control {
+    border: 0;
+    font-size: 14px;
+
+}
+
+.invest_modal form .form-control::-webkit-input-placeholder {
+    /* Edge */
+    font-family: GothamRounded-light;
+}
+
+.invest_modal form .form-control:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    font-family: GothamRounded-light;
+}
+
+.invest_modal form p {
+    font-size: 15px;
+    padding-top: 8px;
+}
+
+.invest_modal .modal-footer {
+    border: 0;
+    padding: 0;
+}
+
+.invest_modal .modal-footer .continue_btn {
+    background-color: #6a35ff !important;
+    -webkit-transition: background-color 300ms ease;
+    transition: background-color 300ms ease;
+    color: #4bf4b0;
+    font-family: GothamRounded-medium;
+    font-size: 15px;
+    border-radius: 5px;
+    border: 0;
+    text-align: center;
+    letter-spacing: 0px;
+    text-transform: none;
+    padding: 17px 0;
+    width: 100%;
+}
+
+.invest_modal .modal_2{
+    display: none;
+}
+
+.invest_modal .modal_2 .modal-footer .continue_btn {
+    background-color: #dddddd !important;
+    color: #222;
+}
+
+@media screen and (max-width:991px) {
+    .modal_btn {
+        bottom: 20px;
+        right: 20px;
+    }
+}
+
+@media screen and (max-width:600px) {
+    .invest_modal .modal-content {
+        padding: 10px;
+    }
+
+    .invest_modal p {
+        font-size: 13px;
+    }
+}
+
+
+/*-------------------------------------------
+                    About Hive
+-----------------------------------------------*/
+
+.about_hive {
+    background: #f8faff;
+    padding: 40px 0 50px;
+}
+
+.about_hive h2 {
+    padding-bottom: 15px;
+}
+
+.about_hive img {
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.project_footer .footer_item h3 {
+    color: #6a35ff;
+}
+
+.project_footer .footer_item h4 {
+    margin-bottom: 8px;
+    color: #2d3958;
+    font-size: 17px;
+    line-height: 1;
+}
+
+.project_footer .footer_item a {
+    margin-bottom: 8px;
+    font-size: 15px;
+    color: #222;
+    font-family: GothamRounded-light;
+    display: block;
+}
+.project_footer .footer_item a:hover {
+    text-decoration: underline;
+}
+
+.project_footer .copy_right {
+    border-top: 1px solid #ddd;
+    padding: 40px 0;
+    margin-top: 50px;
+}
+
+.project_footer .copy_right .icon a {
+    color: #adb5bd;
+    margin: 0 10px;
+    font-size: 16px;
+}
+
+.toggle_flip {
+    border: 1px solid #dbdbdb;
+    display: inline-block;
+    padding: 15px 40px;
+    width: 182px;
+}
+
+.toggle_pannel {
+    display: none;
+    padding-top: 10px;
+}
+
+.toggle_flip a {
+    display: block;
+    padding-top: 8px;
+}
+
+@media screen and (max-width:991px) {
+
+    .project_banner {
+        padding-top: 140px;
+        background-position: center;
+    }
+
+    .description .card.card-1 {
+        margin-top: 40px;
+    }
+
+    .footer_item {
+        padding-top: 40px;
+    }
+
+}
+
+@media screen and (max-width:575px) {
+
+    .about_hive {
+       padding-bottom: 10px;
+    }
+    
+    .project_footer .copy_right {
+        display: inherit !important;
+    }
+
+    .project_footer .copy_right p {
+        padding-bottom: 10px;
+        font-size: 14px;
+    }
+
+    .project_footer .footer_item a {
+        font-size: 13px;
+    }
+
+}
+
+/* 5.-------------------------------------------
+                    About Section
+-----------------------------------------------*/
+
+
+/* 6.-------------------------------------------
+                    About Section
+-----------------------------------------------*/
+
+
+/* 7.-------------------------------------------
+                    About Section
+-----------------------------------------------*/
+
+
+/* 8.-------------------------------------------
+                    About Section
+-----------------------------------------------*/
+
+
+/* 9.-------------------------------------------
+                    About Section
+-----------------------------------------------*/
