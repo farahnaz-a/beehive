@@ -85,7 +85,24 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     <label for="price">Price</label>
-                                    <textarea name="price" id="price" class="form-control">{{ $portfolio->price }}</textarea>
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <select name="curr" id="" class="form-control float-left">
+                                                <option value="{{ $portfolio->curr }}">{{ $portfolio->curr }}</option>
+                                                @if($portfolio->curr == '€')
+                                                <option value="£">£</option>
+                                                @elseif($portfolio->curr == '£') 
+                                                <option value="€">€</option>
+                                                @else 
+                                                <option value="€">€</option>
+                                                <option value="£">£</option>
+                                                @endif
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-10">
+                                            <input name="price" id="price" class="form-control float-right" value="{{ $portfolio->price ?? old('price') }}" placeholder="Enter price">
+                                        </div>
+                                    </div>
                                     @error('price')
                                         <small class="alert alert-danger">{{ $message }}</small>
                                     @enderror
@@ -102,8 +119,25 @@
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label for="miniprice">Mini Price</label>
-                                    <textarea name="miniprice" id="miniprice" class="form-control">{{ $portfolio->miniprice }}</textarea>
+                                    <label for="miniprice">Minimum to invest</label>
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <select name="curre" id="" class="form-control float-left">
+                                                <option value="{{ $portfolio->curre }}">{{ $portfolio->curre }}</option>
+                                                @if($portfolio->curre == '€')
+                                                <option value="£">£</option>
+                                                @elseif($portfolio->curre == '£') 
+                                                <option value="€">€</option>
+                                                @else 
+                                                <option value="€">€</option>
+                                                <option value="£">£</option>
+                                                @endif
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-10">
+                                            <input name="miniprice" id="price" class="form-control float-right" value="{{ $portfolio->miniprice ?? old('price') }}" placeholder="Enter price">
+                                        </div>
+                                    </div>
                                     @error('miniprice')
                                         <small class="alert alert-danger">{{ $message }}</small>
                                     @enderror
@@ -111,7 +145,7 @@
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label for="ry">Returns of investment</label>
+                                    <label for="ry">Returns of investment  %</label>
                                     <input name="ry" id="ry" class="form-control" name="ry" value="{{ $portfolio->ry }}" placeholder="Enter returns of investment">
                                     @error('ry')
                                         <small class="text-danger">{{ $message }}</small>
@@ -139,7 +173,7 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     <label for="short_desc">Short Description</label>
-                                    <textarea id="short_desc" class="form-control" name="short_desc" value="{{ $portfolio->short_desc }}" placeholder="Enter short description"></textarea>
+                                    <textarea id="short_desc" class="form-control" name="short_desc"  placeholder="Enter short description">{{ $portfolio->short_desc }}</textarea>
                                     @error('short_desc')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
@@ -148,7 +182,7 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     <label for="long_desc">Long Description</label>
-                                    <textarea id="long_desc" class="form-control" name="long_desc" value="{{ $portfolio->long_desc }}" placeholder="Enter long description"></textarea>
+                                    <textarea id="long_desc" class="form-control" name="long_desc" placeholder="Enter long description">{{ $portfolio->long_desc }}</textarea>
                                     @error('long_desc')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
@@ -157,7 +191,7 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     <label for="about_desc">About Description</label>
-                                    <textarea id="about_desc" class="form-control" name="about_desc" value="{{ $portfolio->about_desc }}" placeholder="Enter about description"></textarea>
+                                    <textarea id="about_desc" class="form-control" name="about_desc"  placeholder="Enter about description">{{ $portfolio->about_desc }}</textarea>
                                     @error('about_desc')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
@@ -223,7 +257,7 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     <label for="next_desc_1">Next Step Description 1</label>
-                                    <textarea id="next_desc_1" class="form-control" name="next_desc_1" value="{{ $portfolio->next_desc_1 }}" placeholder="Enter next description 1"></textarea>
+                                    <textarea id="next_desc_1" class="form-control" name="next_desc_1" placeholder="Enter next description 1">{{ $portfolio->next_desc_1 }}</textarea>
                                     @error('next_desc_1')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
@@ -232,7 +266,7 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     <label for="next_desc_2">Next Step Description 2</label>
-                                    <textarea id="next_desc_2" class="form-control" name="next_desc_2" value="{{ $portfolio->next_desc_2 }}" placeholder="Enter next description 2"></textarea>
+                                    <textarea id="next_desc_2" class="form-control" name="next_desc_2" placeholder="Enter next description 2">{{ $portfolio->next_desc_2 }}</textarea>
                                     @error('next_desc_2')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
@@ -241,7 +275,7 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     <label for="next_desc_3">Next Step Description 3</label>
-                                    <textarea id="next_desc_3" class="form-control" name="next_desc_3" value="{{ $portfolio->next_desc_3 }}" placeholder="Enter next description 3"></textarea>
+                                    <textarea id="next_desc_3" class="form-control" name="next_desc_3" placeholder="Enter next description 3">{{ $portfolio->next_desc_3 }}</textarea>
                                     @error('next_desc_3')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror

@@ -81,13 +81,13 @@
                             <div class="form-group">
                                 <label for="price">Price</label>
                                 <div class="row">
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-2">
                                         <select name="curr" id="" class="form-control float-left">
-                                            <option value="">EUR</option>
-                                            <option value="">POUND</option>
+                                            <option value="€">€</option>
+                                            <option value="£">£</option>
                                         </select>
                                     </div>
-                                    <div class="col-lg-8">
+                                    <div class="col-lg-10">
                                         <input name="price" id="price" class="form-control float-right" value="{{ old('price') }}" placeholder="Enter price">
                                     </div>
                                 </div>
@@ -110,13 +110,13 @@
                             <div class="form-group">
                                 <label for="miniprice">Minimum to invest</label>
                                 <div class="row">
-                                    <div class="col-lg-4">
-                                        <select name="curren" id="" class="form-control float-left">
-                                            <option value="">EUR</option>
-                                            <option value="">POUND</option>
+                                    <div class="col-lg-2">
+                                        <select name="curre" id="" class="form-control float-left">
+                                            <option value="€">€</option>
+                                            <option value="£">£</option>
                                         </select>
                                     </div>
-                                    <div class="col-lg-8">
+                                    <div class="col-lg-10">
                                         <input name="miniprice" id="miniprice" class="form-control" value="{{ old('miniprice') }}" placeholder="Minimum to invest">
                                     </div>
                                 </div>

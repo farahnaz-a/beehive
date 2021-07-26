@@ -18,8 +18,10 @@ class CreatePortfoliosTable extends Migration
             $table->string('city_name');
             $table->string('image');
             $table->string('title');
+            $table->string('curr')->nullable();
             $table->string('price');
             $table->string('minititle');
+            $table->string('curre')->nullable();
             $table->string('miniprice');
             $table->string('ry')->nullable();
             $table->string('quantity_of_bricks')->nullable();

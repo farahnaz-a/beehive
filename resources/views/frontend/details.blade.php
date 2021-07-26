@@ -186,7 +186,7 @@
                                             <h5>0 €</h5>
                                         </div>
                                         <div class="card card-2">
-                                            <h2>{{ $data->price }} €</h2>
+                                            <h2>{{ $data->price }} {{ $data->curr }}</h2>
                                             <p>Sur 345,000 € de départ</p>
                                             <h5>{{ $data->ry }} r.o.i</h5>
                                             <p>Revenu annuel actuel</p>
@@ -480,7 +480,7 @@
                         </div>
                         <p><b>Montant :</b> 245,000€ atteint sur 427,000 €</p>
                         <p><b>Briques :</b> 3,500 sur 21,350 </p>
-                        <p class="color_purple"><b>1 brique = 20€</b></p>
+                        <p class="color_purple"><b>1 brique = {{ $data->miniprice }}{{ $data->curre }}</b></p>
                         <p class="termsandcondition d-none">
                             <input type="checkbox">
                             Tu reconnais avoir pris connaissance des <span class="color_green">terms et conditions d'utilisation</span>

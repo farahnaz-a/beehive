@@ -62,9 +62,9 @@
                                 <td>{{ $portfolio->city_name }}</td>
                                 <td>{{ $portfolio->title }}</td>
                                 <td><img src="{{ asset('uploads/portfolios/') }}/{{ $portfolio->image }}" width="100" alt="Not-found"></td>
-                                <td>{{ $portfolio->price }}</td>
+                                <td>{{ $portfolio->curr }} {{ $portfolio->price }}</td>
                                 <td>{{ $portfolio->minititle }}</td>
-                                <td>{{ $portfolio->miniprice }}</td>
+                                <td>{{ $portfolio->curre }} {{ $portfolio->miniprice }}</td>
                                 <td>{{ $portfolio->ry }}</td>
                                 <td>{{ $portfolio->quantity_of_bricks }}</td>
                                 <td>{{ $portfolio->map }}</td>

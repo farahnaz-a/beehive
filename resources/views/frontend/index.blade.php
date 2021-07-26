@@ -281,14 +281,14 @@
                                               <div class="vacation-card-bottom">
                                                   <div class="vacation-card-info">
                                                       <h4 class="heading-158">{{ $pari->title }}</h4>
-                                                      <div class="body-display small">€ {{ $pari->price }}</div>
+                                                      <div class="body-display small">{{ $pari->curre }} {{ $pari->price }}</div>
                                                   </div>
                                                   <div class="vacation-details">
                                                       <div id="w-node-e062cad8-7165-6a07-2c9e-83b34a98c8b8-a11c4038"
                                                           class="vacation-price-2">
                                                           <div class="subtitle-5 small">{{ $pari->minititle }}</div>
                                                           <div class="dynamic-price-text">
-                                                              <div>$</div>
+                                                            <div>{{ $pari->curre }}</div>
                                                               <div>{{ $pari->miniprice }}</div>
                                                           </div>
                                                       </div>
@@ -325,14 +325,14 @@
                                           <div class="vacation-card-bottom">
                                               <div class="vacation-card-info">
                                                   <h4 class="heading-158">{{ $pari->title }}</h4>
-                                                  <div class="body-display small">€ {{ $pari->price }}</div>
+                                                  <div class="body-display small">{{ $pari->curr }} {{ $pari->price }}</div>
                                               </div>
                                               <div class="vacation-details">
                                                   <div id="w-node-e062cad8-7165-6a07-2c9e-83b34a98c8b8-a11c4038"
                                                       class="vacation-price-2">
                                                       <div class="subtitle-5 small">{{ $pari->minititle }}</div>
                                                       <div class="dynamic-price-text">
-                                                          <div>$</div>
+                                                        <div>{{ $pari->curre }}</div>
                                                           <div>{{ $pari->miniprice }}</div>
                                                       </div>
                                                   </div>
@@ -372,14 +372,14 @@
                                           <div class="vacation-card-bottom">
                                               <div class="vacation-card-info">
                                                   <h4 class="heading-158">{{ $pari->title }}</h4>
-                                                  <div class="body-display small">€ {{ $pari->price }}</div>
+                                                  <div class="body-display small">{{ $pari->curr }} {{ $pari->price }}</div>
                                               </div>
                                               <div class="vacation-details">
                                                   <div id="w-node-e062cad8-7165-6a07-2c9e-83b34a98c8b8-a11c4038"
                                                       class="vacation-price-2">
                                                       <div class="subtitle-5 small">{{ $pari->minititle }}</div>
                                                       <div class="dynamic-price-text">
-                                                          <div>$</div>
+                                                        <div>{{ $pari->curre }}</div>
                                                           <div>{{ $pari->miniprice }}</div>
                                                       </div>
                                                   </div>
@@ -419,14 +419,14 @@
                                         <div class="vacation-card-bottom">
                                             <div class="vacation-card-info">
                                                 <h4 class="heading-158">{{ $pari->title }}</h4>
-                                                <div class="body-display small">€ {{ $pari->price }}</div>
+                                                <div class="body-display small">{{ $pari->curr }}{{ $pari->price }}</div>
                                             </div>
                                             <div class="vacation-details">
                                                 <div id="w-node-e062cad8-7165-6a07-2c9e-83b34a98c8b8-a11c4038"
                                                     class="vacation-price-2">
                                                     <div class="subtitle-5 small">{{ $pari->minititle }}</div>
                                                     <div class="dynamic-price-text">
-                                                        <div>$</div>
+                                                        <div>{{ $pari->curre }}</div>
                                                         <div>{{ $pari->miniprice }}</div>
                                                     </div>
                                                 </div>

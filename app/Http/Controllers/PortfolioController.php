@@ -53,15 +53,15 @@ class PortfolioController extends Controller
     {
         $request -> validate([
             'city_name'          => 'required',
-            'image'              => 'image|required',
+            'image'              => 'image|required|max:500000',
             'title'              => 'required',
             'price'              => 'required',
             'minititle'          => 'required',
             'miniprice'          => 'required',
             'short_desc'         => 'required',
-            'about_image_1'      => 'image',
-            'about_image_2'      => 'image',
-            'about_image_3'      => 'image',
+            'about_image_1'      => 'image|max:500000',
+            'about_image_2'      => 'image|max:500000',
+            'about_image_3'      => 'image|max:500000',
             'about_desc'         => 'required',
             'next_desc_1'        => 'required',
         ]);
@@ -85,6 +85,8 @@ class PortfolioController extends Controller
             'long_desc'             => $request->long_desc,
             'next_desc_2'           => $request->next_desc_2,
             'next_desc_3'           => $request->next_desc_3,
+            'curr'                  => $request->curr,
+            'curre'                  => $request->curre,
         ]);
 
         // Upload Image
@@ -295,6 +297,8 @@ class PortfolioController extends Controller
         $portfolio->next_desc_1         = $request->next_desc_1; 
         $portfolio->next_desc_2         = $request->next_desc_2; 
         $portfolio->next_desc_3         = $request->next_desc_3; 
+        $portfolio->curr         = $request->curr; 
+        $portfolio->curre         = $request->curre; 
 
          // Save Everything in database 
         $portfolio->save(); 
