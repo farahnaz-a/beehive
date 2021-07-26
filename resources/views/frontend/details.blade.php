@@ -439,8 +439,13 @@
 
 
     <!-- Button trigger modal -->
+    @auth
     <button type="button" class="btn btn-primary modal_btn" data-toggle="modal"
-        data-target="#exampleModalCenter">investir</button>
+    data-target="#exampleModalCenter">investir</button>
+    @endauth
+    @guest
+    <a href="{{ route('login') }}" class="btn btn-primary modal_btn">investir</a>
+    @endguest
 
     <!-- Modal -->
     <div class="modal invest_modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
