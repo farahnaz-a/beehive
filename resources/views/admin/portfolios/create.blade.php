@@ -80,7 +80,18 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="price">Price</label>
-                                <input name="price" id="price" class="form-control" value="{{ old('price') }}" placeholder="Enter price">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <select name="curr" id="" class="form-control float-left">
+                                            <option value="">EUR</option>
+                                            <option value="">POUND</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <input name="price" id="price" class="form-control float-right" value="{{ old('price') }}" placeholder="Enter price">
+                                    </div>
+                                </div>
+                                
                                 @error('price')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
@@ -97,8 +108,19 @@
                         </div>
                         <div class="col-12">
                             <div class="form-group">
-                                <label for="miniprice">Mini Price</label>
-                                <input name="miniprice" id="miniprice" class="form-control" name="minititle" value="{{ old('miniprice') }}" placeholder="Enter mini price">
+                                <label for="miniprice">Minimum to invest</label>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <select name="curren" id="" class="form-control float-left">
+                                            <option value="">EUR</option>
+                                            <option value="">POUND</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <input name="miniprice" id="miniprice" class="form-control" value="{{ old('miniprice') }}" placeholder="Minimum to invest">
+                                    </div>
+                                </div>
+                                
                                 @error('miniprice')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
@@ -106,7 +128,7 @@
                         </div>
                         <div class="col-12">
                             <div class="form-group">
-                                <label for="ry">Returns of investment</label>
+                                <label for="ry">Returns of investment  %</label>
                                 <input name="ry" id="ry" class="form-control" name="ry" value="{{ old('ry') }}" placeholder="Enter returns of investment">
                                 @error('ry')
                                     <small class="text-danger">{{ $message }}</small>

@@ -165,7 +165,7 @@
              @endif
             @endauth
             @guest
-            <a  href="{{ route('login') }}" class="button small-button">Login</a>
+            <a  href="{{ route('login') }}" class="button small-button">Connexion</a>
             @endguest
           </div>
         </div>

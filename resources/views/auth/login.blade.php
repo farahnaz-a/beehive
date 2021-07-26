@@ -83,7 +83,7 @@
               </div>
             </form>
             <a href="{{ url('auth/google') }}" class="link-block-21 w-inline-block"><img src="https://uploads-ssl.webflow.com/5e360a99f4dd53fd793925af/5e3610787aa7cf5890a26ae8_google-logo.svg" alt="" class="login-logo">
-              <div class="text-block-501">S&#x27;inscrire avec Google</div>
+              <div class="text-block-501">Se connecter avec Google</div>
             </a>
             <div class="success-message w-form-done">
               <div>Thank you! Your submission has been received!</div>

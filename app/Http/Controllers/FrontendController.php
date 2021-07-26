@@ -47,7 +47,9 @@ class FrontendController extends Controller
    public function details($id)
    {
       $data = Portfolio::find($id); 
-      return view('frontend.details', compact('data'));
+      $invests    = Invest::all();
+      $cities     = City::all();
+      return view('frontend.details', compact('data', 'invests', 'cities'));
    }
 
 // END   

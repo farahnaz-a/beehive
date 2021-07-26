@@ -16,7 +16,8 @@
     <link rel="shortcut icon" type="image/x-icon" href="images/logo.png">
 
     <!-- all css here -->
-
+    <link href="{{ asset('frontend_assets/images/favicon.png') }}" rel="shortcut icon" type="image/x-icon">
+    <link href="{{ asset('frontend_assets/images/webclip.png') }}" rel="apple-touch-icon">
     <link rel="stylesheet" href="{{ asset('proj_detail_assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('proj_detail_assets/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('proj_detail_assets/css/aos.css') }}">
@@ -69,13 +70,32 @@
                                         <a class="nav-link" href="">Nous concernant</a>
                                     </li>
                                 </ul>
-                                <div class="button text-center d-block d-lg-none pt-15 pb-20">
-                                    <a href="{{ route('login') }}">Connection</a>
-                                </div>
+                            @guest
+                            <div class="button text-center d-block d-lg-none pt-15 pb-20">
+                                <a href="{{ route('login') }}">Connexion</a>
                             </div>
-                            <div class="button d-none d-lg-block">
-                                <a href="#">Connection</a>
-                            </div>
+                        </div>
+                        <div class="button d-none d-lg-block">
+                            <a href="{{ route('login') }}">Connexion</a>
+                        </div>
+                            @endguest
+                            @auth
+                            @if(Auth::user()->getDocument)
+                            <div style="float: left;margin-right:20px;" class="button d-lg-block">
+                             <form action="{{ route('logout') }}" method="POST">
+                               @csrf 
+                               <a  href="{{ route('logout') }}" onclick="event.preventDefault();this.closest('form').submit();" class="button small-button">Log out</a>
+                             </form>
+                           </div>
+                           <div style="float:right;" class="button d-lg-block">
+                             <a  href="{{ route('dashboard') }}" class="button small-button">Account</a>
+                           </div>
+                           @else
+                           <div class="button d-lg-block">
+                           <a  href="{{ route('dashboard') }}" class="button small-button">Complete Registration</a>
+                           </div>
+                            @endif
+                           @endauth
                         </nav>
                     </div>
                 </div>
@@ -90,12 +110,14 @@
     <section id="project_page" class="">
         <div class="container">
             <div class="project_icon d-flex justify-content-end pb-20">
-                <h4><i class="far fa-heart"></i>Favoris</h4>
+                <a style="color: #2d3958;" href="">
+                    <h4><i class="far fa-heart"></i>Favoris</h4>
+                </a>
+                <a style="color : #2d3958;" href="https://www.facebook.com/sharer/sharer.php?u={{ Request::url() }}&display=popup">
                 <h4>
-                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ Request::url() }}&display=popup">
                         <i class="fas fa-external-link-alt"></i>Partager
-                    </a>
-                    </h4>
+                </h4>
+                </a>
             </div>
             <!-- project banner -->
             <div class="project_banner" style="background-image: url({{ asset('uploads/portfolios') }}/{{ $data->image }});">
@@ -342,6 +364,9 @@
                 </div>
             </div>
         </div>
+
+
+
         <!-- Footer -->
         <div class="project_footer pt-50">
             <div class="container">
@@ -367,7 +392,7 @@
                     </div>
                     <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="footer_item">
-                            <h4>b.hives</h4>
+                            <h4 style="padding-bottom: 30px">b.hives</h4>
                             <a href="#">A propos de nous</a>
                             <a href="#">Jobs</a>
                             <a href="#">Presse</a>
@@ -379,7 +404,7 @@
                     </div>
                     <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="footer_item">
-                            <h4>Legal</h4>
+                            <h4 style="padding-bottom: 30px">Legal</h4>
                             <a href="#">Trust & Safety</a>
                             <a href="#">Travel Credit</a>
                             <a href="#">Airbnb Citizen</a>
@@ -390,7 +415,7 @@
                     </div>
                     <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="footer_item">
-                            <h4>Decouvrir</h4>
+                            <h4 style="padding-bottom: 30px">Decouvrir</h4>
                             <a href="#">CGU & CGV</a>
                             <a href="">Protection des donnees</a>
                             <a href="#">Politique des cookies</a>
