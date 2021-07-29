@@ -182,8 +182,15 @@
                                 <div id="" class="">
                                     <div id="card_sticky" class="all_cards">
                                         <div class="card card-1">
-                                            <h2>Balance actuelle</h2>
-                                            <h5>0 €</h5>
+                                           @auth
+                                           <h2>Balance actuelle</h2>
+                                           <h5>0 €</h5>
+                                           @endauth
+                                           @guest
+                                           <h2>Balance actuelle</h2>
+                                           <a style="cursor:pointer;" class="btn btn-primary mt-4 text-white" data-toggle="modal"
+                                           data-target="#exampleModalCenter">Login to check balance</a>
+                                           @endguest
                                         </div>
                                         <div class="card card-2">
                                             <h2>{{ $data->price }} {{ $data->curr }}</h2>
@@ -365,7 +372,49 @@
             </div>
         </div>
 
+        <!-- Invest Section -->
+                <div class="invest_section">
+                    <div class="container">
+                        <div class="section_head text-center">
+                            <div class="purple_shape"></div>
+                            <h2 class="">Où investir en <a href="#">France</a> ?</h2>
+                            <p>Lorem ipsum dolor sit amet consecticur. <br>
+                                Lorem ipsum !</p>
+                        </div>
+                        <div class="cities_grid">
+                            <div class="row no-gutters justify-content-center">
+                                @foreach ($invests as $invest)
+                                    
+                                <div class="col-xl-2 col-lg-3 col-md-3 col-sm-6 col-12">
+                                    <div class="city_card">
+                                        <div class="city_image">
+                                            <img src="{{ asset('uploads/invests') }}/{{ $invest->image }}" class="img-fluid w-100" alt="not-found">
+                                        </div>
+                                        <div class="city_text">
+                                            <h3>{{ ucwords($invest->name) }}</h3>
+                                            <a href="#" class="btn">Explore</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="city_names">
+                            <div class="row no-gutters">
+                          
 
+                              @foreach ($cities->chunk(4) as $array)
+                              <div class="city_names_column col-xl col-lg-2 col-md-3 col-sm-4 col-6">
+                                  @foreach ($array as $city)
+                                  <a href="#">{{ $city->name }}</a>
+                                  @endforeach
+                              </div>
+                              @endforeach
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
         <!-- Footer -->
         <div class="project_footer pt-50">
@@ -441,14 +490,15 @@
     <!-- Button trigger modal -->
     @auth
     <button type="button" class="btn btn-primary modal_btn" data-toggle="modal"
-    data-target="#exampleModalCenter">investir</button>
+    data-target="#exampleModalCenter1">investir</button>
     @endauth
     @guest
-    <a href="{{ route('login') }}" class="btn btn-primary modal_btn">investir</a>
+    <button type="button" class="btn btn-primary modal_btn" data-toggle="modal"
+    data-target="#exampleModalCenter">investir</button>
     @endguest
 
     <!-- Modal -->
-    <div class="modal invest_modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+    <div class="modal invest_modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -506,6 +556,137 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <!-- Login Signup Modal -->
+    <div class="modal login_modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="wrapper modal-content">
+                <div class="modal-header border-0 p-0">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                    <div class="title-text">
+                        <div class="title login">
+                            Login Form
+                        </div>
+                        <div class="title signup">
+                            Signup Form
+                        </div>
+                    </div>
+                     <div class="modal-body">
+                        <div class="form-container">
+                        <div class="slide-controls">
+                            <input type="radio" name="slide" id="login" checked>
+                            <input type="radio" name="slide" id="signup">
+                            <label for="login" class="slide login">Login</label>
+                            <label for="signup" class="slide signup">Signup</label>
+                            <div class="slider-tab"></div>
+                        </div>
+                        <div class="form-inner">
+                            <form  method="post" action="{{ route('login') }}" class="login">
+                                @csrf
+                                <div class="field">
+                                    <input type="email" name="email" placeholder="Email Address" required>
+                                    @error('email')
+                                    <small style="color:red;">{{ $message }}</small>
+                                    @enderror
+                                </div>
+                                <div class="field">
+                                    <input type="password" name="password" placeholder="Password" required>
+                                    @error('password')
+                                    <small style="color:red;">{{ $message }}</small>
+                                    @enderror
+                                </div>
+                                <div class="pass-link">
+                                    <a href="{{ url('/forgot-password') }}">Forgot password?</a>
+                                </div>
+                                <button class="button" style="margin-bottom: 20px;" type="submit">Login</button>
+                                <div class="text-center" style="margin-bottom: 20px;">
+                                    <a href="{{ url('/auth/google') }}" cursorshover="true" style="margin: 0 auto; ">
+                                        <img src="https://uploads-ssl.webflow.com/5e360a99f4dd53fd793925af/5e3610787aa7cf5890a26ae8_google-logo.svg" alt="" class="login-logo">
+                                            <p style="font-weight:bold" class="d-inline-block">Se connecter avec Google</p>
+                                      </a>
+                                </div>
+                                <div class="signup-link">
+                                    Not a member? <a href="">Signup now</a>
+                                </div>
+                               
+                            </form>
+                            <form action="{{ route('register') }}" method="POST" class="signup">
+                                @csrf
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="field">
+                                            <input type="text" name="name" placeholder="Name" required>
+                                            @error('name')
+                                            <small style="color:red;">{{ $message }}</small>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <input type="email" name="email" placeholder="Email Address" required>
+                                    @error('email')
+                                    <small style="color:red;">{{ $message }}</small>
+                                    @enderror
+                                </div>
+                                <div class="field">
+                                    <input type="password" name="password" placeholder="Password" required>
+                                    @error('password')
+                                    <small style="color:red;">{{ $message }}</small>
+                                    @enderror
+                                </div>
+                                <div class="field">
+                                    <input type="password" name="password_confirmation" placeholder="Confirm password" required>
+                                    @error('password_confirmation')
+                                    <small style="color:red;">{{ $message }}</small>
+                                    @enderror
+                                </div>
+                                <button class="submit" style="margin-bottom: 20px;" type="submit">Signup</button>
+                                
+                                <div class="text-center">
+                                    <a href="{{ url('/auth/google') }}" cursorshover="true" style="margin: 0 auto; ">
+                                        <img src="https://uploads-ssl.webflow.com/5e360a99f4dd53fd793925af/5e3610787aa7cf5890a26ae8_google-logo.svg" alt="" class="login-logo">
+                                            <p style="font-weight:bold" class="d-inline-block">Se connecter avec Google</p>
+                                      </a>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <script>
+
+                @if(count($errors) > 0)
+                 $(document).ready(function()
+                 {
+                     $('#exampleModalCenter').modal('show');
+                 });
+                @endif
+            
+            const loginText = document.querySelector(".title-text .login");
+            const loginForm = document.querySelector("form.login");
+            const loginBtn = document.querySelector("label.login");
+            const signupBtn = document.querySelector("label.signup");
+            const signupLink = document.querySelector("form .signup-link a");
+            signupBtn.onclick = (() => {
+                loginForm.style.marginLeft = "-50%";
+                loginText.style.marginLeft = "-50%";
+            });
+            loginBtn.onclick = (() => {
+                loginForm.style.marginLeft = "0%";
+                loginText.style.marginLeft = "0%";
+            });
+            signupLink.onclick = (() => {
+                signupBtn.click();
+                return false;
+            });
+        </script>
     </div>
 
     <!-- JS here -->
