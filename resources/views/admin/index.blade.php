@@ -129,6 +129,7 @@
                     </div>
                     @endforeach
                 </div>
+                {{ $users->links() }}
             </div>
         </div>
         <div class="col-lg-8">
@@ -176,6 +177,7 @@
                         </tbody>
                     </table>
                 </div>
+                {{ $admins->links() }}
             </div>
         </div>
     </div>
