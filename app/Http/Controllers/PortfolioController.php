@@ -352,4 +352,36 @@ class PortfolioController extends Controller
         // Return success message after deletion 
         return back()->withSuccess('Deleted successfully');
     }
+    /**
+    *  Edit Multiple Image 
+    */
+   public function updateMultiple($id)
+   {
+       $product = Portfolio::find($id);
+
+       return view('admin.portfolios.editMultiple', compact('product'));
+   }
+   /**
+    *  Replace Multiple Image 
+    */
+   public function replaceMultiple(Request $request)
+   {
+       $request->validate([
+           'image' => 'required|image',
+       ]);
+
+       $data = PortfolioImage::find($request->id);
+
+       $existing = public_path('uploads/portfolios/' . $data->multi_image); 
+       unlink($existing);
+
+       $multi_image = $request->image; 
+       $filename    = $data->multi_image;
+       $location    = public_path('uploads/portfolios/');
+
+       $multi_image->move($location, $filename);
+
+       return back()->withSuccess('Image updated');
+
+   }
 }

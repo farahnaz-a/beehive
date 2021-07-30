@@ -186,11 +186,6 @@
                                            <h2>Balance actuelle</h2>
                                            <h5>0 €</h5>
                                            @endauth
-                                           @guest
-                                           <h2>Balance actuelle</h2>
-                                           <a style="cursor:pointer;" class="btn btn-primary mt-4 text-white" data-toggle="modal"
-                                           data-target="#exampleModalCenter">Login to check balance</a>
-                                           @endguest
                                         </div>
                                         <div class="card card-2">
                                             <h2>{{ $data->price }} {{ $data->curr }}</h2>

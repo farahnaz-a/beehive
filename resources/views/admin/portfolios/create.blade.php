@@ -155,7 +155,7 @@
                         </div>
                         <div class="col-12">
                             <div class="form-group">
-                                <label for="map">Map</label>
+                                <label for="map">Map  ( <a target="_blank" href="https://i.postimg.cc/jd2RKTCK/map.png">Click for example</a> ) </label>
                                 <input type="text" id="map" class="form-control" name="map" value="{{ old('map') }}" placeholder="Enter Map">
                                 @error('map')
                                     <small class="text-danger">{{ $message }}</small>

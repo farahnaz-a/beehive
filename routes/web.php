@@ -49,6 +49,8 @@ Route::group(['prefix' => 'admin'], function (){
     Route::resource('workSteps', WorkStepController::class);
 
     //PortfolioController
+    Route::get('update-multiple-image/{id}/update', [PortfolioController::class, 'updateMultiple'])->name('update.multiple');
+    Route::post('replace-multiple-image/update', [PortfolioController::class, 'replaceMultiple'])->name('replace.multiple');
     Route::resource('portfolios', PortfolioController::class);
 
     //TestimonialController
