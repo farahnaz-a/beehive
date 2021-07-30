@@ -644,7 +644,7 @@
                                     <small style="color:red;">{{ $message }}</small>
                                     @enderror
                                 </div>
-                                <button class="submit" style="margin-bottom: 20px;" type="submit">Signup</button>
+                                <button class="button" style="margin-bottom: 20px;" type="submit">Signup</button>
                                 
                                 <div class="text-center">
                                     <a href="{{ url('/auth/google') }}" cursorshover="true" style="margin: 0 auto; ">

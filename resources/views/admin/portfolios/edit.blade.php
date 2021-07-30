@@ -28,6 +28,9 @@
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">Edit Project</small></h4>
+                    <div class="float-right">
+                        <a target="_blank" class="btn btn-primary" href="{{ route('project.details', $portfolio->id) }}">Preview Project</a>
+                    </div>
                     @if (session('success'))
                         <div class="alert alert-success">
                             {{ session('success') }}
