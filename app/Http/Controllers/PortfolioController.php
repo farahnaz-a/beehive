@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Portfolio;
 use App\Http\Controllers\Controller;
+use App\Models\City;
 use App\Models\PortfolioImage;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -29,7 +30,7 @@ class PortfolioController extends Controller
     public function index()
     {
         return view('admin.portfolios.index',[
-            'portfolios' => Portfolio::latest()->get()
+            'portfolios' => Portfolio::latest()->get(),
         ]);
     }
 
@@ -40,7 +41,9 @@ class PortfolioController extends Controller
      */
     public function create()
     {
-        return view('admin.portfolios.create');
+        return view('admin.portfolios.create',[
+            'cities'     => City::all(),
+        ]);
     }
 
     /**
@@ -52,6 +55,7 @@ class PortfolioController extends Controller
     public function store(Request $request)
     {
         $request -> validate([
+            'country'            => 'required',
             'city_name'          => 'required',
             'image'              => 'image|required|max:500000',
             'title'              => 'required',
@@ -67,6 +71,7 @@ class PortfolioController extends Controller
         ]);
 
         $portfolio = Portfolio::create([
+            'country'               => $request->country,
             'city_name'             => $request->city_name,
             'image'                 => $request->image,
             'title'                 => $request->title,
@@ -175,7 +180,7 @@ class PortfolioController extends Controller
      */
     public function show(Portfolio $portfolio)
     {
-        //
+        return view('admin.portfolios.details',compact('portfolio'));
     }
 
     /**
@@ -200,6 +205,7 @@ class PortfolioController extends Controller
     {
          // Update Validation 
          $request -> validate([
+            'country'            => 'required',
             'city_name'          => 'required',
             'image'              => 'image',
             'title'              => 'required',
@@ -283,6 +289,7 @@ class PortfolioController extends Controller
         }
 
         // Update Other Fields
+        $portfolio->country             = $request->country;
         $portfolio->city_name           = $request->city_name;
         $portfolio->title               = $request->title;
         $portfolio->price               = $request->price; 
@@ -297,8 +304,8 @@ class PortfolioController extends Controller
         $portfolio->next_desc_1         = $request->next_desc_1; 
         $portfolio->next_desc_2         = $request->next_desc_2; 
         $portfolio->next_desc_3         = $request->next_desc_3; 
-        $portfolio->curr         = $request->curr; 
-        $portfolio->curre         = $request->curre; 
+        $portfolio->curr                = $request->curr; 
+        $portfolio->curre               = $request->curre; 
 
          // Save Everything in database 
         $portfolio->save(); 

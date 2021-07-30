@@ -44,6 +44,15 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group">
+                                    <label for="country">Country</label>
+                                    <input type="text" value="{{ $portfolio->country }}" id="country" class="form-control" name="country">
+                                    @error('country')
+                                        <small class="alert alert-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
                                     <label for="city_name">City name</label>
                                     <select name="city_name" id="city_name" class="form-control">
                                         <option value="{{ $portfolio->city_name }}">{{ $portfolio->city_name }}</option>
@@ -259,27 +268,9 @@
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label for="next_desc_1">Next Step Description 1</label>
+                                    <label for="next_desc_1">Next Step Description</label>
                                     <textarea id="next_desc_1" class="form-control" name="next_desc_1" placeholder="Enter next description 1">{{ $portfolio->next_desc_1 }}</textarea>
                                     @error('next_desc_1')
-                                        <small class="text-danger">{{ $message }}</small>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label for="next_desc_2">Next Step Description 2</label>
-                                    <textarea id="next_desc_2" class="form-control" name="next_desc_2" placeholder="Enter next description 2">{{ $portfolio->next_desc_2 }}</textarea>
-                                    @error('next_desc_2')
-                                        <small class="text-danger">{{ $message }}</small>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label for="next_desc_3">Next Step Description 3</label>
-                                    <textarea id="next_desc_3" class="form-control" name="next_desc_3" placeholder="Enter next description 3">{{ $portfolio->next_desc_3 }}</textarea>
-                                    @error('next_desc_3')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>

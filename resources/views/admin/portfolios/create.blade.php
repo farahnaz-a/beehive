@@ -43,13 +43,22 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="form-group">
+                                <label for="country">Country</label>
+                                <input type="text" id="country" class="form-control" name="country" value="{{ old('country') }}" placeholder="Enter country">
+                                @error('country')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
                                 <label for="city_name">City name</label>
                                 <select name="city_name" id="city_name" class="form-control">
                                     <option value="">-Select City name-</option>
-                                    <option value="Paris">Paris</option>
-                                    <option value="Lyon">Lyon</option>
-                                    <option value="Marseille">Marseille</option>
-                                    <option value="Bordeaux">Bordeaux</option>
+                                    @forelse ($cities as $item)
+                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @empty
+                                    @endforelse
                                 </select>
                                 @error('city_name')
                                     <small class="text-danger">{{ $message }}</small>
@@ -230,27 +239,9 @@
                         </div>
                         <div class="col-12">
                             <div class="form-group">
-                                <label for="next_desc_1">Next Step Description 1</label>
+                                <label for="next_desc_1">Next Step Description</label>
                                 <textarea id="next_desc_1" class="form-control" name="next_desc_1" value="{{ old('next_desc_1') }}" placeholder="Enter next description 1"></textarea>
                                 @error('next_desc_1')
-                                    <small class="text-danger">{{ $message }}</small>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label for="next_desc_2">Next Step Description 2</label>
-                                <textarea id="next_desc_2" class="form-control" name="next_desc_2" value="{{ old('next_desc_2') }}" placeholder="Enter next description 2"></textarea>
-                                @error('next_desc_2')
-                                    <small class="text-danger">{{ $message }}</small>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label for="next_desc_3">Next Step Description 3</label>
-                                <textarea id="next_desc_3" class="form-control" name="next_desc_3" value="{{ old('next_desc_3') }}" placeholder="Enter next description 3"></textarea>
-                                @error('next_desc_3')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
