@@ -310,6 +310,30 @@ class PortfolioController extends Controller
          // Save Everything in database 
         $portfolio->save(); 
 
+
+        if($request->multi_image){
+
+            $counter = 1;
+ 
+             foreach($request->file('multi_image') as $images)
+             {
+                $multi_image = $images;
+                $multi_filename    = $portfolio->id. '-'. $counter  . '.' .$multi_image->extension();
+                $multi_location    = public_path('uploads/portfolios/');
+ 
+                $multi_image->move($multi_location, $multi_filename);
+ 
+                PortfolioImage::create([
+                    'multi_image'  => $multi_filename,
+                    'portfolio_id' => $portfolio->id,
+                    'created_at'   => Carbon::now(),
+                ]);
+ 
+                $counter++;
+ 
+             }
+        }
+
          // Return Back to Banner List With Success Session Message
 
         return redirect()->route('portfolios.index')->withSuccess('Updated successfully');

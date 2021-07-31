@@ -266,6 +266,20 @@
                                     @enderror
                                 </div>
                             </div>
+                            @if($portfolio->get_images->count() == 0)
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="multi_image">Multiple Image</label>
+                                    <div class="custom-file">
+                                        <input type="file" name="multi_image[]" class="custom-file-input" id="multi_image" multiple>
+                                        <label class="custom-file-label" for="multi_image">Choose multiple image</label>
+                                    </div>
+                                    @error('multi_image')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
+                            </div>
+                            @endif
                             <div class="col-12">
                                 <div class="form-group">
                                     <label for="next_desc_1">Next Step Description</label>

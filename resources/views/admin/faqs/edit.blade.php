@@ -36,7 +36,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label for="question">Qustion</label>
+                                    <label for="question">Question</label>
                                     <input type="text" value="{{ $faq->question }}" id="question" class="form-control" name="question">
                                     @error('title')
                                         <small class="alert alert-danger">{{ $message }}</small>

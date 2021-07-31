@@ -179,14 +179,14 @@
                                 </div>
                             </div>
                             <div class="col-lg-3">
+                                @auth
                                 <div id="" class="">
                                     <div id="card_sticky" class="all_cards">
                                         <div class="card card-1">
-                                           @auth
                                            <h2>Balance actuelle</h2>
                                            <h5>0 €</h5>
-                                           @endauth
                                         </div>
+                                        @endauth
                                         <div class="card card-2">
                                             <h2>{{ $data->price }} {{ $data->curr }}</h2>
                                             <p>Sur 345,000 € de départ</p>
