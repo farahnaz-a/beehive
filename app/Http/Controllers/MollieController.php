@@ -48,7 +48,7 @@ class MollieController extends Controller
     
             $sale = Wallet::create([
               'user_id'    => Auth::id(),
-              'balance'      => $request->balance,
+              'balance'      => $request->amount,
               'currency'      => $request->currency,
               'payment_id' => $payment->id,
               'created_at' => Carbon::now(),
