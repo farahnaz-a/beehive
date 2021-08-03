@@ -52,5 +52,13 @@ class FrontendController extends Controller
       return view('frontend.details', compact('data', 'invests', 'cities'));
    }
 
+   /**
+    *  Make Deposit
+    */
+   public function makeDeposit()
+   {
+      return view('frontend.deposit');
+   }
+
 // END   
 }

@@ -32,6 +32,8 @@ class PortfolioController extends Controller
         return view('admin.portfolios.index',[
             'portfolios' => Portfolio::latest()->get(),
         ]);
+
+       
     }
 
     /**
@@ -68,6 +70,7 @@ class PortfolioController extends Controller
             'about_image_3'      => 'image|max:500000',
             'about_desc'         => 'required',
             'next_desc_1'        => 'required',
+            'multi_image.*'      => 'required|image|min:1',
         ]);
 
         $portfolio = Portfolio::create([

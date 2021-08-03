@@ -232,7 +232,7 @@
                                     <input type="file" name="multi_image[]" class="custom-file-input" id="multi_image" multiple>
                                     <label class="custom-file-label" for="multi_image">Choose multiple image</label>
                                 </div>
-                                @error('multi_image')
+                                @error('multi_image[]')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>

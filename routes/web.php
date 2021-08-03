@@ -8,6 +8,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\InvestController;
+use App\Http\Controllers\MollieController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\WorkStepController;
@@ -29,8 +30,13 @@ use App\Http\Controllers\PricepremiumController;
 
 Route::get('/', [FrontendController::class, 'index'])->name('frontend.index');
 Route::get('/project/{id}/details', [FrontendController::class, 'details'])->name('project.details');
+Route::get('/make-a-deposit', [FrontendController::class, 'makeDeposit'])->name('make.deposit');
 
-
+// MollieController
+Route::any('/mollie-payment',[MollieController::class, 'preparePayment'])->name('mollie.payment');
+Route::name('webhooks.mollie')->post('webhooks/mollie', [MollieController::class, 'handle']);
+Route::get('/payment-success', [MollieController::class, 'paymentSuccess'])->name('payment.success');
+// MollieController ENDS
 
 // Admin Prefix 
 Route::group(['prefix' => 'admin'], function (){

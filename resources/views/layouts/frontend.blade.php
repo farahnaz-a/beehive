@@ -15,16 +15,16 @@
   <meta content="width=device-width, initial-scale=1" name="viewport">
   <meta content="Webflow" name="generator">
   
-  <link href="{{ asset('frontend_assets/css/normalize.css') }}" rel="stylesheet" type="text/css">
-  <link href="{{ asset('frontend_assets/css/webflow.css') }}" rel="stylesheet" type="text/css">
-  <link href="{{ asset('frontend_assets/css/alexandre-auberts-fabulous-project.webflow.css') }}" rel="stylesheet" type="text/css">
+  <link href="{{ asset('depo_assets/css/normalize.css') }}" rel="stylesheet" type="text/css">
+  <link href="{{ asset('depo_assets/css/webflow.css') }}" rel="stylesheet" type="text/css">
+  <link href="{{ asset('depo_assets/css/alexandre-auberts-fabulous-project.webflow.css') }}" rel="stylesheet" type="text/css">
   <style>@media (min-width:992px) {html.w-mod-js:not(.w-mod-ix) [data-w-id="a02d2bd4-a580-86c9-8560-74433824309f"] {-webkit-transform:translate3d(0, 0, 0) scale3d(0, 0, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(0, 0, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(0, 0, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(0, 0, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);display:none;}html.w-mod-js:not(.w-mod-ix) [data-w-id="a02d2bd4-a580-86c9-8560-7443382430a3"] {border-color:rgba(192,192,211,0.3);background-color:rgba(192,192,211,0.2);}html.w-mod-js:not(.w-mod-ix) [data-w-id="a02d2bd4-a580-86c9-8560-7443382430a2"] {border-color:rgba(192,192,211,0.3);-webkit-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);background-color:rgba(255,255,255,0);}html.w-mod-js:not(.w-mod-ix) [data-w-id="a02d2bd4-a580-86c9-8560-7443382430a0"] {-webkit-transform:translate3d(0, 0, 0) scale3d(2, 2, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(2, 2, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(2, 2, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(2, 2, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);}html.w-mod-js:not(.w-mod-ix) [data-w-id="a02d2bd4-a580-86c9-8560-7443382430a5"] {display:none;-webkit-transform:translate3d(0, 0, 0) scale3d(0, 0, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(0, 0, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(0, 0, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(0, 0, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);}html.w-mod-js:not(.w-mod-ix) [data-w-id="a02d2bd4-a580-86c9-8560-7443382430a6"] {opacity:0;-webkit-transform:translate3d(0, 0, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);}html.w-mod-js:not(.w-mod-ix) [data-w-id="a02d2bd4-a580-86c9-8560-7443382430a7"] {opacity:0;-webkit-transform:translate3d(0, 0, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(0.8, 0.8, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);}html.w-mod-js:not(.w-mod-ix) [data-w-id="e062cad8-7165-6a07-2c9e-83b34a98c8ae"] {-webkit-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);background-color:rgba(255,255,255,0);border-color:rgba(192,192,211,0.2);}html.w-mod-js:not(.w-mod-ix) [data-w-id="e062cad8-7165-6a07-2c9e-83b34a98c8b0"] {-webkit-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);}}</style>
   <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
   <script type="text/javascript">WebFont.load({  google: {    families: ["Lato:100,100italic,300,300italic,400,400italic,700,700italic,900,900italic","Merriweather:300,300italic,400,400italic,700,700italic,900,900italic","Montserrat:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic","Varela Round:400","DM Sans:regular,500,700","Inter:200,300,regular,500,600,700,800"]  }});</script>
   <!-- [if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" type="text/javascript"></script><![endif] -->
   <script type="text/javascript">!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script>
-  <link href="{{ asset('frontend_assets/images/favicon.png') }}" rel="shortcut icon" type="image/x-icon">
-  <link href="{{ asset('frontend_assets/images/webclip.png') }}" rel="apple-touch-icon">
+  <link href="{{ asset('depo_assets/images/favicon.png') }}" rel="shortcut icon" type="image/x-icon">
+  <link href="{{ asset('depo_assets/images/webclip.png') }}" rel="apple-touch-icon">
   <script src="https://scripts.v1.authpack.io/index.js" data-key="wga-client-key-166b17158ebe25036bb466bc4">
 </script>
 </head>
@@ -75,15 +75,15 @@
                   <a href="https://calendly.com/" target="_blank" class="quick-link-item w-inline-block">
                     <div id="w-node-b3d7021c-264f-bd4f-2676-ef0afccf278f-fccf2769">Schedule a call</div>
                     
-                    <div id="w-node-b3d7021c-264f-bd4f-2676-ef0afccf2791-fccf2769" class="card-arrow-icon dark"><img src="{{ asset('frontend_assets/images/arrowhead-right-icon-dark001.svg') }}" loading="lazy" alt="" class="vacation-card-arrow"></div>
+                    <div id="w-node-b3d7021c-264f-bd4f-2676-ef0afccf2791-fccf2769" class="card-arrow-icon dark"><img src="{{ asset('depo_assets/images/arrowhead-right-icon-dark001.svg') }}" loading="lazy" alt="" class="vacation-card-arrow"></div>
                   </a>
                   <a href="mailto:info@template.com?subject=Hey!" class="quick-link-item w-inline-block">
                     <div id="w-node-b3d7021c-264f-bd4f-2676-ef0afccf2794-fccf2769">info@template.com</div>
-                    <div id="w-node-b3d7021c-264f-bd4f-2676-ef0afccf2796-fccf2769" class="card-arrow-icon dark"><img src="{{ asset('frontend_assets/images/arrowhead-right-icon-dark001.svg') }}" loading="lazy" alt="" class="vacation-card-arrow"></div>
+                    <div id="w-node-b3d7021c-264f-bd4f-2676-ef0afccf2796-fccf2769" class="card-arrow-icon dark"><img src="{{ asset('depo_assets/images/arrowhead-right-icon-dark001.svg') }}" loading="lazy" alt="" class="vacation-card-arrow"></div>
                   </a>
                   <a href="tel:+15555555555" class="quick-link-item w-inline-block">
                     <div id="w-node-b3d7021c-264f-bd4f-2676-ef0afccf2799-fccf2769">(555) 555-5555</div>
-                    <div class="card-arrow-icon dark"><img src="{{ asset('frontend_assets/images/arrowhead-right-icon-dark001.svg') }}" loading="lazy" alt="" class="vacation-card-arrow"></div>
+                    <div class="card-arrow-icon dark"><img src="{{ asset('depo_assets/images/arrowhead-right-icon-dark001.svg') }}" loading="lazy" alt="" class="vacation-card-arrow"></div>
                   </a>
                 </div>
               </div>
@@ -91,9 +91,9 @@
                 <div id="w-node-b3d7021c-264f-bd4f-2676-ef0afccf279e-fccf2769" class="subtitle-3">Follow us:</div>
                 <div id="w-node-b3d7021c-264f-bd4f-2676-ef0afccf27a0-fccf2769" class="agent-social-media">
                   
-                  <a href="https://webflow.com" target="_blank" class="agent-social-icon w-inline-block"><img src="{{ asset('frontend_assets/images/Dark-instagram.svg') }}" loading="lazy" alt=""></a>
-                  <a href="https://webflow.com" target="_blank" class="agent-social-icon w-inline-block"><img src="{{ asset('frontend_assets/images/dark-facebook-f.svg') }}" loading="lazy" alt=""></a>
-                  <a href="https://webflow.com" target="_blank" class="agent-social-icon w-inline-block"><img src="{{ asset('frontend_assets/images/Dark-linkedin-2.svg') }}" loading="lazy" alt=""></a>
+                  <a href="https://webflow.com" target="_blank" class="agent-social-icon w-inline-block"><img src="{{ asset('depo_assets/images/Dark-instagram.svg') }}" loading="lazy" alt=""></a>
+                  <a href="https://webflow.com" target="_blank" class="agent-social-icon w-inline-block"><img src="{{ asset('depo_assets/images/dark-facebook-f.svg') }}" loading="lazy" alt=""></a>
+                  <a href="https://webflow.com" target="_blank" class="agent-social-icon w-inline-block"><img src="{{ asset('depo_assets/images/Dark-linkedin-2.svg') }}" loading="lazy" alt=""></a>
                 </div>
               </div>
             </div>
@@ -130,6 +130,7 @@
               <div class="link-text-2">Nous concernant</div>
               <div class="link-cover header"></div>
             </a>
+            
           </div>
           <div class="mobile-destinations-wrapper">
             <div class="subtitle-intro-wrapper">
@@ -157,11 +158,18 @@
                 <a  href="{{ route('logout') }}" onclick="event.preventDefault();this.closest('form').submit();" class="button small-button">Log out</a>
               </form>
             </div>
-            <div style="float:right;">
+            <div style="float:right; margin-left:20px;">
               <a  href="{{ route('dashboard') }}" class="button small-button">Account</a>
             </div>
+            <div style="float:right;">
+              <a  href="{{ route('make.deposit') }}" class="button small-button">Make a Deposit</a>
+            </div>
             @else
-            <a  href="{{ route('dashboard') }}" class="button small-button">Complete Registration</a>
+              @if(Auth::user()->role != 'admin')
+              <a  href="{{ route('dashboard') }}" class="button small-button">Complete Registration</a>
+              @else 
+              <a  href="{{ route('dashboard') }}" class="button small-button">Admin Dashboard</a>
+              @endif
              @endif
             @endauth
             @guest
@@ -213,7 +221,7 @@
     <div class="footer-01">
         <div class="container-31">
           <div class="footer-top">
-            <div class="div-block-6349"><img src="{{ asset('frontend_assets/images/Logo-Main.svg') }}" width="35" alt="" class="footer-logo-2">
+            <div class="div-block-6349"><img src="{{ asset('depo_assets/images/Logo-Main.svg') }}" width="35" alt="" class="footer-logo-2">
               <a href="#" class="brand-7 w-nav-brand">
                 <div class="text-block-494 white"><span class="thin-span-2">B</span>.hives</div>
               </a>
@@ -259,11 +267,11 @@
               <a href="#" class="footer-link-5">Privacy Policy</a>
               <a href="#" class="footer-link-5">DSP2</a>
             </div>
-            <div class="footer-wrapper-2">
+            {{--  <div class="footer-wrapper-2">
               
-              <a href="#" class="social-link-2 w-inline-block"><img src="{{ asset('frontend_assets/images/001-facebook.svg') }}" alt=""></a>
-              <a href="#" class="social-link-2 w-inline-block"><img src="{{ asset('frontend_assets/images/003-twitter.svg') }}" alt=""></a>
-              <a href="#" class="social-link-2 w-inline-block"><img src="{{ asset('frontend_assets/images/004-instagram.svg') }}" alt=""></a>
+              <a href="#" class="social-link-2 w-inline-block"><img src="{{ asset('depo_assets/images/001-facebook.svg') }}" alt=""></a>
+              <a href="#" class="social-link-2 w-inline-block"><img src="{{ asset('depo_assets/images/003-twitter.svg') }}" alt=""></a>
+              <a href="#" class="social-link-2 w-inline-block"><img src="{{ asset('depo_assets/images/004-instagram.svg') }}" alt=""></a>
             </div>
           </div>
           <div class="legal-block">
@@ -307,11 +315,12 @@
                 </a>
               </nav>
             </div>
-          </div>
+          </div>  --}}
         </div>
       </div>
       <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=604b733c887fc763fe20f216" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-      <script src="{{ asset('frontend_assets/js/webflow.js') }}" type="text/javascript"></script>
+      @yield('js')
+      <script src="{{ asset('depo_assets/js/webflow.js') }}" type="text/javascript"></script>
       <!-- [if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif] -->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>
     </body>

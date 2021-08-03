@@ -87,6 +87,9 @@
                                <a  href="{{ route('logout') }}" onclick="event.preventDefault();this.closest('form').submit();" class="button small-button">Log out</a>
                              </form>
                            </div>
+                           <div style="float:right;margin-right:20px;" class="button d-lg-block">
+                             <a  href="{{ route('make.deposit') }}" class="button small-button">Make a deposit</a>
+                           </div>
                            <div style="float:right;" class="button d-lg-block">
                              <a  href="{{ route('dashboard') }}" class="button small-button">Account</a>
                            </div>
