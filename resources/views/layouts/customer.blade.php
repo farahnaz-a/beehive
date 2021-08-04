@@ -323,6 +323,9 @@
                 </div>
             </div>
             <div class="content-body">
+                @if(session('success'))
+                <div class="alert alert-success">{{ session('success') }}</div>
+                @endif
                 {{-- Content Start From Here --}}
                     @yield('content')
                 {{-- Content End Here --}}

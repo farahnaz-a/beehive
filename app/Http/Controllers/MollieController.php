@@ -74,8 +74,8 @@ class MollieController extends Controller
           $sale->status = 'paid';
           $sale->save();
 
-          $user = Auth::user(); 
-          $user->increment('balance', $sale->balance);
+          User::where('id', $sale->user_id)->increment('balance', $sale->balance);
+          $user = User::find($sale->user_id);
           if($sale->currency == 'EUR')
           {
               $user->currency = '€';

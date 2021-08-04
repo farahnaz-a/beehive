@@ -187,7 +187,7 @@
                                     <div id="card_sticky" class="all_cards">
                                         <div class="card card-1">
                                            <h2>Balance actuelle</h2>
-                                           <h5>0 €</h5>
+                                           <h5>{{ Auth::user()->balance }} {{ Auth::user()->currency ?? '€' }}</h5>
                                         </div>
                                         @endauth
                                         <div class="card card-2">
