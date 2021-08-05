@@ -52,7 +52,7 @@
     <!--=================Header Section Start===============-->
 
     <header>
-        <div class="main_menu">
+        <div class="main_menu" style="z-index: 100 !important">
             <div class="container-fluid">
                 <div class="row justify-content-center">
                     <div class="col-md-11">
