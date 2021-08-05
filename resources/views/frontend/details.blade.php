@@ -141,7 +141,7 @@
                 </div>
                 <div class="d-flex">
                     <h5>{{ $data->quantity_of_bricks }} Briques</h5>
-                    <h5>540 Investisseurs</h5>
+                    <h5>{{ $bricks->count() }} Investisseurs</h5>
                     <h5>80% Financé</h5>
                 </div>
             </div>
@@ -207,7 +207,8 @@
                                             <h5>{{ $data->ry }} r.o.i</h5>
                                             <p>Revenu annuel actuel</p>
                                             <div class="button mt-15">
-                                                <a href="#">investir</a>
+                                                <a data-toggle="modal"
+                                                data-target="#exampleModalCenter" href="#">investir</a>
                                             </div>
                                         </div>
                                         <div class="card card-2">
@@ -514,78 +515,79 @@
     <!-- Modal -->
   @auth
   <div class="modal invest_modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-  aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-          <div class="modal-header">
-              <h2 class="modal-title" id="exampleModalCenterTitle">
-                  Aperçu
-              </h2>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-              </button>
-          </div>
-          <div class="modal-body modal_1">
-              <h2 class="color_green">{{ Auth::user()->balance ?? '0' }} {{ Auth::user()->currency ?? '€' }}</h2>
-              <p class="pt-10">Balance disponible</p>
-              <form action="{{ route('bricks.store') }}" method="post">
-                  @csrf
-                  <div class="row">
-                      <div class="col-sm-6">
-                          <div class="form-group">
-                              <label for="montant">Montant (Eur)</label>
-                              <input type="text" id="montant" name="amount" class="form-control" placeholder="A partir de 20 €">
-                              @error('amount')
-                                  <small class="text-danger">{{ $message }}</small>
-                              @enderror
-                          </div>
-                      </div>
-                      <div class="col-sm-6">
-                          <div class="form-group">
-                              <label for="briques">Briques</label>
-                              <input type="number" id="briques" name="bricks_qty" class="form-control" placeholder="Briques">
-                              @error('bricks_qty')
-                                  <small class="text-danger">{{ $message }}</small>
-                              @enderror
-                          </div>
-                      </div>
-                  </div>
-                  @if($errors->all())
-                   @foreach ($errors->all() as $item)
-                   @if($item == 'You do not have sufficient balance to buy the bricks.Please make a deposit and try again')
-                   <small class="text-danger">{{ $item }}</small>
-                   @endif
-                   @endforeach
-                  @endif
-                  <p><b>Montant :</b> {{ $bricks->sum('amount') }} € atteint sur {{ $data->price }} €</p>
-                  <p><b>Briques :</b> 3,500 sur 21,350 </p>
-                  <p class="color_purple"><b>1 brique = {{ $data->miniprice }}{{ $data->curre }}</b></p>
-                  <p class="termsandcondition d-none">
-                      <input type="checkbox">
-                      Tu reconnais avoir pris connaissance des <span class="color_green">terms et conditions d'utilisation</span>
-                  </p>
-                  <div class="modal-footer text-center mt-25">
-                      <input type="hidden" name="miniprice" value="{{ $data->miniprice }}">
-                      <input type="hidden" name="portfolio_id" value="{{ $data->id }}">
-                      <button type="submit" class="continue_btn m-auto">Continuer</button>
-                  </div>
-              </form>
-          </div>
-          <div class="modal-body modal_2">
-              <h2 class="color_green">{{ Auth::user()->balance ?? '0' }} {{ Auth::user()->currency ?? '€' }}</h2>
-              <p class="pt-10">Balance disponible</p>
-              <div class="modal-footer text-center mt-30">
-                  <button type="button" class="continue_btn m-auto">Processing....</button>
-              </div>
-              <script>
-                  $('.continue_btn').click(function () {
-                      $('.modal_1').hide()
-                      $('.modal_2').show()
-                  })
-              </script>
-          </div>
-      </div>
-  </div>
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="exampleModalCenterTitle">
+                    Aperçu
+                </h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body modal_1">
+                <h2 class="color_green">{{ Auth::user()->balance ?? '0' }} {{ Auth::user()->currency ?? '€' }}</h2>
+                <p class="pt-10">Balance disponible</p>
+                <form action="{{ route('bricks.store') }}" method="post">
+                    @csrf
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="briques">Briques</label>
+                                <input type="number" id="briques" name="bricks_qty" class="form-control" placeholder="Briques">
+                                @error('bricks_qty')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="montant">Montant (Eur)</label>
+                                <input type="text" readonly id="montant" name="amount" class="form-control" placeholder="A partir de {{ $data->miniprice }} €">
+                                @error('amount')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+                        </div>
+                        
+                    </div>
+                    @if($errors->all())
+                    @foreach ($errors->all() as $item)
+                    @if($item == 'You do not have sufficient balance to buy the bricks.Please make a deposit and try again')
+                    <small class="text-danger">{{ $item }}</small>
+                    @endif
+                    @endforeach
+                    @endif
+                    <p><b>Montant :</b> {{ $bricks->sum('amount') }} € atteint sur {{ $data->price }} €</p>
+                    <p><b>Briques :</b> 3,500 sur 21,350 </p>
+                    <p class="color_purple"><b>1 brique = {{ $data->miniprice }}{{ $data->curre }}</b></p>
+                    <p class="termsandcondition d-none">
+                        <input type="checkbox">
+                        Tu reconnais avoir pris connaissance des <span class="color_green">terms et conditions d'utilisation</span>
+                    </p>
+                    <div class="modal-footer text-center mt-25">
+                        <input type="hidden" name="miniprice" value="{{ $data->miniprice }}">
+                        <input type="hidden" name="portfolio_id" value="{{ $data->id }}">
+                        <button type="submit" class="continue_btn m-auto">Continuer</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-body modal_2">
+                <h2 class="color_green">{{ Auth::user()->balance ?? '0' }} {{ Auth::user()->currency ?? '€' }}</h2>
+                <p class="pt-10">Balance disponible</p>
+                <div class="modal-footer text-center mt-30">
+                    <button type="button" class="continue_btn m-auto">Processing....</button>
+                </div>
+                <script>
+                    $('.continue_btn').click(function () {
+                        $('.modal_1').hide()
+                        $('.modal_2').show()
+                    })
+                </script>
+            </div>
+        </div>
+    </div>
 </div>
   @endauth
 
@@ -707,6 +709,13 @@
                  $("#montant").val(price);
                  
             });
+
+            // $("#montant").keyup(function(){
+            //     let amount = $("#montant").val(), 
+            //         bricks = amount / "{{ $data->miniprice }}"; 
+
+            //     $("#briques").val(Math.floor(bricks));
+            // });
         });
 
          @if(count($errors) > 0)
@@ -733,7 +742,7 @@
          signupBtn.click();
          return false;
      });
- </script>
+    </script>
     
     <script src="{{ asset('proj_detail_assets/js/vendor/modernizr-3.5.0.min.js') }}"></script>
 

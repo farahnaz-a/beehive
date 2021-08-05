@@ -16,12 +16,13 @@
           <div class="div-block-6432">
             <div data-duration-in="300" data-duration-out="100" class="tabs-22 w-tabs">
               <div class="tabs-menu-24 w-tab-menu">
-                <a data-w-tab="Tab 1" class="tab-link-tab-1-83 w-inline-block w-tab-link w--current">
+                <a data-w-tab="Tab 2" class="tab-link-tab-2-28 w-inline-block w-tab-link w--current">
                   <div>Deposer</div>
                 </a>
-                <a data-w-tab="Tab 2" class="tab-link-tab-2-28 w-inline-block w-tab-link">
-                  <div>Envoyer</div>
+                <a data-w-tab="Tab 1" class="tab-link-tab-1-83 w-inline-block w-tab-link ">
+                  <div>Retirer</div>
                 </a>
+               
               </div>
               <div class="tabs-content-21 w-tab-content">
                 <div data-w-tab="Tab 1" class="w-tab-pane w--tab-active">
