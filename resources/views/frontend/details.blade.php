@@ -187,7 +187,7 @@
                                     <div class="info">
                                         <h3>Melanie Parmentier</h3>
                                         <p><i class="fas fa-map-marker-alt"></i>Marseille, France</p>
-                                        <h5>Projet<span>1</span></h5>
+                                        <h5>Project<span>1</span></h5>
                                         <h5>Niveau<span>Débutant</span></h5>
                                     </div>
                                 </div>
@@ -202,8 +202,8 @@
                                         </div>
                                         @endauth
                                         <div class="card card-2">
-                                            <h2>{{ $data->price }} {{ $data->curr }}</h2>
-                                            <p>Sur {{ $bricks->sum('amount') }} € de départ</p>
+                                            <h2>{{ $data->price - $bricks->sum('amount') }} {{ $data->curr }}</h2>
+                                            <p>Sur {{ $data->price }} € de départ</p>
                                             <h5>{{ $data->ry }} r.o.i</h5>
                                             <p>Revenu annuel actuel</p>
                                             <div class="button mt-15">
