@@ -1,4 +1,4 @@
-@extends('layouts.frontend')
+@extends('layouts.logindash')
 
 @section('content')
     <div class="hero">

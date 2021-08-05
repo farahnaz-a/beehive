@@ -36,7 +36,7 @@
                             <div class="card-header d-flex justify-content-between align-items-sm-center align-items-start flex-sm-row flex-column">
                                 <div class="header-left">
                                     <p class="card-subtitle text-muted mb-25">Balance</p>
-                                    <h4 class="card-title">$74,123</h4>
+                                    <h4 class="card-title">{{ Auth::user()->currency }} {{ Auth::user()->balance }}</h4>
                                 </div>
                                 <div class="header-right d-flex align-items-center mt-sm-0 mt-1">
                                     <i data-feather="calendar"></i>

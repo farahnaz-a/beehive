@@ -25,7 +25,13 @@
     <link rel="stylesheet" href="{{ asset('proj_detail_assets/css/default.css') }}">
     <link rel="stylesheet" href="{{ asset('proj_detail_assets/css/style.css') }}">
     <script src="{{ asset('proj_detail_assets/js/vendor/jquery-3.2.1.min.js') }}"></script>
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+
+    <style>
+        .sticky_tab {
+            z-index: 1 !important;
+        }
+    </style>
     <script>
         $(document).ready(function () {
             $("#lang_flip").click(function () {
@@ -111,6 +117,11 @@
     <!--==================Project Details Page Start================-->
 
     <section id="project_page" class="">
+        @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+        @endif
         <div class="container">
             <div class="project_icon d-flex justify-content-end pb-20">
                 <a style="color: #2d3958;" href="">
@@ -187,12 +198,12 @@
                                     <div id="card_sticky" class="all_cards">
                                         <div class="card card-1">
                                            <h2>Balance actuelle</h2>
-                                           <h5>{{ Auth::user()->balance }} {{ Auth::user()->currency ?? '€' }}</h5>
+                                           <h5>{{ Auth::user()->balance ?? '0' }} {{ Auth::user()->currency ?? '€' }}</h5>
                                         </div>
                                         @endauth
                                         <div class="card card-2">
                                             <h2>{{ $data->price }} {{ $data->curr }}</h2>
-                                            <p>Sur 345,000 € de départ</p>
+                                            <p>Sur {{ $bricks->sum('amount') }} € de départ</p>
                                             <h5>{{ $data->ry }} r.o.i</h5>
                                             <p>Revenu annuel actuel</p>
                                             <div class="button mt-15">
@@ -244,22 +255,29 @@
                         <h2 class="text-center pb-40">Investisseurs</h2>
                         <div class="all_investors">
                             <div class="row">
-                                {{-- <div class="col-lg-3 col-md-4 col-sm-6">
+                                @forelse ($bricks as $item)
+                                <div class="col-lg-3 col-md-4 col-sm-6">
                                     <div class="investors_card text-center">
                                         <div class="img">
-                                            <img src="images/project/invest-card-1.jpeg" alt="not-found">
+                                            <img src="{{ asset('proj_detail_assets/invest-card-1.jpeg') }}" alt="not-found">
                                         </div>
                                         <div>
-                                            <h4>Alexandre Aubert</h4>
-                                            <p><i class="fas fa-map-marker-alt"></i>Praha, Czech Republic</p>
+                                            <h4>{{ \App\Models\User::where('id', $item->user_id)->first()->name }}</h4>
+                                            <p><i class="fas fa-map-marker-alt"></i>{{ \App\Models\User::find($item->user_id)->getInfo->city }}, {{ \App\Models\User::find($item->user_id)->getInfo->country }}</p>
                                         </div>
                                         <div class="number">
-                                            <h5>12</h5>
+                                            <h5>{{ $item->bricks_qty }}</h5>
                                             <i class="fas fa-th-large"></i>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6">
+                                @empty                                    
+                                <div class="col-lg-10">
+                                    <h5>No investors yet</h5>
+                                </div>
+                                @endforelse
+                                 
+                                {{-- <div class="col-lg-3 col-md-4 col-sm-6">
                                     <div class="investors_card text-center">
                                         <div class="img">
                                             <img src="images/project/invest-card-2.jpeg" alt="not-found">
@@ -334,9 +352,7 @@
                                         </div>
                                     </div>
                                 </div> --}}
-                                <div class="col-lg-10">
-                                    <h5>No investors yet</h5>
-                                </div>
+                     
                             </div>
                             <div class="investors_bg">
                             </div>
@@ -488,7 +504,7 @@
     <!-- Button trigger modal -->
     @auth
     <button type="button" class="btn btn-primary modal_btn" data-toggle="modal"
-    data-target="#exampleModalCenter1">investir</button>
+    data-target="#exampleModalCenter">investir</button>
     @endauth
     @guest
     <button type="button" class="btn btn-primary modal_btn" data-toggle="modal"
@@ -496,198 +512,228 @@
     @endguest
 
     <!-- Modal -->
-    <div class="modal invest_modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 class="modal-title" id="exampleModalCenterTitle">
-                        Aperçu
-                    </h2>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body modal_1">
-                    <h2 class="color_green">5,000 €</h2>
-                    <p class="pt-10">Balance disponible</p>
-                    <form action="" method="post">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="montant">Montant (Eur)</label>
-                                    <input type="text" id="montant" class="form-control" placeholder="A partir de 20 €">
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="briques">Briques</label>
-                                    <input type="text" id="briques" class="form-control" placeholder="Briques">
-                                </div>
-                            </div>
-                        </div>
-                        <p><b>Montant :</b> 245,000€ atteint sur 427,000 €</p>
-                        <p><b>Briques :</b> 3,500 sur 21,350 </p>
-                        <p class="color_purple"><b>1 brique = {{ $data->miniprice }}{{ $data->curre }}</b></p>
-                        <p class="termsandcondition d-none">
-                            <input type="checkbox">
-                            Tu reconnais avoir pris connaissance des <span class="color_green">terms et conditions d'utilisation</span>
-                        </p>
-                        <div class="modal-footer text-center mt-25">
-                            <button type="button" class="continue_btn m-auto">Continuer</button>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-body modal_2">
-                    <h2 class="color_green">5,000 €</h2>
-                    <p class="pt-10">Balance disponible</p>
-                    <div class="modal-footer text-center mt-30">
-                        <button type="button" class="continue_btn m-auto">Thank you! Your submission has been
-                            received!</button>
-                    </div>
-                    <script>
-                        $('.continue_btn').click(function () {
-                            $('.modal_1').hide()
-                            $('.modal_2').show()
-                        })
-                    </script>
-                </div>
-            </div>
-        </div>
-    </div>
+  @auth
+  <div class="modal invest_modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h2 class="modal-title" id="exampleModalCenterTitle">
+                  Aperçu
+              </h2>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body modal_1">
+              <h2 class="color_green">{{ Auth::user()->balance ?? '0' }} {{ Auth::user()->currency ?? '€' }}</h2>
+              <p class="pt-10">Balance disponible</p>
+              <form action="{{ route('bricks.store') }}" method="post">
+                  @csrf
+                  <div class="row">
+                      <div class="col-sm-6">
+                          <div class="form-group">
+                              <label for="montant">Montant (Eur)</label>
+                              <input type="text" id="montant" name="amount" class="form-control" placeholder="A partir de 20 €">
+                              @error('amount')
+                                  <small class="text-danger">{{ $message }}</small>
+                              @enderror
+                          </div>
+                      </div>
+                      <div class="col-sm-6">
+                          <div class="form-group">
+                              <label for="briques">Briques</label>
+                              <input type="number" id="briques" name="bricks_qty" class="form-control" placeholder="Briques">
+                              @error('bricks_qty')
+                                  <small class="text-danger">{{ $message }}</small>
+                              @enderror
+                          </div>
+                      </div>
+                  </div>
+                  @if($errors->all())
+                   @foreach ($errors->all() as $item)
+                   @if($item == 'You do not have sufficient balance to buy the bricks.Please make a deposit and try again')
+                   <small class="text-danger">{{ $item }}</small>
+                   @endif
+                   @endforeach
+                  @endif
+                  <p><b>Montant :</b> {{ $bricks->sum('amount') }} € atteint sur {{ $data->price }} €</p>
+                  <p><b>Briques :</b> 3,500 sur 21,350 </p>
+                  <p class="color_purple"><b>1 brique = {{ $data->miniprice }}{{ $data->curre }}</b></p>
+                  <p class="termsandcondition d-none">
+                      <input type="checkbox">
+                      Tu reconnais avoir pris connaissance des <span class="color_green">terms et conditions d'utilisation</span>
+                  </p>
+                  <div class="modal-footer text-center mt-25">
+                      <input type="hidden" name="miniprice" value="{{ $data->miniprice }}">
+                      <input type="hidden" name="portfolio_id" value="{{ $data->id }}">
+                      <button type="submit" class="continue_btn m-auto">Continuer</button>
+                  </div>
+              </form>
+          </div>
+          <div class="modal-body modal_2">
+              <h2 class="color_green">{{ Auth::user()->balance ?? '0' }} {{ Auth::user()->currency ?? '€' }}</h2>
+              <p class="pt-10">Balance disponible</p>
+              <div class="modal-footer text-center mt-30">
+                  <button type="button" class="continue_btn m-auto">Processing....</button>
+              </div>
+              <script>
+                  $('.continue_btn').click(function () {
+                      $('.modal_1').hide()
+                      $('.modal_2').show()
+                  })
+              </script>
+          </div>
+      </div>
+  </div>
+</div>
+  @endauth
 
     <!-- Login Signup Modal -->
-    <div class="modal login_modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="wrapper modal-content">
-                <div class="modal-header border-0 p-0">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                    <div class="title-text">
-                        <div class="title login">
-                            Login Form
-                        </div>
-                        <div class="title signup">
-                            Signup Form
-                        </div>
+  @guest
+  <div class="modal login_modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="wrapper modal-content">
+            <div class="modal-header border-0 p-0">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+                <div class="title-text">
+                    <div class="title login">
+                        Login Form
                     </div>
-                     <div class="modal-body">
-                        <div class="form-container">
-                        <div class="slide-controls">
-                            <input type="radio" name="slide" id="login" checked>
-                            <input type="radio" name="slide" id="signup">
-                            <label for="login" class="slide login">Login</label>
-                            <label for="signup" class="slide signup">Signup</label>
-                            <div class="slider-tab"></div>
-                        </div>
-                        <div class="form-inner">
-                            <form  method="post" action="{{ route('login') }}" class="login">
-                                @csrf
-                                <div class="field">
-                                    <input type="email" name="email" placeholder="Email Address" required>
-                                    @error('email')
-                                    <small style="color:red;">{{ $message }}</small>
-                                    @enderror
-                                </div>
-                                <div class="field">
-                                    <input type="password" name="password" placeholder="Password" required>
-                                    @error('password')
-                                    <small style="color:red;">{{ $message }}</small>
-                                    @enderror
-                                </div>
-                                <div class="pass-link">
-                                    <a href="{{ url('/forgot-password') }}">Forgot password?</a>
-                                </div>
-                                <button class="button" style="margin-bottom: 20px;" type="submit">Login</button>
-                                <div class="text-center" style="margin-bottom: 20px;">
-                                    <a href="{{ url('/auth/google') }}" cursorshover="true" style="margin: 0 auto; ">
-                                        <img src="https://uploads-ssl.webflow.com/5e360a99f4dd53fd793925af/5e3610787aa7cf5890a26ae8_google-logo.svg" alt="" class="login-logo">
-                                            <p style="font-weight:bold" class="d-inline-block">Se connecter avec Google</p>
-                                      </a>
-                                </div>
-                                <div class="signup-link">
-                                    Not a member? <a href="">Signup now</a>
-                                </div>
-                               
-                            </form>
-                            <form action="{{ route('register') }}" method="POST" class="signup">
-                                @csrf
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="field">
-                                            <input type="text" name="name" placeholder="Name" required>
-                                            @error('name')
-                                            <small style="color:red;">{{ $message }}</small>
-                                            @enderror
-                                        </div>
+                    <div class="title signup">
+                        Signup Form
+                    </div>
+                </div>
+                 <div class="modal-body">
+                    <div class="form-container">
+                    <div class="slide-controls">
+                        <input type="radio" name="slide" id="login" checked>
+                        <input type="radio" name="slide" id="signup">
+                        <label for="login" class="slide login">Login</label>
+                        <label for="signup" class="slide signup">Signup</label>
+                        <div class="slider-tab"></div>
+                    </div>
+                    <div class="form-inner">
+                        <form  method="post" action="{{ route('login') }}" class="login">
+                            @csrf
+                            <div class="field">
+                                <input type="email" name="email" placeholder="Email Address" required>
+                                @error('email')
+                                <small style="color:red;">{{ $message }}</small>
+                                @enderror
+                            </div>
+                            <div class="field">
+                                <input type="password" name="password" placeholder="Password" required>
+                                @error('password')
+                                <small style="color:red;">{{ $message }}</small>
+                                @enderror
+                            </div>
+                            <div class="pass-link">
+                                <a href="{{ url('/forgot-password') }}">Forgot password?</a>
+                            </div>
+                            <button class="button" style="margin-bottom: 20px;" type="submit">Login</button>
+                            <div class="text-center" style="margin-bottom: 10px;">
+                                <a href="{{ url('/auth/google') }}" cursorshover="true" style="margin: 0 auto; ">
+                                    <img src="{{ asset('gg.png') }}" alt="">
+                                </a>
+                            </div>
+                            <div class="signup-link" style="margin-top: 0px !important;">
+                                Not a member? <a href="">Signup now</a>
+                            </div>
+                           
+                        </form>
+                        <form action="{{ route('register') }}" method="POST" class="signup">
+                            @csrf
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="field">
+                                        <input type="text" name="name" placeholder="Name" required>
+                                        @error('name')
+                                        <small style="color:red;">{{ $message }}</small>
+                                        @enderror
                                     </div>
                                 </div>
-                                <div class="field">
-                                    <input type="email" name="email" placeholder="Email Address" required>
-                                    @error('email')
-                                    <small style="color:red;">{{ $message }}</small>
-                                    @enderror
-                                </div>
-                                <div class="field">
-                                    <input type="password" name="password" placeholder="Password" required>
-                                    @error('password')
-                                    <small style="color:red;">{{ $message }}</small>
-                                    @enderror
-                                </div>
-                                <div class="field">
-                                    <input type="password" name="password_confirmation" placeholder="Confirm password" required>
-                                    @error('password_confirmation')
-                                    <small style="color:red;">{{ $message }}</small>
-                                    @enderror
-                                </div>
-                                <button class="button" style="margin-bottom: 20px;" type="submit">Signup</button>
-                                
-                                <div class="text-center">
-                                    <a href="{{ url('/auth/google') }}" cursorshover="true" style="margin: 0 auto; ">
-                                        <img src="https://uploads-ssl.webflow.com/5e360a99f4dd53fd793925af/5e3610787aa7cf5890a26ae8_google-logo.svg" alt="" class="login-logo">
-                                            <p style="font-weight:bold" class="d-inline-block">Se connecter avec Google</p>
-                                      </a>
-                                </div>
-                            </form>
+                            </div>
+                            <div class="field">
+                                <input type="email" name="email" placeholder="Email Address" required>
+                                @error('email')
+                                <small style="color:red;">{{ $message }}</small>
+                                @enderror
+                            </div>
+                            <div class="field">
+                                <input type="password" name="password" placeholder="Password" required>
+                                @error('password')
+                                <small style="color:red;">{{ $message }}</small>
+                                @enderror
+                            </div>
+                            <div class="field">
+                                <input type="password" name="password_confirmation" placeholder="Confirm password" required>
+                                @error('password_confirmation')
+                                <small style="color:red;">{{ $message }}</small>
+                                @enderror
+                            </div>
+                            <button class="button" style="margin-bottom: 20px;" type="submit">Signup</button>
+                            
+                            <div class="text-center">
+                                <a href="{{ url('/auth/google') }}" cursorshover="true" style="margin: 0 auto; ">
+                                    <img src="https://uploads-ssl.webflow.com/5e360a99f4dd53fd793925af/5e3610787aa7cf5890a26ae8_google-logo.svg" alt="" class="login-logo">
+                                        <p style="font-weight:bold" class="d-inline-block">Se connecter avec Google</p>
+                                  </a>
+                            </div>
+                        </form>
 
-                        </div>
                     </div>
                 </div>
-                </div>
+            </div>
             </div>
         </div>
-        <script>
-
-                @if(count($errors) > 0)
-                 $(document).ready(function()
-                 {
-                     $('#exampleModalCenter').modal('show');
-                 });
-                @endif
-            
-            const loginText = document.querySelector(".title-text .login");
-            const loginForm = document.querySelector("form.login");
-            const loginBtn = document.querySelector("label.login");
-            const signupBtn = document.querySelector("label.signup");
-            const signupLink = document.querySelector("form .signup-link a");
-            signupBtn.onclick = (() => {
-                loginForm.style.marginLeft = "-50%";
-                loginText.style.marginLeft = "-50%";
-            });
-            loginBtn.onclick = (() => {
-                loginForm.style.marginLeft = "0%";
-                loginText.style.marginLeft = "0%";
-            });
-            signupLink.onclick = (() => {
-                signupBtn.click();
-                return false;
-            });
-        </script>
     </div>
 
+</div>
+  @endguest
+
     <!-- JS here -->
+
+    <script>
+
+        $(document).ready(function(){
+            $("#briques").keyup(function(){
+                let bricks = $("#briques").val(), 
+                    price = bricks * "{{ $data->miniprice }}"; 
+
+                 $("#montant").val(price);
+                 
+            });
+        });
+
+         @if(count($errors) > 0)
+          $(document).ready(function()
+          {
+              $('#exampleModalCenter').modal('show');
+          });
+         @endif
+     
+     const loginText = document.querySelector(".title-text .login");
+     const loginForm = document.querySelector("form.login");
+     const loginBtn = document.querySelector("label.login");
+     const signupBtn = document.querySelector("label.signup");
+     const signupLink = document.querySelector("form .signup-link a");
+     signupBtn.onclick = (() => {
+         loginForm.style.marginLeft = "-50%";
+         loginText.style.marginLeft = "-50%";
+     });
+     loginBtn.onclick = (() => {
+         loginForm.style.marginLeft = "0%";
+         loginText.style.marginLeft = "0%";
+     });
+     signupLink.onclick = (() => {
+         signupBtn.click();
+         return false;
+     });
+ </script>
     
     <script src="{{ asset('proj_detail_assets/js/vendor/modernizr-3.5.0.min.js') }}"></script>
 

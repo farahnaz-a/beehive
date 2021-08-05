@@ -99,7 +99,7 @@ class MollieController extends Controller
      */
     public function paymentSuccess(Request $request) {
 
-        return redirect('/customer/dashboard')->withSuccess('Thank you !! Your deposit was successful');
+        return redirect('/customer/account')->withSuccess('Thank you !! Your deposit was successful');
 
     }
 }

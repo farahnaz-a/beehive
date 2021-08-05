@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Faq;
 use App\Models\City;
 use App\Models\Work;
+use App\Models\Brick;
 use App\Models\Banner;
 use App\Models\Invest;
 use App\Models\workStep;
@@ -49,7 +50,8 @@ class FrontendController extends Controller
       $data = Portfolio::find($id); 
       $invests    = Invest::all();
       $cities     = City::all();
-      return view('frontend.details', compact('data', 'invests', 'cities'));
+      $bricks     = Brick::where('portfolio_id', $data->id)->get();
+      return view('frontend.details', compact('data', 'invests', 'cities', 'bricks'));
    }
 
    /**

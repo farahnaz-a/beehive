@@ -6,6 +6,7 @@ use App\Http\Controllers\CityController;
 use App\Http\Controllers\WorkController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\BrickController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\InvestController;
 use App\Http\Controllers\MollieController;
@@ -37,6 +38,9 @@ Route::any('/mollie-payment',[MollieController::class, 'preparePayment'])->name(
 Route::name('webhooks.mollie')->post('webhooks/mollie', [MollieController::class, 'handle']);
 Route::get('/payment-success', [MollieController::class, 'paymentSuccess'])->name('payment.success');
 // MollieController ENDS
+
+// BrickController 
+Route::post('/brick-buy', [BrickController::class, 'store'])->name('bricks.store');
 
 // Admin Prefix 
 Route::group(['prefix' => 'admin'], function (){
