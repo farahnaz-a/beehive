@@ -198,12 +198,15 @@
                                     <div id="card_sticky" class="all_cards">
                                         <div class="card card-1">
                                            <h2>Balance actuelle</h2>
-                                           <h5>{{ Auth::user()->balance ?? '0' }} {{ Auth::user()->currency ?? '€' }}</h5>
+                                           <h5>@convert(Auth::user()->balance ?? '0') {{ Auth::user()->currency ?? '€' }}</h5>
                                         </div>
                                         @endauth
                                         <div class="card card-2">
-                                            <h2>{{ $data->price - $bricks->sum('amount') }} {{ $data->curr }}</h2>
-                                            <p>Sur {{ $data->price }} € de départ</p>
+                                            @php
+                                                $remaining = $data->price - $bricks->sum('amount');
+                                            @endphp
+                                            <h2>@convert($remaining) {{ $data->curr }}</h2>
+                                            <p>Sur @convert($data->price) € de départ</p>
                                             <h5>{{ $data->ry }} r.o.i</h5>
                                             <p>Revenu annuel actuel</p>
                                             <div class="button mt-15">
