@@ -16,6 +16,11 @@ class CreateCitiesTable extends Migration
         Schema::create('cities', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('region_paca'); 
+            $table->string('title'); 
+            $table->longText('description_1'); 
+            $table->longText('description_2')->nullable(); 
+            $table->string('image'); 
             $table->timestamps();
         });
     }

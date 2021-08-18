@@ -29,6 +29,9 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('dashboard_assets/app-assets/css/themes/bordered-layout.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('dashboard_assets/app-assets/css/themes/semi-dark-layout.css') }}">
 
+    {{-- Data Table --}}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
+    
     <!-- BEGIN: Page CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('dashboard_assets/app-assets/css/core/menu/menu-types/vertical-menu.css') }}">
     <!-- END: Page CSS-->
@@ -161,15 +164,18 @@
     <ul class="main-search-list-defaultlist d-none">
         <li class="d-flex align-items-center"><a href="javascript:void(0);">
                 <h6 class="section-label mt-75 mb-0">Files</h6>
-            </a></li>
-        <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between w-100" href="app-file-manager.html">
+            </a>
+        </li>
+        <li class="auto-suggestion">
+            <a class="d-flex align-items-center justify-content-between w-100" href="app-file-manager.html">
                 <div class="d-flex">
                     <div class="mr-75"><img src="../../../app-assets/images/icons/xls.png" alt="png" height="32"></div>
                     <div class="search-data">
                         <p class="search-data-title mb-0">Two new item submitted</p><small class="text-muted">Marketing Manager</small>
                     </div>
                 </div><small class="search-data-size mr-50 text-muted">&apos;17kb</small>
-            </a></li>
+            </a>
+        </li>
         <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between w-100" href="app-file-manager.html">
                 <div class="d-flex">
                     <div class="mr-75"><img src="../../../app-assets/images/icons/jpg.png" alt="png" height="32"></div>
@@ -177,7 +183,8 @@
                         <p class="search-data-title mb-0">52 JPG file Generated</p><small class="text-muted">FontEnd Developer</small>
                     </div>
                 </div><small class="search-data-size mr-50 text-muted">&apos;11kb</small>
-            </a></li>
+            </a>
+        </li>
         <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between w-100" href="app-file-manager.html">
                 <div class="d-flex">
                     <div class="mr-75"><img src="../../../app-assets/images/icons/pdf.png" alt="png" height="32"></div>
@@ -185,7 +192,8 @@
                         <p class="search-data-title mb-0">25 PDF File Uploaded</p><small class="text-muted">Digital Marketing Manager</small>
                     </div>
                 </div><small class="search-data-size mr-50 text-muted">&apos;150kb</small>
-            </a></li>
+            </a>
+        </li>
         <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between w-100" href="app-file-manager.html">
                 <div class="d-flex">
                     <div class="mr-75"><img src="../../../app-assets/images/icons/doc.png" alt="png" height="32"></div>
@@ -193,7 +201,8 @@
                         <p class="search-data-title mb-0">Anna_Strong.doc</p><small class="text-muted">Web Designer</small>
                     </div>
                 </div><small class="search-data-size mr-50 text-muted">&apos;256kb</small>
-            </a></li>
+            </a>
+        </li>
         <li class="d-flex align-items-center">
             <a href="javascript:void(0);">
                 <h6 class="section-label mt-75 mb-0">Members</h6>
@@ -305,12 +314,8 @@
                         </li>
                         <li class=" nav-item @yield('invests')"><a class="d-flex align-items-center" href="{{ route('invests.index') }}"><i data-feather='help-circle'></i></i><span class="menu-title text-truncate" data-i18n="Email">Where To Invest</span></a>
                         </li>
-                        <li class=" nav-item @yield('cities')"><a class="d-flex align-items-center" href="{{ route('cities.index') }}"><i data-feather='cpu'></i></i><span class="menu-title text-truncate" data-i18n="Email">City</span></a>
-                        </li>
                     </ul>
                 </li>
-
-
                 <li class="navigation-header"><span data-i18n="Apps &amp; Pages">Listing &amp; Projects</span><i data-feather="more-horizontal"></i>
                 </li>
                 <li class="nav-item has-sub"><a class="d-flex align-items-center" href=""><i data-feather='pocket'></i></i><span class="menu-title text-truncate" data-i18n="Email">Listings</span></a>
@@ -333,6 +338,20 @@
                         </li>
                     </ul>
                 </li>
+                <li class="navigation-header"><span data-i18n="Apps &amp; Pages">City</span><i data-feather="more-horizontal"></i>
+                </li>
+                <li class="nav-item has-sub"><a class="d-flex align-items-center" href=""><i data-feather='cpu'></i></i><span class="menu-title text-truncate" data-i18n="Email">City</span></a>
+                    <ul class="menu-content">
+                        <li class="@yield('cities_list')" style="margin-left: 45px !important;" class="">
+                            <a class="d-flex align-items-center" href="{{ route('cities.index') }}"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle"><circle cx="12" cy="12" r="10"></circle></svg><span class="menu-item text-truncate" data-i18n="List">List</span></a>
+                        </li>
+                        <li class="@yield('cities_create')" style="margin-left: 45px !important;" class="">
+                            <a class="d-flex align-items-center" href="{{ route('cities.create') }}"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle"><circle cx="12" cy="12" r="10"></circle></svg><span class="menu-item text-truncate" data-i18n="List">Create</span></a>
+                        </li>
+                    </ul>
+                </li>
+                {{-- <li class=""><a class="d-flex align-items-center" href="{{ route('cities.index') }}"><i data-feather='cpu'></i></i><span class="menu-title text-truncate" data-i18n="Email">City</span></a>
+                </li> --}}
              
                 {{-- <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="message-square"></i><span class="menu-title text-truncate" data-i18n="Chat">Chat</span></a>
                 </li>
@@ -384,6 +403,11 @@
 
     <!-- BEGIN: Vendor JS-->
     <script src="{{ asset('dashboard_assets/app-assets/vendors/js/vendors.min.js') }}"></script>
+
+    {{-- Data Table --}}
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>
+    
     @yield('js')
     <!-- BEGIN Vendor JS-->
 
@@ -392,12 +416,17 @@
 
     <!-- BEGIN: Theme JS-->
     <script src="{{ asset('dashboard_assets/app-assets/js/core/app-menu.js') }}"></script>
-    @yield('js')
     <script src="{{ asset('dashboard_assets/app-assets/js/core/app.js') }}"></script>
     <!-- END: Theme JS-->
 
     <!-- BEGIN: Page JS-->
     <!-- END: Page JS-->
+
+    <script>
+       $(document).ready(function() {
+        $('#data_table').DataTable();
+       });
+    </script>
 
     <script>
         $(window).on('load', function() {

@@ -37,7 +37,7 @@ class CityController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.cities.create');
     }
 
     /**
@@ -50,13 +50,36 @@ class CityController extends Controller
     {
             //form validation
             $request -> validate([
-                'name'   => 'required',
+                'name'           => 'required',
+                'region_paca'    => 'required',
+                'title'          => 'required',
+                'description_1'  => 'required',
+                'image'          => 'image|required',
             ]);
     
+
+            // $table->string('region_paca'); 
+            // $table->string('title'); 
+            // $table->longText('description_1'); 
+            // $table->longText('description_2')->nullable(); 
+            // $table->string('image'); 
+
              // Insert data in database
-             City::create($request->except('_token') + ['created_at' => Carbon::now()] );
+             $cities = City::create($request->except('_token') + ['created_at' => Carbon::now()] );
     
-              //Success message session
+
+             //uplpad Image
+             $image = $request->file('image');
+             $filename = $cities->id. '.' .$image->extension();
+             $location = public_path('uploads/cities/');
+             $image->move($location, $filename); 
+
+             // Save Image name in the database 
+             $cities->image = $filename; 
+             $cities->save();
+           
+
+            //Success message session
              return back()->withSuccess('Added Successfully');
     }
 

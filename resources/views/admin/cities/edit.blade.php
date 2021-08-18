@@ -6,7 +6,7 @@
     {{ config('app.name') }} | {{ $city->name }}
 @endsection
 
-@section('invests')
+@section('cities_create')
     active
 @endsection
 

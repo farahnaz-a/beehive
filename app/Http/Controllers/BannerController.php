@@ -58,6 +58,7 @@ class BannerController extends Controller
             'image'       => 'required|image',
         ]);
 
+           // Insert data in database
             $banners = Banner::create($request->except('_token') + ['created_at' => Carbon::now()]);
 
            // Upload Image
