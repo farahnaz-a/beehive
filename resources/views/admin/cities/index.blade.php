@@ -26,6 +26,18 @@
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">Cities List</h4>
+
+                    @if (session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+                    @if (session('warning'))
+                        <div class="alert alert-danger">
+                            {{ session('warning') }}
+                         </div>
+                    @endif
+
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -36,8 +48,7 @@
                                     <th>City Name</th>
                                     <th>Title</th>
                                     <th>Region Paca</th>
-                                    <th>Description 1</th>
-                                    <th>Description 2</th>
+                                    <th>Description</th>
                                     <th>Image</th>
                                     <th>Multiple Image</th>
                                     <th>Action</th>
@@ -51,7 +62,6 @@
                                     <td>{{ ucfirst($city->title) }}</td>
                                     <td>{{ ucfirst($city->region_paca) }}</td>
                                     <td>{{ ucfirst($city->description_1) }}</td>
-                                    <td>{{ ucfirst($city->description_2) }}</td>
                                     <td><img src="{{ asset('uploads/cities') }}/{{ $city->image  }}" width="100" alt="No Image"></td>
                                     <td>
                                         @if ($city->multiple_image)
@@ -60,13 +70,16 @@
                                             No Multiple Image
                                         @endif
                                     </td>
-                                
                                     <td>
                                         <div class="dropdown">
                                             <button type="button" class="btn btn-sm dropdown-toggle hide-arrow waves-effect waves-float waves-light" data-toggle="dropdown">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
                                             </button>
                                             <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="{{ route('cities.show', $city->id) }}">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 mr-50"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
+                                                    <span>Preview</span>
+                                                </a>
                                                 <a class="dropdown-item" href="{{ route('cities.edit', $city->id) }}">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 mr-50"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
                                                     <span>Edit</span>

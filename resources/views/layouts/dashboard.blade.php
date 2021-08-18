@@ -350,9 +350,6 @@
                         </li>
                     </ul>
                 </li>
-                {{-- <li class=""><a class="d-flex align-items-center" href="{{ route('cities.index') }}"><i data-feather='cpu'></i></i><span class="menu-title text-truncate" data-i18n="Email">City</span></a>
-                </li> --}}
-             
                 {{-- <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="message-square"></i><span class="menu-title text-truncate" data-i18n="Chat">Chat</span></a>
                 </li>
                 <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="file-text"></i><span class="menu-title text-truncate" data-i18n="Invoice">Invoice</span></a>

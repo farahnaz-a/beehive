@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\City;
+use BaconQrCode\Renderer\Path\Move;
 use Illuminate\Http\Request;
 
 class CityController extends Controller
@@ -56,13 +57,6 @@ class CityController extends Controller
                 'description_1'  => 'required',
                 'image'          => 'image|required',
             ]);
-    
-
-            // $table->string('region_paca'); 
-            // $table->string('title'); 
-            // $table->longText('description_1'); 
-            // $table->longText('description_2')->nullable(); 
-            // $table->string('image'); 
 
              // Insert data in database
              $cities = City::create($request->except('_token') + ['created_at' => Carbon::now()] );
@@ -91,7 +85,7 @@ class CityController extends Controller
      */
     public function show(City $city)
     {
-        //
+        return view('admin.cities.show', compact('city'));
     }
 
     /**
@@ -114,10 +108,42 @@ class CityController extends Controller
      */
     public function update(Request $request, City $city)
     {
-        $city->name = $request->name; 
+        // Form validation
+        $request -> validate([
+            'name'           => 'required',
+            'region_paca'    => 'required',
+            'title'          => 'required',
+            'description_1'  => 'required',
+            'image'          => 'image',
+        ]);
+
+        if($request->has('image')){
+
+            // Delete Existing Image
+            $existing = public_path('uploads/cities/'. $city->image);
+            unlink($existing);
+
+            // Upload Image
+            $image       = $request->file('image');
+            $filename    = $city->image. '.' .$image->extension();
+            $location    = public_path('uploads/cities/');
+            $image->move($location, $filename);
+
+            // Save Image name in the database
+            $city->image = $filename;
+        }
+
+        // Update Fileds
+        $city->name          = $request->name; 
+        $city->region_paca   = $request->region_paca; 
+        $city->title         = $request->title; 
+        $city->description_1 = $request->description_1; 
+        $city->description_2 = $request->description_2; 
+
+        // Save Everything in Database
         $city->save(); 
 
-        return redirect()->route('cities.index')->withSuccess('City updated');
+        return redirect()->route('cities.index')->withSuccess('Successfully updated');
     }
 
     /**
@@ -128,7 +154,11 @@ class CityController extends Controller
      */
     public function destroy(City $city)
     {
+        // Delete Existing Image From Server
+        $existing = public_path('uploads/cities/'. $city->image);
+        unlink($existing);
+
         $city->delete(); 
-        return back()->withSuccess('City deleted');
+        return redirect()->route('cities.index')->withSuccess('Deleted Successfully');
     }
 }
