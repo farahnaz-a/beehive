@@ -54,9 +54,9 @@
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label for="region_paca">Region Paca</label>
-                                    <input type="text" name="region_paca" id="region_paca" class="form-control" value="{{ $city->region_paca }}" placeholder="Enter Region Paca">
-                                    @error('region_paca')
+                                    <label for="region">Region</label>
+                                    <input type="text" name="region" id="region" class="form-control" value="{{ $city->region }}" placeholder="Enter Region">
+                                    @error('region')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
@@ -93,6 +93,24 @@
                                         <label class="custom-file-label" for="customFile">Choose file</label>
                                     </div>
                                     @error('image')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <p>Existing Slider Image</p>
+                                <div class="form-group">
+                                    <img src="{{ asset('uploads/cities') }}/{{ $city->slider_image }}" width="150px" alt="no image">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="slider_image">Edit Slider Image</label>
+                                    <div class="custom-file">
+                                        <input type="file" name="slider_image" class="custom-file-input" id="slider_image">
+                                        <label class="custom-file-label" for="slider_image">Choose file</label>
+                                    </div>
+                                    @error('slider_image')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>

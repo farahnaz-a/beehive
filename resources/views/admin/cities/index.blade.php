@@ -50,7 +50,6 @@
                                     <th>Region Paca</th>
                                     <th>Description</th>
                                     <th>Image</th>
-                                    <th>Multiple Image</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -60,16 +59,9 @@
                                     <td><span class="mr-1">{{ $loop -> index + 1 }}</td>
                                     <td>{{ ucfirst($city->name) }}</td>
                                     <td>{{ ucfirst($city->title) }}</td>
-                                    <td>{{ ucfirst($city->region_paca) }}</td>
+                                    <td>{{ ucfirst($city->region) }}</td>
                                     <td>{{ ucfirst($city->description_1) }}</td>
                                     <td><img src="{{ asset('uploads/cities') }}/{{ $city->image  }}" width="100" alt="No Image"></td>
-                                    <td>
-                                        @if ($city->multiple_image)
-                                            <img src="{{ asset('uploads/cities') }}/{{ $city->image  }}" width="100" alt="No Image">
-                                        @else
-                                            No Multiple Image
-                                        @endif
-                                    </td>
                                     <td>
                                         <div class="dropdown">
                                             <button type="button" class="btn btn-sm dropdown-toggle hide-arrow waves-effect waves-float waves-light" data-toggle="dropdown">
@@ -77,7 +69,7 @@
                                             </button>
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item" href="{{ route('cities.show', $city->id) }}">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 mr-50"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
+                                                    <i data-feather='eye' class="mr-50"></i>
                                                     <span>Preview</span>
                                                 </a>
                                                 <a class="dropdown-item" href="{{ route('cities.edit', $city->id) }}">

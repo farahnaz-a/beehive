@@ -52,10 +52,11 @@ class CityController extends Controller
             //form validation
             $request -> validate([
                 'name'           => 'required',
-                'region_paca'    => 'required',
+                'region'         => 'required',
                 'title'          => 'required',
                 'description_1'  => 'required',
                 'image'          => 'image|required',
+                'slider_image'   => 'image|required',
             ]);
 
              // Insert data in database
@@ -68,8 +69,18 @@ class CityController extends Controller
              $location = public_path('uploads/cities/');
              $image->move($location, $filename); 
 
+
+             //uplpad Slider Image
+             $slider_image = $request->file('slider_image');
+             $slider_filename = $cities->id. '.slider.' .$slider_image->extension();
+             $slider_location = public_path('uploads/cities/');
+             $slider_image->move($slider_location, $slider_filename); 
+
              // Save Image name in the database 
-             $cities->image = $filename; 
+             $cities->image        = $filename; 
+             $cities->slider_image = $slider_filename; 
+
+             //Save everything in database
              $cities->save();
            
 
@@ -111,17 +122,21 @@ class CityController extends Controller
         // Form validation
         $request -> validate([
             'name'           => 'required',
-            'region_paca'    => 'required',
+            'region'        => 'required',
             'title'          => 'required',
             'description_1'  => 'required',
             'image'          => 'image',
+            'slider_image'   => 'image',
         ]);
 
-        if($request->has('image')){
+        if($request->has('image') || $request->has('slider_image') ){
 
             // Delete Existing Image
             $existing = public_path('uploads/cities/'. $city->image);
             unlink($existing);
+
+            $slider_existing = public_path('uploads/cities/'. $city->slider_image);
+            unlink($slider_existing);
 
             // Upload Image
             $image       = $request->file('image');
@@ -129,13 +144,21 @@ class CityController extends Controller
             $location    = public_path('uploads/cities/');
             $image->move($location, $filename);
 
+             //uplpad Slider Image
+             $slider_image = $request->file('slider_image');
+             $slider_filename = $city->id. '.slider.' .$slider_image->extension();
+             $slider_location = public_path('uploads/cities/');
+             $slider_image->move($slider_location, $slider_filename); 
+
             // Save Image name in the database
             $city->image = $filename;
-        }
+            $city->slider_image = $slider_filename;
 
+        }
+        
         // Update Fileds
         $city->name          = $request->name; 
-        $city->region_paca   = $request->region_paca; 
+        $city->region        = $request->region; 
         $city->title         = $request->title; 
         $city->description_1 = $request->description_1; 
         $city->description_2 = $request->description_2; 

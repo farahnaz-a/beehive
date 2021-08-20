@@ -40,8 +40,8 @@
                             <td>{{ ucfirst($city->title) }}</td>
                           </tr>
                           <tr>
-                            <th>Region Paca</th>
-                            <td>{{ ucfirst($city->region_paca) }}</td>
+                            <th>Region</th>
+                            <td>{{ ucfirst($city->region) }}</td>
                           </tr>
                           <tr>
                             <th>Description 1</th>
@@ -52,12 +52,12 @@
                             <td>{{ ucfirst($city->description_2) }}</td>
                           </tr>
                           <tr>
-                            <th>Image:</th>
+                            <th>Image</th>
                             <td><img src="{{ asset('uploads/cities') }}/{{ $city->image  }}" width="100" alt="No Image"></td>
                           </tr>
                           <tr>
-                            <th>Multiple Image:</th>
-                            <td>no multiple image</td>
+                            <th>Slider Image</th>
+                            <td><img src="{{ asset('uploads/cities') }}/{{ $city->slider_image  }}" width="100" alt="No Image"></td>
                           </tr>          
                     </table>
                     <div class="pt-2">
