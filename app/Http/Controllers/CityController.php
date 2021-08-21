@@ -62,7 +62,7 @@ class CityController extends Controller
              // Insert data in database
              $cities = City::create($request->except('_token') + ['created_at' => Carbon::now()] );
     
-
+             
              //uplpad Image
              $image = $request->file('image');
              $filename = $cities->id. '.' .$image->extension();
@@ -129,14 +129,11 @@ class CityController extends Controller
             'slider_image'   => 'image',
         ]);
 
-        if($request->has('image') || $request->has('slider_image') ){
+        if($request->has('image')){
 
             // Delete Existing Image
             $existing = public_path('uploads/cities/'. $city->image);
             unlink($existing);
-
-            $slider_existing = public_path('uploads/cities/'. $city->slider_image);
-            unlink($slider_existing);
 
             // Upload Image
             $image       = $request->file('image');
@@ -144,14 +141,24 @@ class CityController extends Controller
             $location    = public_path('uploads/cities/');
             $image->move($location, $filename);
 
-             //uplpad Slider Image
-             $slider_image = $request->file('slider_image');
-             $slider_filename = $city->id. '.slider.' .$slider_image->extension();
-             $slider_location = public_path('uploads/cities/');
-             $slider_image->move($slider_location, $slider_filename); 
-
             // Save Image name in the database
             $city->image = $filename;
+            
+        }
+
+        if($request->has('slider_image')){
+
+            // Delete Existing Image
+            $slider_existing = public_path('uploads/cities/'. $city->slider_image);
+            unlink($slider_existing);
+
+            //uplpad Slider Image
+            $slider_image = $request->file('slider_image');
+            $slider_filename = $city->id. '.slider.' .$slider_image->extension();
+            $slider_location = public_path('uploads/cities/');
+            $slider_image->move($slider_location, $slider_filename); 
+
+            // Save Image name in the database
             $city->slider_image = $slider_filename;
 
         }
