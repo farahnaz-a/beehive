@@ -181,6 +181,9 @@ class CityController extends Controller
         $existing = public_path('uploads/cities/'. $city->image);
         unlink($existing);
 
+        $slider_existing = public_path('uploads/cities/'. $city->slider_image);
+        unlink($slider_existing);
+
         $city->delete(); 
         return redirect()->route('cities.index')->withSuccess('Deleted Successfully');
     }
