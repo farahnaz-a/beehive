@@ -51,6 +51,7 @@ class CityController extends Controller
     {
             //form validation
             $request -> validate([
+                'country'        => 'required',
                 'name'           => 'required',
                 'region'         => 'required',
                 'title'          => 'required',
@@ -121,8 +122,9 @@ class CityController extends Controller
     {
         // Form validation
         $request -> validate([
+            'country'        => 'required',
             'name'           => 'required',
-            'region'        => 'required',
+            'region'         => 'required',
             'title'          => 'required',
             'description_1'  => 'required',
             'image'          => 'image',
@@ -164,6 +166,7 @@ class CityController extends Controller
         }
         
         // Update Fileds
+        $city->country       = $request->country; 
         $city->name          = $request->name; 
         $city->region        = $request->region; 
         $city->title         = $request->title; 

@@ -32,6 +32,10 @@
                 <div class="card-body">
                     <table class="table table-bordered">
                         <tr>
+                            <th>Country</th>
+                            <td>{{ ucfirst($city->country) }}</td>
+                          </tr>
+                        <tr>
                             <th>City Name</th>
                             <td>{{ ucfirst($city->name) }}</td>
                           </tr>

@@ -45,9 +45,10 @@
                             <thead class="">
                                 <tr>
                                     <th>Sl</th>
+                                    <th>Country</th>
                                     <th>City Name</th>
                                     <th>Title</th>
-                                    <th>Region Paca</th>
+                                    <th>Region</th>
                                     <th>Description</th>
                                     <th>Image</th>
                                     <th>Action</th>
@@ -57,6 +58,7 @@
                                 @forelse ($cities as $city)
                                 <tr>
                                     <td><span class="mr-1">{{ $loop -> index + 1 }}</td>
+                                    <td>{{ ucfirst($city->country) }}</td>
                                     <td>{{ ucfirst($city->name) }}</td>
                                     <td>{{ ucfirst($city->title) }}</td>
                                     <td>{{ ucfirst($city->region) }}</td>
