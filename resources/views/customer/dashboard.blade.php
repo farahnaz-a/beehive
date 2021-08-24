@@ -81,13 +81,13 @@
         <div class="div-block-6387">
           <div class="w-nav-button"><img src="images/60dca32b27ab1d2e3248dab3_menu.svg" loading="lazy" alt=""></div>
           <div class="navigation-left headerco">
-            <a href="#" class="brand-8 w-nav-brand">
+            <a href="{{ url('/') }}" class="brand-8 w-nav-brand">
               <div class="text-block-524">b.hives</div>
             </a>
           </div>
           <nav role="navigation" class="nav-menu-13 w-nav-menu">
-            <a href="dashboard.html" aria-current="page" class="nav-link-25 w-nav-link w--current">Dashboard</a>
-            <a href="make-a-deposit.html" class="nav-link-25 w-nav-link">Retirer / Déposer</a>
+            <a href="{{ route('customer.index') }}" aria-current="page" class="nav-link-25 w-nav-link w--current">Dashboard</a>
+            <a href="{{ route('make.deposit') }}" class="nav-link-25 w-nav-link">Retirer / Déposer</a>
             <a href="find-a-project.html" class="nav-link-25 w-nav-link">Trouver un projet</a>
           </nav>
           <div class="navigation-right headerco">
@@ -100,7 +100,7 @@
               <div class="dropdown-toggle-44 w-dropdown-toggle">
                 <div class="w-icon-dropdown-toggle"></div>
                 
-                <div class="div-block-633"><img src="{{ asset('new_user_dashboard_assets/images/Dash---Avatar-02-min.jpg') }}" loading="lazy" width="40" height="40" alt="" class="image-137">
+                <div class="div-block-633"><img src="{{ Auth::user()->profile_photo_url }}" loading="lazy" width="40" height="40" alt="" class="image-137">
                   <div class="text-block-467">Dropdown</div>
                 </div>
               </div>
@@ -139,8 +139,8 @@
     <div class="hero-2 user-profile">
       <div class="div-block-6546">
         <div class="div-block-6544">
-          <h2 class="h2_withoutpadding">Salut Leslie 👋</h2>
-          <a data-w-id="63738089-de14-086e-6428-4d74f340868c" href="#" class="button small-button button-green w-button">Faire un dépôt</a>
+          <h2 class="h2_withoutpadding">Salut {{ Auth::user()->name }} 👋</h2>
+          <a data-w-id="63738089-de14-086e-6428-4d74f340868c" href="{{ route('make.deposit') }}" class="button small-button button-green w-button">Faire un dépôt</a>
         </div>
         <div class="w-layout-grid _2-1-grid">
           <div class="module-2">

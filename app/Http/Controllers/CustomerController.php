@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CustomerDocument;
-use App\Models\UserInformation;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Auth;
+use Carbon\Carbon;
+use App\Models\Wallet;
+use Illuminate\Http\Request;
+use App\Models\UserInformation;
+use App\Models\CustomerDocument;
 
 class CustomerController extends Controller
 {
@@ -24,6 +25,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
+ 
+          
         if(UserInformation::where('user_id', Auth::id())->doesntExist())
         {
             return view('customer.index');

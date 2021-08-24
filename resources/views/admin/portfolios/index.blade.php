@@ -49,7 +49,7 @@
                             <tr>
                                 <td><span class="mr-1">{{ $loop -> index + 1 }}</td>
                                 <td>{{ $portfolio->country }}</td>
-                                <td>{{ $portfolio->city_name }}</td>
+                                <td>{{ \App\Models\City::find($portfolio->city_name)->name ?? $portfolio->city_name }}</td>
                                 <td>{{ $portfolio->title }}</td>
                                 <td><img src="{{ asset('uploads/portfolios/') }}/{{ $portfolio->image }}" width="100" alt="Not-found"></td>
                                 <td>{{ $portfolio->curr }} {{ $portfolio->price }}</td>

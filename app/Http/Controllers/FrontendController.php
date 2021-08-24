@@ -62,5 +62,14 @@ class FrontendController extends Controller
       return view('frontend.deposit');
    }
 
+   /**
+    *  City Details 
+    */
+   public function cityDetails($name)
+   {
+      $data = City::where('name', $name)->first(); 
+      return view('frontend.citydetails', compact('data'));
+   }
+
 // END   
 }

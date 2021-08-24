@@ -614,17 +614,17 @@
     </div>
     <div class="div-block-6354">
         <div class="w-layout-grid cities-grid">
-           @foreach ($invests as $invest)
-           <div class="card-2 card1-content" style="background-image: url({{ asset('uploads/invests') }}/{{ $invest->image }}) !important;">
-            <h3 class="card-headline">{{ ucwords($invest->name) }}</h3>
-            <a href="#" class="button-46 default-button card-cta w-button">Explore</a>
+           @foreach ($cities as $city)
+           <div class="card-2 card1-content" style="background-image: url({{ asset('uploads/cities') }}/{{ $city->slider_image }}) !important;">
+            <h3 class="card-headline">{{ ucwords($city->name) }}</h3>
+            <a href="{{ route('city.details', $city->name) }}" class="button-46 default-button card-cta w-button">Explore</a>
             <div></div>
         </div>
            @endforeach
         </div>
         <div class="w-layout-grid grid-80">
             @foreach ($cities as $city)
-            <a href="#" class="w-inline-block">
+            <a href="{{ route('city.details', $city->name) }}" class="w-inline-block">
               <div>{{ $city->name }}</div>
           </a>
             @endforeach
