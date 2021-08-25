@@ -1,3 +1,7 @@
+@php
+    $projects = \App\Models\Portfolio::where('city_name', $data->id)->get();
+ 
+@endphp
 <!DOCTYPE html>
         <!-- Last Published: Tue Aug 24 2021 20:29:02 GMT+0000 (Coordinated Universal Time) -->
         <html data-wf-domain="bhives.webflow.io" data-wf-page="61141f113bebc5a350a2731d"
@@ -83,13 +87,14 @@
                             </nav>
                         <div class="navigation-right headerco">
                             <div class="div-block-6391">
+                                @auth
                                 <div class="div-block-6506">
                                     <div class="text-block-625"></div>
                                     <div class="text-block-625"></div>
                                 </div>
                             </div>
                             <div data-hover="" data-delay="0" class="dropdown-40 w-dropdown">
-                                @auth
+                                
                                 <div class="dropdown-toggle-44 w-dropdown-toggle">
                                     <div class="icon-40 w-icon-dropdown-toggle"></div>
                                     <div class="div-block-633"><img
@@ -99,7 +104,7 @@
                                     </div>
                                 </div>
                                 @endauth
-                                <nav class="dropdown-list-16 w-dropdown-list"><a href="/dashboard"
+                                <nav class="dropdown-list-16 w-dropdown-list"><a href="{{ route('customer.dashboard') }}"
                                         class="nav-link-32 w-nav-link">Paramètres</a>
                                     <div class="div-block-6383 premium">
                                         <div class="form-block-4 w-form">
@@ -154,7 +159,8 @@
                             </div>
                             <div class="slider-background-wrapper hero-wrapper">
                                 <div class="slider-background locations-background">
-                                    <div class="background one">
+
+    <div class="background one" style="    background-image: url('{{ asset('uploads/cities') }}/{{ $data->slider_image }}');">
                                         <div class="slide-three-overlay"></div>
                                     </div>
                                 </div>
@@ -165,8 +171,8 @@
                                 <div id="w-node-_7338c6ae-fc66-7c55-bbbc-480edecb4eb3-50a2731d"
                                     class="subtitle-intro-wrapper-2">
                                     <div class="subtitle-11">
-                                        <div>6</div>
-                                        <div class="text-block-634">Projets</div>
+                                        <div>{{ $projects->count() }}</div>
+                                        <div class="text-block-634">{{ ($projects->count() == 1) ? 'Projet' : 'Projets' }}</div>
                                     </div>
                                     <div id="w-node-_7338c6ae-fc66-7c55-bbbc-480edecb4eb9-50a2731d"
                                         class="horizontal-line-2"></div>
@@ -253,11 +259,22 @@
                                 <div id="w-node-_3d5382cf-4f90-fd1c-bd40-deaab59eb8af-50a2731d" class="div-block-6595">
                                     <div class="w-dyn-list">
                                         <div role="list" class="w-dyn-items">
+                                            @forelse ($projects as $portfolio)
                                             <div role="listitem" class="blog-collection-short-2 w-dyn-item">
                                                 <div class="blog-link-2 blog-flex">
                                                     <div data-animation="slide" data-duration="500" data-infinite="1"
                                                         class="div-block-6455 w-slider">
                                                         <div class="mask-8 w-slider-mask">
+                                                            <div class="slide-14 w-slide"><img
+                                                                src="{{ asset('uploads/portfolios') }}/{{ $portfolio->image }}"
+                                                                alt="" class="blog-image-2" /></div>
+                                                            @foreach($portfolio->get_images as $key => $value)
+                                                            @if($key > 0)
+                                                             <div class="slide-14 w-slide"><img
+                                                                src="{{ asset('uploads/portfolios') }}/{{ $value->multi_image }}"
+                                                                alt="" class="blog-image-2" /></div>
+                                                            @endif
+                                                            @endforeach
                                                             <div class="slide-14 w-slide"><img
                                                                     src="https://uploads-ssl.webflow.com/604b733d887fc7116420f235/605709d7dad564d9874d0418_604b7f93a93db1080381f027_12.jpeg"
                                                                     alt="" class="blog-image-2" /></div>
@@ -285,9 +302,9 @@
                                                         <div id="w-node-_3d5382cf-4f90-fd1c-bd40-deaab59eb8bf-50a2731d"
                                                             class="div-block-6508 left"><a
                                                                 id="w-node-_3d5382cf-4f90-fd1c-bd40-deaab59eb8c0-50a2731d"
-                                                                href="http://alexandre-auberts-fabulous-project.webflow.io/properties/studio-pour-2-pers-centre-ville"
+                                                                href=""
                                                                 class="link-block-34 w-inline-block">
-                                                                <h3 class="heading-242">Studio pour 2 pers centre ville
+                                                                <h3 class="heading-242">{{ $portfolio->title }}
                                                                 </h3>
                                                             </a>
                                                             <div class="div-block-6572">
@@ -296,24 +313,27 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="text-block-575">250,
-                                                            000 €</div>
+                                                        <div class="text-block-575">{{ $portfolio->price }} {{ $portfolio->curr }}</div>
                                                         <div class="w-layout-grid grid-88">
                                                             <div class="div-block-6593">
                                                                 <div class="div-block-6458">
-                                                                    <div class="text-block-580">1937</div>
+                                                                    <div class="text-block-580">{{ $portfolio->quantity_of_bricks }}</div>
                                                                     <div class="text-block-577">Briques</div>
                                                                 </div>
                                                             </div>
                                                             <div class="div-block-6593">
                                                                 <div class="div-block-6458">
-                                                                    <div class="text-block-580">234</div>
+                                                                    @php
+                                                                           $bricks     = \App\Models\Brick::where('portfolio_id', $portfolio->id)->get();
+                                                                    @endphp
+                                                                    <div class="text-block-580">{{ $bricks->count() }}</div>
                                                                     <div class="text-block-577">Investisseurs</div>
                                                                 </div>
                                                             </div>
                                                             <div class="div-block-6593">
                                                                 <div class="div-block-6458">
-                                                                    <div class="text-block-580">80%</div>
+                                                                    
+                                                                    <div class="text-block-580">{{ floor(($bricks->sum('bricks_qty')/$portfolio->quantity_of_bricks)*100) }}%</div>
                                                                     <div class="text-block-577">Financé</div>
                                                                 </div>
                                                             </div>
@@ -321,357 +341,10 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div role="listitem" class="blog-collection-short-2 w-dyn-item">
-                                                <div class="blog-link-2 blog-flex">
-                                                    <div data-animation="slide" data-duration="500" data-infinite="1"
-                                                        class="div-block-6455 w-slider">
-                                                        <div class="mask-8 w-slider-mask">
-                                                            <div class="slide-14 w-slide"><img
-                                                                    src="https://uploads-ssl.webflow.com/604b733d887fc7116420f235/60d1c6cba747e2a02799062b_5Penthouse-5.jpeg"
-                                                                    alt=""
-                                                                    sizes="(max-width: 479px) 270.921875px, 200px"
-                                                                    srcset="https://uploads-ssl.webflow.com/604b733d887fc7116420f235/60d1c6cba747e2a02799062b_5Penthouse-5-p-500.jpeg 500w, https://uploads-ssl.webflow.com/604b733d887fc7116420f235/60d1c6cba747e2a02799062b_5Penthouse-5-p-800.jpeg 800w, https://uploads-ssl.webflow.com/604b733d887fc7116420f235/60d1c6cba747e2a02799062b_5Penthouse-5.jpeg 1000w"
-                                                                    class="blog-image-2" /></div>
-                                                            <div class="slide-15 w-slide"></div>
-                                                        </div>
-                                                        <div class="left-arrow-8 w-slider-arrow-left">
-                                                            <div class="icon-42 w-icon-slider-left"></div>
-                                                        </div>
-                                                        <div class="right-arrow-7 w-slider-arrow-right">
-                                                            <div class="icon-41 w-icon-slider-right"></div>
-                                                        </div>
-                                                        <div class="slide-nav-5 w-slider-nav w-round"></div>
-                                                    </div>
-                                                    <div class="blog-content-2">
-                                                        <div id="w-node-_7df19192-2e4b-9a79-5d23-48bad239b4d7-50a2731d"
-                                                            class="div-block-6589 left">
-                                                            <div class="div-block-6588">
-                                                                <div class="text-block-631">Prêt</div>
-                                                            </div>
-                                                            <div class="div-block-6596">
-                                                                <div style="color:#6a35ff;background-color:#f3efff"
-                                                                    class="text-block-622">Zoom sur</div>
-                                                            </div>
-                                                        </div>
-                                                        <div id="w-node-_3d5382cf-4f90-fd1c-bd40-deaab59eb8bf-50a2731d"
-                                                            class="div-block-6508 left"><a
-                                                                id="w-node-_3d5382cf-4f90-fd1c-bd40-deaab59eb8c0-50a2731d"
-                                                                href="http://alexandre-auberts-fabulous-project.webflow.io/properties/malto-house"
-                                                                class="link-block-34 w-inline-block">
-                                                                <h3 class="heading-242">Malto House</h3>
-                                                            </a>
-                                                            <div class="div-block-6572">
-                                                                <div class="div-block-6509">
-                                                                    <div class="text-block-623"></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="text-block-575">350,
-                                                            000 €</div>
-                                                        <div class="w-layout-grid grid-88">
-                                                            <div class="div-block-6593">
-                                                                <div class="div-block-6458">
-                                                                    <div class="text-block-580">4326</div>
-                                                                    <div class="text-block-577">Briques</div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="div-block-6593">
-                                                                <div class="div-block-6458">
-                                                                    <div class="text-block-580">34</div>
-                                                                    <div class="text-block-577">Investisseurs</div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="div-block-6593">
-                                                                <div class="div-block-6458">
-                                                                    <div class="text-block-580">98 %</div>
-                                                                    <div class="text-block-577">Financé</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div role="listitem" class="blog-collection-short-2 w-dyn-item">
-                                                <div class="blog-link-2 blog-flex">
-                                                    <div data-animation="slide" data-duration="500" data-infinite="1"
-                                                        class="div-block-6455 w-slider">
-                                                        <div class="mask-8 w-slider-mask">
-                                                            <div class="slide-14 w-slide"><img
-                                                                    src="https://uploads-ssl.webflow.com/604b733d887fc7116420f235/60d1c6a5a02be121c7665898_airbnb-prague-sun-filled-penthouse.jpeg"
-                                                                    alt=""
-                                                                    sizes="(max-width: 479px) 270.921875px, 200px"
-                                                                    srcset="https://uploads-ssl.webflow.com/604b733d887fc7116420f235/60d1c6a5a02be121c7665898_airbnb-prague-sun-filled-penthouse-p-500.jpeg 500w, https://uploads-ssl.webflow.com/604b733d887fc7116420f235/60d1c6a5a02be121c7665898_airbnb-prague-sun-filled-penthouse-p-1080.jpeg 1080w, https://uploads-ssl.webflow.com/604b733d887fc7116420f235/60d1c6a5a02be121c7665898_airbnb-prague-sun-filled-penthouse-p-1600.jpeg 1600w, https://uploads-ssl.webflow.com/604b733d887fc7116420f235/60d1c6a5a02be121c7665898_airbnb-prague-sun-filled-penthouse-p-2000.jpeg 2000w, https://uploads-ssl.webflow.com/604b733d887fc7116420f235/60d1c6a5a02be121c7665898_airbnb-prague-sun-filled-penthouse.jpeg 2248w"
-                                                                    class="blog-image-2" /></div>
-                                                            <div class="slide-15 w-slide"></div>
-                                                        </div>
-                                                        <div class="left-arrow-8 w-slider-arrow-left">
-                                                            <div class="icon-42 w-icon-slider-left"></div>
-                                                        </div>
-                                                        <div class="right-arrow-7 w-slider-arrow-right">
-                                                            <div class="icon-41 w-icon-slider-right"></div>
-                                                        </div>
-                                                        <div class="slide-nav-5 w-slider-nav w-round"></div>
-                                                    </div>
-                                                    <div class="blog-content-2">
-                                                        <div id="w-node-_7df19192-2e4b-9a79-5d23-48bad239b4d7-50a2731d"
-                                                            class="div-block-6589 left">
-                                                            <div class="div-block-6588">
-                                                                <div class="text-block-631">Prêt</div>
-                                                            </div>
-                                                            <div class="div-block-6596">
-                                                                <div style="color:#ff9f59;background-color:#fff7f2"
-                                                                    class="text-block-622">Sponsorisé</div>
-                                                            </div>
-                                                        </div>
-                                                        <div id="w-node-_3d5382cf-4f90-fd1c-bd40-deaab59eb8bf-50a2731d"
-                                                            class="div-block-6508 left"><a
-                                                                id="w-node-_3d5382cf-4f90-fd1c-bd40-deaab59eb8c0-50a2731d"
-                                                                href="http://alexandre-auberts-fabulous-project.webflow.io/properties/arden-house"
-                                                                class="link-block-34 w-inline-block">
-                                                                <h3 class="heading-242">Arden House</h3>
-                                                            </a>
-                                                            <div class="div-block-6572">
-                                                                <div class="div-block-6509">
-                                                                    <div class="text-block-623"></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="text-block-575">132,
-                                                            000 €</div>
-                                                        <div class="w-layout-grid grid-88">
-                                                            <div class="div-block-6593">
-                                                                <div class="div-block-6458">
-                                                                    <div class="text-block-580">3198</div>
-                                                                    <div class="text-block-577">Briques</div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="div-block-6593">
-                                                                <div class="div-block-6458">
-                                                                    <div class="text-block-580">39</div>
-                                                                    <div class="text-block-577">Investisseurs</div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="div-block-6593">
-                                                                <div class="div-block-6458">
-                                                                    <div class="text-block-580">35 %</div>
-                                                                    <div class="text-block-577">Financé</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div role="listitem" class="blog-collection-short-2 w-dyn-item">
-                                                <div class="blog-link-2 blog-flex">
-                                                    <div data-animation="slide" data-duration="500" data-infinite="1"
-                                                        class="div-block-6455 w-slider">
-                                                        <div class="mask-8 w-slider-mask">
-                                                            <div class="slide-14 w-slide"><img
-                                                                    src="https://uploads-ssl.webflow.com/604b733d887fc7116420f235/60d1c6c29d98c46225881151_Property-of-the-week-a-gallerist%E2%80%99s-penthouse-loft-in-Prague-5.jpeg"
-                                                                    alt=""
-                                                                    sizes="(max-width: 479px) 270.921875px, 200px"
-                                                                    srcset="https://uploads-ssl.webflow.com/604b733d887fc7116420f235/60d1c6c29d98c46225881151_Property-of-the-week-a-gallerist%E2%80%99s-penthouse-loft-in-Prague-5-p-500.jpeg 500w, https://uploads-ssl.webflow.com/604b733d887fc7116420f235/60d1c6c29d98c46225881151_Property-of-the-week-a-gallerist%E2%80%99s-penthouse-loft-in-Prague-5-p-1080.jpeg 1080w, https://uploads-ssl.webflow.com/604b733d887fc7116420f235/60d1c6c29d98c46225881151_Property-of-the-week-a-gallerist%E2%80%99s-penthouse-loft-in-Prague-5.jpeg 1600w"
-                                                                    class="blog-image-2" /></div>
-                                                            <div class="slide-15 w-slide"></div>
-                                                        </div>
-                                                        <div class="left-arrow-8 w-slider-arrow-left">
-                                                            <div class="icon-42 w-icon-slider-left"></div>
-                                                        </div>
-                                                        <div class="right-arrow-7 w-slider-arrow-right">
-                                                            <div class="icon-41 w-icon-slider-right"></div>
-                                                        </div>
-                                                        <div class="slide-nav-5 w-slider-nav w-round"></div>
-                                                    </div>
-                                                    <div class="blog-content-2">
-                                                        <div id="w-node-_7df19192-2e4b-9a79-5d23-48bad239b4d7-50a2731d"
-                                                            class="div-block-6589 left">
-                                                            <div class="div-block-6588">
-                                                                <div class="text-block-631">Investissement</div>
-                                                            </div>
-                                                            <div class="div-block-6596">
-                                                                <div style="color:#6a35ff;background-color:#f3efff"
-                                                                    class="text-block-622">Zoom sur</div>
-                                                            </div>
-                                                        </div>
-                                                        <div id="w-node-_3d5382cf-4f90-fd1c-bd40-deaab59eb8bf-50a2731d"
-                                                            class="div-block-6508 left"><a
-                                                                id="w-node-_3d5382cf-4f90-fd1c-bd40-deaab59eb8c0-50a2731d"
-                                                                href="http://alexandre-auberts-fabulous-project.webflow.io/properties/morning-house"
-                                                                class="link-block-34 w-inline-block">
-                                                                <h3 class="heading-242">Morning House</h3>
-                                                            </a>
-                                                            <div class="div-block-6572">
-                                                                <div class="div-block-6509">
-                                                                    <div class="text-block-623"></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="text-block-575">75,
-                                                            000 € </div>
-                                                        <div class="w-layout-grid grid-88">
-                                                            <div class="div-block-6593">
-                                                                <div class="div-block-6458">
-                                                                    <div class="text-block-580">4109</div>
-                                                                    <div class="text-block-577">Briques</div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="div-block-6593">
-                                                                <div class="div-block-6458">
-                                                                    <div class="text-block-580">78</div>
-                                                                    <div class="text-block-577">Investisseurs</div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="div-block-6593">
-                                                                <div class="div-block-6458">
-                                                                    <div class="text-block-580">45 %</div>
-                                                                    <div class="text-block-577">Financé</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div role="listitem" class="blog-collection-short-2 w-dyn-item">
-                                                <div class="blog-link-2 blog-flex">
-                                                    <div data-animation="slide" data-duration="500" data-infinite="1"
-                                                        class="div-block-6455 w-slider">
-                                                        <div class="mask-8 w-slider-mask">
-                                                            <div class="slide-14 w-slide"><img
-                                                                    src="https://uploads-ssl.webflow.com/604b733d887fc7116420f235/60d1c6f48639ac76cbe8e954_yit_parvi_i005.jpeg"
-                                                                    alt=""
-                                                                    sizes="(max-width: 479px) 270.921875px, 200px"
-                                                                    srcset="https://uploads-ssl.webflow.com/604b733d887fc7116420f235/60d1c6f48639ac76cbe8e954_yit_parvi_i005-p-500.jpeg 500w, https://uploads-ssl.webflow.com/604b733d887fc7116420f235/60d1c6f48639ac76cbe8e954_yit_parvi_i005-p-800.jpeg 800w, https://uploads-ssl.webflow.com/604b733d887fc7116420f235/60d1c6f48639ac76cbe8e954_yit_parvi_i005-p-1600.jpeg 1600w, https://uploads-ssl.webflow.com/604b733d887fc7116420f235/60d1c6f48639ac76cbe8e954_yit_parvi_i005.jpeg 1920w"
-                                                                    class="blog-image-2" /></div>
-                                                            <div class="slide-15 w-slide"></div>
-                                                        </div>
-                                                        <div class="left-arrow-8 w-slider-arrow-left">
-                                                            <div class="icon-42 w-icon-slider-left"></div>
-                                                        </div>
-                                                        <div class="right-arrow-7 w-slider-arrow-right">
-                                                            <div class="icon-41 w-icon-slider-right"></div>
-                                                        </div>
-                                                        <div class="slide-nav-5 w-slider-nav w-round"></div>
-                                                    </div>
-                                                    <div class="blog-content-2">
-                                                        <div id="w-node-_7df19192-2e4b-9a79-5d23-48bad239b4d7-50a2731d"
-                                                            class="div-block-6589 left">
-                                                            <div class="div-block-6588">
-                                                                <div class="text-block-631">Investissement</div>
-                                                            </div>
-                                                            <div class="div-block-6596">
-                                                                <div style="color:#6a35ff;background-color:#f3efff"
-                                                                    class="text-block-622">Zoom sur</div>
-                                                            </div>
-                                                        </div>
-                                                        <div id="w-node-_3d5382cf-4f90-fd1c-bd40-deaab59eb8bf-50a2731d"
-                                                            class="div-block-6508 left"><a
-                                                                id="w-node-_3d5382cf-4f90-fd1c-bd40-deaab59eb8c0-50a2731d"
-                                                                href="http://alexandre-auberts-fabulous-project.webflow.io/properties/ma-belle-villa-dans-le-sud-de-la-france"
-                                                                class="link-block-34 w-inline-block">
-                                                                <h3 class="heading-242">Ma belle Villa dans le sud de la
-                                                                    France</h3>
-                                                            </a>
-                                                            <div class="div-block-6572">
-                                                                <div class="div-block-6509">
-                                                                    <div class="text-block-623"></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="text-block-575">324,
-                                                            000 € </div>
-                                                        <div class="w-layout-grid grid-88">
-                                                            <div class="div-block-6593">
-                                                                <div class="div-block-6458">
-                                                                    <div class="text-block-580">1200</div>
-                                                                    <div class="text-block-577">Briques</div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="div-block-6593">
-                                                                <div class="div-block-6458">
-                                                                    <div class="text-block-580">12</div>
-                                                                    <div class="text-block-577">Investisseurs</div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="div-block-6593">
-                                                                <div class="div-block-6458">
-                                                                    <div class="text-block-580">80%</div>
-                                                                    <div class="text-block-577">Financé</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div role="listitem" class="blog-collection-short-2 w-dyn-item">
-                                                <div class="blog-link-2 blog-flex">
-                                                    <div data-animation="slide" data-duration="500" data-infinite="1"
-                                                        class="div-block-6455 w-slider">
-                                                        <div class="mask-8 w-slider-mask">
-                                                            <div class="slide-14 w-slide"><img
-                                                                    src="https://uploads-ssl.webflow.com/604b733d887fc7116420f235/60d1cbabd5ed219da21532f8_Royal-Palace-Prague-Airbnb-Rental.jpeg"
-                                                                    alt=""
-                                                                    sizes="(max-width: 479px) 270.921875px, 200px"
-                                                                    srcset="https://uploads-ssl.webflow.com/604b733d887fc7116420f235/60d1cbabd5ed219da21532f8_Royal-Palace-Prague-Airbnb-Rental-p-500.jpeg 500w, https://uploads-ssl.webflow.com/604b733d887fc7116420f235/60d1cbabd5ed219da21532f8_Royal-Palace-Prague-Airbnb-Rental-p-800.jpeg 800w, https://uploads-ssl.webflow.com/604b733d887fc7116420f235/60d1cbabd5ed219da21532f8_Royal-Palace-Prague-Airbnb-Rental.jpeg 1000w"
-                                                                    class="blog-image-2" /></div>
-                                                            <div class="slide-15 w-slide"></div>
-                                                        </div>
-                                                        <div class="left-arrow-8 w-slider-arrow-left">
-                                                            <div class="icon-42 w-icon-slider-left"></div>
-                                                        </div>
-                                                        <div class="right-arrow-7 w-slider-arrow-right">
-                                                            <div class="icon-41 w-icon-slider-right"></div>
-                                                        </div>
-                                                        <div class="slide-nav-5 w-slider-nav w-round"></div>
-                                                    </div>
-                                                    <div class="blog-content-2">
-                                                        <div id="w-node-_7df19192-2e4b-9a79-5d23-48bad239b4d7-50a2731d"
-                                                            class="div-block-6589 left">
-                                                            <div class="div-block-6588">
-                                                                <div class="text-block-631">Investissement</div>
-                                                            </div>
-                                                            <div class="div-block-6596">
-                                                                <div style="color:#46d39a;background-color:#f0fbf7"
-                                                                    class="text-block-622">Premium</div>
-                                                            </div>
-                                                        </div>
-                                                        <div id="w-node-_3d5382cf-4f90-fd1c-bd40-deaab59eb8bf-50a2731d"
-                                                            class="div-block-6508 left"><a
-                                                                id="w-node-_3d5382cf-4f90-fd1c-bd40-deaab59eb8c0-50a2731d"
-                                                                href="http://alexandre-auberts-fabulous-project.webflow.io/properties/thomas-house"
-                                                                class="link-block-34 w-inline-block">
-                                                                <h3 class="heading-242">Thomas House</h3>
-                                                            </a>
-                                                            <div class="div-block-6572">
-                                                                <div class="div-block-6509">
-                                                                    <div class="text-block-623"></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="text-block-575">122,
-                                                            000 € </div>
-                                                        <div class="w-layout-grid grid-88">
-                                                            <div class="div-block-6593">
-                                                                <div class="div-block-6458">
-                                                                    <div class="text-block-580">18907</div>
-                                                                    <div class="text-block-577">Briques</div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="div-block-6593">
-                                                                <div class="div-block-6458">
-                                                                    <div class="text-block-580">7836</div>
-                                                                    <div class="text-block-577">Investisseurs</div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="div-block-6593">
-                                                                <div class="div-block-6458">
-                                                                    <div class="text-block-580">25 %</div>
-                                                                    <div class="text-block-577">Financé</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            @empty
+                                                <p>No projects</p>
+                                            @endforelse
+                                           
                                         </div>
                                     </div>
                                 </div>
@@ -687,26 +360,19 @@
                     <div id="w-node-_0e0bfb7e-2109-a985-b3ca-79257daf99b9-50a2731d" class="about-wrapper">
                         <div class="about-intro">
                             <div class="div-block-6519">
-                                <h1 class="heading-227">L&#x27;
-                                    immobilier sur Montpellier<br /></h1>
-                                <div class="text-block-455"><span class="text-span-245">Dernière mise a jour :</span>25
-                                    Mai 2021</div>
+                                <h1 class="heading-227">{{ $data->title }}<br /></h1>
+                                <div class="text-block-455"><span class="text-span-245">Dernière mise a jour :</span>{{ $data->created_at->format('d M Y') }}</div>
                                 <div class="div-block-6511">
-                                    <p class="paragraphe-normal">Représente l&#x27;
-                                        évolution du pourcentage de prix moyen désignant les appartements vendus dans
-                                        les capitales régionales par rapport à la période précédente (T2 2020).
-                                        <br /><br />Prix au m² au cours du trimestre sous revue pour les ventes
-                                        réalisées dans les capitales régionales. Les données concernent les ventes
-                                        d&#x27;
-                                        appartements inscrites au cadastre sous forme de contrats d&#x27;
-                                        achat.* <br /></p><a href="#" class="link-block-24 w-inline-block">
+                                    <p class="paragraphe-normal">{{ $data->description_1 }}</p>
+                                    <p class="paragraphe-normal">{{ $data->description_2 }}</p>
+                                    <a href="#" class="link-block-24 w-inline-block">
                                         <div class="text-block-581">Afficher plus</div>
                                     </a>
                                 </div>
                             </div>
                         </div>
                         <div id="w-node-_0e0bfb7e-2109-a985-b3ca-79257daf99bf-50a2731d" class="stacked-paragraphs"><img
-                                src="https://uploads-ssl.webflow.com/604b733c887fc763fe20f216/607c741a19c353bb6810cea9_Screenshot%202021-04-18%20at%2020.01.21.png"
+                                src="{{ asset('uploads/cities') }}/{{ $data->image }}"
                                 loading="lazy"
                                 sizes="(max-width: 479px) 100vw, (max-width: 767px) 91vw, (max-width: 991px) 79vw, (max-width: 1279px) 33vw, (max-width: 1919px) 34vw, 522.84375px"
                                 srcset="https://uploads-ssl.webflow.com/604b733c887fc763fe20f216/607c741a19c353bb6810cea9_Screenshot%202021-04-18%20at%2020.01.21-p-500.png 500w, https://uploads-ssl.webflow.com/604b733c887fc763fe20f216/607c741a19c353bb6810cea9_Screenshot%202021-04-18%20at%2020.01.21-p-800.png 800w, https://uploads-ssl.webflow.com/604b733c887fc763fe20f216/607c741a19c353bb6810cea9_Screenshot%202021-04-18%20at%2020.01.21-p-1080.png 1080w, https://uploads-ssl.webflow.com/604b733c887fc763fe20f216/607c741a19c353bb6810cea9_Screenshot%202021-04-18%20at%2020.01.21.png 1418w"
@@ -758,7 +424,7 @@
                                                 <div class="membership-dot three"></div>
                                                 <div class="membership-outline-circle-2"></div>
                                             </div>
-                                            <div class="famous-city">Bordeaux</div>
+                                            <div class="famous-city">Marseille</div>
                                         </a><a data-w-tab="Tab 5"
                                             id="w-node-ee4e079f-317f-1187-3d10-a1f7e8b34fa0-50a2731d"
                                             data-w-id="ee4e079f-317f-1187-3d10-a1f7e8b34fa0"
@@ -767,11 +433,12 @@
                                                 <div class="membership-dot four"></div>
                                                 <div class="membership-outline-circle-2"></div>
                                             </div>
-                                            <div class="famous-city">Strasbourg</div>
+                                            <div class="famous-city">Bordeaux</div>
                                         </a></div>
                                     <div class="cities-tabs-content w-tab-content">
                                         <div data-w-tab="Tab 1" class="w-tab-pane w--tab-active">
                                             <div class="collection-list-wrapper-17 w-dyn-list">
+                                                @forelse ($paris as $pari)
                                                 <div role="list" class="cities-project-wrapper w-dyn-items">
                                                     <div role="listitem" class="popular-cities-item-2 w-dyn-item">
                                                         <div data-w-id="ee4e079f-317f-1187-3d10-a1f7e8b34fab"
@@ -782,7 +449,7 @@
                                                                         data-infinite="1" class="slider-10 w-slider">
                                                                         <div class="w-slider-mask">
                                                                             <div class="w-slide"><img
-                                                                                    src="https://uploads-ssl.webflow.com/604b733d887fc7116420f235/60f8449b7d4fe26a6ee06e44_60d0d1edad69f98eddc421a1_b0c545e2-ee34-406d-b0ba-132ad522fdaf.jpeg"
+                                                                                    src="{{ asset('uploads/portfolios') }}/{{ $pari->image }}"
                                                                                     loading="lazy" alt=""
                                                                                     class="image-188" /></div>
                                                                             <div class="w-slide"></div>
@@ -814,28 +481,27 @@
                                                                     <div class="div-block-6508 center"><a
                                                                             href="/my-villa-prague2" target="_blank"
                                                                             class="link-block-38 w-inline-block">
-                                                                            <h3 class="heading-242">Ma villa 250 m2 sur
+                                                                            <h3 class="heading-242">{{ $pari->title }}
                                                                                 Paris</h3>
                                                                         </a></div>
-                                                                    <div class="text-block-575">350,
-                                                                        000 €</div>
+                                                                    <div class="text-block-575">{{ $pari->curre }} {{ $pari->price }} €</div>
                                                                 </div>
                                                                 <div class="div-block-6574">
                                                                     <div>
                                                                         <div class="div-block-6573">
-                                                                            <div class="text-block-619">250</div>
+                                                                            <div class="text-block-619">{{ $pari->quantity_of_bricks }}</div>
                                                                             <div>Briques</div>
                                                                         </div>
                                                                     </div>
                                                                     <div>
                                                                         <div class="div-block-6573">
-                                                                            <div class="text-block-619">1239</div>
+                                                                            <div class="text-block-619">{{ \App\Models\Brick::where('portfolio_id', $pari->id)->get()->count() }}</div>
                                                                             <div>Investisseurs</div>
                                                                         </div>
                                                                     </div>
                                                                     <div>
                                                                         <div class="div-block-6573">
-                                                                            <div class="text-block-619">68%</div>
+                                                                            <div class="text-block-619">{{ floor((\App\Models\Brick::where('portfolio_id', $pari->id)->get()->sum('bricks_qty')/$pari->quantity_of_bricks)*100) }}%</div>
                                                                             <div>Financé</div>
                                                                         </div>
                                                                     </div>
@@ -845,356 +511,7 @@
                                                                         class="vacation-price-2">
                                                                         <div class="subtitle-5 small">A partir de </div>
                                                                         <div class="dynamic-price-text-2">
-                                                                            <div class="text-block-633">30 €</div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="div-block-6572">
-                                                                        <div class="div-block-6509"><img
-                                                                                src="https://uploads-ssl.webflow.com/604b733c887fc763fe20f216/60e921ca308a0a377371f45b_60dca32b27ab1d092448da94_heart.svg"
-                                                                                loading="lazy" width="20"
-                                                                                id="w-node-_2424ddd5-fac4-d46a-0cae-cd3d84903817-50a2731d"
-                                                                                alt="" /></div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div role="listitem" class="popular-cities-item-2 w-dyn-item">
-                                                        <div data-w-id="ee4e079f-317f-1187-3d10-a1f7e8b34fab"
-                                                            class="project-verticle-card-3">
-                                                            <div class="verticle-card-image">
-                                                                <div class="hero-background-image-4">
-                                                                    <div data-animation="slide" data-duration="500"
-                                                                        data-infinite="1" class="slider-10 w-slider">
-                                                                        <div class="w-slider-mask">
-                                                                            <div class="w-slide"><img
-                                                                                    src="https://uploads-ssl.webflow.com/604b733d887fc7116420f235/606dc616959d8b83ee1fc4f1_196002509.jpeg"
-                                                                                    loading="lazy" alt=""
-                                                                                    class="image-188" /></div>
-                                                                            <div class="w-slide"></div>
-                                                                        </div>
-                                                                        <div class="w-slider-arrow-left">
-                                                                            <div class="icon-36 w-icon-slider-left">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="w-slider-arrow-right">
-                                                                            <div class="icon-36 w-icon-slider-right">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="slide-nav-8 w-slider-nav w-round">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="vacation-card-bottom">
-                                                                <div class="vacation-card-info">
-                                                                    <div class="div-block-6589">
-                                                                        <div class="div-block-6588">
-                                                                            <div class="text-block-631">Prêt</div>
-                                                                        </div>
-                                                                        <div>
-                                                                            <div style="color:#46d39a;background-color:#f0fbf7"
-                                                                                class="text-block-622">Premium</div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="div-block-6508 center"><a
-                                                                            href="/my-villa-prague2" target="_blank"
-                                                                            class="link-block-38 w-inline-block">
-                                                                            <h3 class="heading-242">Gradini Aparthotel
-                                                                            </h3>
-                                                                        </a></div>
-                                                                    <div class="text-block-575">250,
-                                                                        000 €</div>
-                                                                </div>
-                                                                <div class="div-block-6574">
-                                                                    <div>
-                                                                        <div class="div-block-6573">
-                                                                            <div class="text-block-619">100</div>
-                                                                            <div>Briques</div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div>
-                                                                        <div class="div-block-6573">
-                                                                            <div class="text-block-619">349</div>
-                                                                            <div>Investisseurs</div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div>
-                                                                        <div class="div-block-6573">
-                                                                            <div class="text-block-619">32%</div>
-                                                                            <div>Financé</div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="vacation-details">
-                                                                    <div id="w-node-ee4e079f-317f-1187-3d10-a1f7e8b34fbd-50a2731d"
-                                                                        class="vacation-price-2">
-                                                                        <div class="subtitle-5 small">A partir de </div>
-                                                                        <div class="dynamic-price-text-2">
-                                                                            <div class="text-block-633">20 €</div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="div-block-6572">
-                                                                        <div class="div-block-6509"><img
-                                                                                src="https://uploads-ssl.webflow.com/604b733c887fc763fe20f216/60e921ca308a0a377371f45b_60dca32b27ab1d092448da94_heart.svg"
-                                                                                loading="lazy" width="20"
-                                                                                id="w-node-_2424ddd5-fac4-d46a-0cae-cd3d84903817-50a2731d"
-                                                                                alt="" /></div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div role="listitem" class="popular-cities-item-2 w-dyn-item">
-                                                        <div data-w-id="ee4e079f-317f-1187-3d10-a1f7e8b34fab"
-                                                            class="project-verticle-card-3">
-                                                            <div class="verticle-card-image">
-                                                                <div class="hero-background-image-4">
-                                                                    <div data-animation="slide" data-duration="500"
-                                                                        data-infinite="1" class="slider-10 w-slider">
-                                                                        <div class="w-slider-mask">
-                                                                            <div class="w-slide"><img
-                                                                                    src="https://uploads-ssl.webflow.com/604b733d887fc7116420f235/606dc665fc14a8ceea00bc3c_163388642.jpeg"
-                                                                                    loading="lazy" alt=""
-                                                                                    sizes="(max-width: 479px) 100vw, (max-width: 767px) 89vw, (max-width: 991px) 40vw, (max-width: 1279px) 30vw, (max-width: 1439px) 314px, 306px"
-                                                                                    srcset="https://uploads-ssl.webflow.com/604b733d887fc7116420f235/606dc665fc14a8ceea00bc3c_163388642-p-500.jpeg 500w, https://uploads-ssl.webflow.com/604b733d887fc7116420f235/606dc665fc14a8ceea00bc3c_163388642.jpeg 1024w"
-                                                                                    class="image-188" /></div>
-                                                                            <div class="w-slide"></div>
-                                                                        </div>
-                                                                        <div class="w-slider-arrow-left">
-                                                                            <div class="icon-36 w-icon-slider-left">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="w-slider-arrow-right">
-                                                                            <div class="icon-36 w-icon-slider-right">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="slide-nav-8 w-slider-nav w-round">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="vacation-card-bottom">
-                                                                <div class="vacation-card-info">
-                                                                    <div class="div-block-6589">
-                                                                        <div class="div-block-6588">
-                                                                            <div class="text-block-631">Investissement
-                                                                            </div>
-                                                                        </div>
-                                                                        <div>
-                                                                            <div style="color:#46d39a;background-color:#f0fbf7"
-                                                                                class="text-block-622">Premium</div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="div-block-6508 center"><a
-                                                                            href="/my-villa-prague2" target="_blank"
-                                                                            class="link-block-38 w-inline-block">
-                                                                            <h3 class="heading-242">Vskiy Art Loft 4
-                                                                                étoiles</h3>
-                                                                        </a></div>
-                                                                    <div class="text-block-575">125,
-                                                                        000 € </div>
-                                                                </div>
-                                                                <div class="div-block-6574">
-                                                                    <div>
-                                                                        <div class="div-block-6573">
-                                                                            <div class="text-block-619">50</div>
-                                                                            <div>Briques</div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div>
-                                                                        <div class="div-block-6573">
-                                                                            <div class="text-block-619">45</div>
-                                                                            <div>Investisseurs</div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div>
-                                                                        <div class="div-block-6573">
-                                                                            <div class="text-block-619">12%</div>
-                                                                            <div>Financé</div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="vacation-details">
-                                                                    <div id="w-node-ee4e079f-317f-1187-3d10-a1f7e8b34fbd-50a2731d"
-                                                                        class="vacation-price-2">
-                                                                        <div class="subtitle-5 small">A partir de </div>
-                                                                        <div class="dynamic-price-text-2">
-                                                                            <div class="text-block-633">45 €</div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="div-block-6572">
-                                                                        <div class="div-block-6509"><img
-                                                                                src="https://uploads-ssl.webflow.com/604b733c887fc763fe20f216/60e921ca308a0a377371f45b_60dca32b27ab1d092448da94_heart.svg"
-                                                                                loading="lazy" width="20"
-                                                                                id="w-node-_2424ddd5-fac4-d46a-0cae-cd3d84903817-50a2731d"
-                                                                                alt="" /></div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div role="listitem" class="popular-cities-item-2 w-dyn-item">
-                                                        <div data-w-id="ee4e079f-317f-1187-3d10-a1f7e8b34fab"
-                                                            class="project-verticle-card-3">
-                                                            <div class="verticle-card-image">
-                                                                <div class="hero-background-image-4">
-                                                                    <div data-animation="slide" data-duration="500"
-                                                                        data-infinite="1" class="slider-10 w-slider">
-                                                                        <div class="w-slider-mask">
-                                                                            <div class="w-slide"><img
-                                                                                    src="https://uploads-ssl.webflow.com/604b733d887fc7116420f235/606dc6e2959d8b32131fc889_114429801.jpeg"
-                                                                                    loading="lazy" alt=""
-                                                                                    class="image-188" /></div>
-                                                                            <div class="w-slide"></div>
-                                                                        </div>
-                                                                        <div class="w-slider-arrow-left">
-                                                                            <div class="icon-36 w-icon-slider-left">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="w-slider-arrow-right">
-                                                                            <div class="icon-36 w-icon-slider-right">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="slide-nav-8 w-slider-nav w-round">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="vacation-card-bottom">
-                                                                <div class="vacation-card-info">
-                                                                    <div class="div-block-6589">
-                                                                        <div class="div-block-6588">
-                                                                            <div class="text-block-631">Investissement
-                                                                            </div>
-                                                                        </div>
-                                                                        <div>
-                                                                            <div style="color:#ff9f59;background-color:#fff7f2"
-                                                                                class="text-block-622">Sponsorisé</div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="div-block-6508 center"><a
-                                                                            href="/my-villa-prague2" target="_blank"
-                                                                            class="link-block-38 w-inline-block">
-                                                                            <h3 class="heading-242">HackLife Apart</h3>
-                                                                        </a></div>
-                                                                    <div class="text-block-575">75,
-                                                                        000 € </div>
-                                                                </div>
-                                                                <div class="div-block-6574">
-                                                                    <div>
-                                                                        <div class="div-block-6573">
-                                                                            <div class="text-block-619">50</div>
-                                                                            <div>Briques</div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div>
-                                                                        <div class="div-block-6573">
-                                                                            <div class="text-block-619">319</div>
-                                                                            <div>Investisseurs</div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div>
-                                                                        <div class="div-block-6573">
-                                                                            <div class="text-block-619">23%</div>
-                                                                            <div>Financé</div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="vacation-details">
-                                                                    <div id="w-node-ee4e079f-317f-1187-3d10-a1f7e8b34fbd-50a2731d"
-                                                                        class="vacation-price-2">
-                                                                        <div class="subtitle-5 small">A partir de </div>
-                                                                        <div class="dynamic-price-text-2">
-                                                                            <div class="text-block-633">15 €</div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="div-block-6572">
-                                                                        <div class="div-block-6509"><img
-                                                                                src="https://uploads-ssl.webflow.com/604b733c887fc763fe20f216/60e921ca308a0a377371f45b_60dca32b27ab1d092448da94_heart.svg"
-                                                                                loading="lazy" width="20"
-                                                                                id="w-node-_2424ddd5-fac4-d46a-0cae-cd3d84903817-50a2731d"
-                                                                                alt="" /></div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div role="listitem" class="popular-cities-item-2 w-dyn-item">
-                                                        <div data-w-id="ee4e079f-317f-1187-3d10-a1f7e8b34fab"
-                                                            class="project-verticle-card-3">
-                                                            <div class="verticle-card-image">
-                                                                <div class="hero-background-image-4">
-                                                                    <div data-animation="slide" data-duration="500"
-                                                                        data-infinite="1" class="slider-10 w-slider">
-                                                                        <div class="w-slider-mask">
-                                                                            <div class="w-slide"><img
-                                                                                    src="https://uploads-ssl.webflow.com/604b733d887fc7116420f235/606dc71f43c7baf28246d60a_148872972.jpeg"
-                                                                                    loading="lazy" alt=""
-                                                                                    sizes="(max-width: 479px) 100vw, (max-width: 767px) 89vw, (max-width: 991px) 40vw, (max-width: 1279px) 30vw, (max-width: 1439px) 314px, 306px"
-                                                                                    srcset="https://uploads-ssl.webflow.com/604b733d887fc7116420f235/606dc71f43c7baf28246d60a_148872972-p-500.jpeg 500w, https://uploads-ssl.webflow.com/604b733d887fc7116420f235/606dc71f43c7baf28246d60a_148872972.jpeg 1024w"
-                                                                                    class="image-188" /></div>
-                                                                            <div class="w-slide"></div>
-                                                                        </div>
-                                                                        <div class="w-slider-arrow-left">
-                                                                            <div class="icon-36 w-icon-slider-left">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="w-slider-arrow-right">
-                                                                            <div class="icon-36 w-icon-slider-right">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="slide-nav-8 w-slider-nav w-round">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="vacation-card-bottom">
-                                                                <div class="vacation-card-info">
-                                                                    <div class="div-block-6589">
-                                                                        <div class="div-block-6588">
-                                                                            <div class="text-block-631">Prêt</div>
-                                                                        </div>
-                                                                        <div>
-                                                                            <div style="color:#6a35ff;background-color:#f3efff"
-                                                                                class="text-block-622">Zoom sur</div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="div-block-6508 center"><a
-                                                                            href="/my-villa-prague2" target="_blank"
-                                                                            class="link-block-38 w-inline-block">
-                                                                            <h3 class="heading-242">Hermitage The House
-                                                                            </h3>
-                                                                        </a></div>
-                                                                    <div class="text-block-575">122,
-                                                                        000 € </div>
-                                                                </div>
-                                                                <div class="div-block-6574">
-                                                                    <div>
-                                                                        <div class="div-block-6573">
-                                                                            <div class="text-block-619">28</div>
-                                                                            <div>Briques</div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div>
-                                                                        <div class="div-block-6573">
-                                                                            <div class="text-block-619">5278</div>
-                                                                            <div>Investisseurs</div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div>
-                                                                        <div class="div-block-6573">
-                                                                            <div class="text-block-619">124%</div>
-                                                                            <div>Financé</div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="vacation-details">
-                                                                    <div id="w-node-ee4e079f-317f-1187-3d10-a1f7e8b34fbd-50a2731d"
-                                                                        class="vacation-price-2">
-                                                                        <div class="subtitle-5 small">A partir de </div>
-                                                                        <div class="dynamic-price-text-2">
-                                                                            <div class="text-block-633">25 €</div>
+                                                                            <div class="text-block-633">{{ $pari->miniprice }} {{ $pari->curre }}</div>
                                                                         </div>
                                                                     </div>
                                                                     <div class="div-block-6572">
@@ -1209,27 +526,302 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                @empty 
+                                                <div class="w-dyn-empty">
+                                                  <div>No items found.</div>
+                                              </div>
+                                                @endforelse
                                             </div>
                                         </div>
                                         <div data-w-tab="Tab 3" class="w-tab-pane">
                                             <div class="collection-list-wrapper-17 w-dyn-list">
-                                                <div class="w-dyn-empty">
-                                                    <div>No items found.</div>
+                                                @forelse ($lyon as $pari)
+                                                <div role="list" class="cities-project-wrapper w-dyn-items">
+                                                    <div role="listitem" class="popular-cities-item-2 w-dyn-item">
+                                                        <div data-w-id="ee4e079f-317f-1187-3d10-a1f7e8b34fab"
+                                                            class="project-verticle-card-3">
+                                                            <div class="verticle-card-image">
+                                                                <div class="hero-background-image-4">
+                                                                    <div data-animation="slide" data-duration="500"
+                                                                        data-infinite="1" class="slider-10 w-slider">
+                                                                        <div class="w-slider-mask">
+                                                                            <div class="w-slide"><img
+                                                                                    src="{{ asset('uploads/portfolios') }}/{{ $pari->image }}"
+                                                                                    loading="lazy" alt=""
+                                                                                    class="image-188" /></div>
+                                                                            <div class="w-slide"></div>
+                                                                        </div>
+                                                                        <div class="w-slider-arrow-left">
+                                                                            <div class="icon-36 w-icon-slider-left">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="w-slider-arrow-right">
+                                                                            <div class="icon-36 w-icon-slider-right">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="slide-nav-8 w-slider-nav w-round">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="vacation-card-bottom">
+                                                                <div class="vacation-card-info">
+                                                                    <div class="div-block-6589">
+                                                                        <div class="div-block-6588">
+                                                                            <div class="text-block-631">Prêt</div>
+                                                                        </div>
+                                                                        <div>
+                                                                            <div style="color:#6a35ff;background-color:#f3efff"
+                                                                                class="text-block-622">Zoom sur</div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="div-block-6508 center"><a
+                                                                            href="/my-villa-prague2" target="_blank"
+                                                                            class="link-block-38 w-inline-block">
+                                                                            <h3 class="heading-242">{{ $pari->title }}
+                                                                                Paris</h3>
+                                                                        </a></div>
+                                                                    <div class="text-block-575">{{ $pari->curre }} {{ $pari->price }} €</div>
+                                                                </div>
+                                                                <div class="div-block-6574">
+                                                                    <div>
+                                                                        <div class="div-block-6573">
+                                                                            <div class="text-block-619">{{ $pari->quantity_of_bricks }}</div>
+                                                                            <div>Briques</div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div>
+                                                                        <div class="div-block-6573">
+                                                                            <div class="text-block-619">{{ \App\Models\Brick::where('portfolio_id', $pari->id)->get()->count() }}</div>
+                                                                            <div>Investisseurs</div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div>
+                                                                        <div class="div-block-6573">
+                                                                            <div class="text-block-619">{{ floor((\App\Models\Brick::where('portfolio_id', $pari->id)->get()->sum('bricks_qty')/$pari->quantity_of_bricks)*100) }}%</div>
+                                                                            <div>Financé</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="vacation-details">
+                                                                    <div id="w-node-ee4e079f-317f-1187-3d10-a1f7e8b34fbd-50a2731d"
+                                                                        class="vacation-price-2">
+                                                                        <div class="subtitle-5 small">A partir de </div>
+                                                                        <div class="dynamic-price-text-2">
+                                                                            <div class="text-block-633">{{ $pari->miniprice }} {{ $pari->curre }}</div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="div-block-6572">
+                                                                        <div class="div-block-6509"><img
+                                                                                src="https://uploads-ssl.webflow.com/604b733c887fc763fe20f216/60e921ca308a0a377371f45b_60dca32b27ab1d092448da94_heart.svg"
+                                                                                loading="lazy" width="20"
+                                                                                id="w-node-_2424ddd5-fac4-d46a-0cae-cd3d84903817-50a2731d"
+                                                                                alt="" /></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
+                                                @empty 
+                                                <div class="w-dyn-empty">
+                                                  <div>No items found.</div>
+                                              </div>
+                                                @endforelse
                                             </div>
                                         </div>
                                         <div data-w-tab="Tab 4" class="w-tab-pane">
                                             <div class="collection-list-wrapper-17 w-dyn-list">
-                                                <div class="w-dyn-empty">
-                                                    <div>No items found.</div>
+                                                @forelse ($mars as $pari)
+                                                <div role="list" class="cities-project-wrapper w-dyn-items">
+                                                    <div role="listitem" class="popular-cities-item-2 w-dyn-item">
+                                                        <div data-w-id="ee4e079f-317f-1187-3d10-a1f7e8b34fab"
+                                                            class="project-verticle-card-3">
+                                                            <div class="verticle-card-image">
+                                                                <div class="hero-background-image-4">
+                                                                    <div data-animation="slide" data-duration="500"
+                                                                        data-infinite="1" class="slider-10 w-slider">
+                                                                        <div class="w-slider-mask">
+                                                                            <div class="w-slide"><img
+                                                                                    src="{{ asset('uploads/portfolios') }}/{{ $pari->image }}"
+                                                                                    loading="lazy" alt=""
+                                                                                    class="image-188" /></div>
+                                                                            <div class="w-slide"></div>
+                                                                        </div>
+                                                                        <div class="w-slider-arrow-left">
+                                                                            <div class="icon-36 w-icon-slider-left">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="w-slider-arrow-right">
+                                                                            <div class="icon-36 w-icon-slider-right">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="slide-nav-8 w-slider-nav w-round">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="vacation-card-bottom">
+                                                                <div class="vacation-card-info">
+                                                                    <div class="div-block-6589">
+                                                                        <div class="div-block-6588">
+                                                                            <div class="text-block-631">Prêt</div>
+                                                                        </div>
+                                                                        <div>
+                                                                            <div style="color:#6a35ff;background-color:#f3efff"
+                                                                                class="text-block-622">Zoom sur</div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="div-block-6508 center"><a
+                                                                            href="/my-villa-prague2" target="_blank"
+                                                                            class="link-block-38 w-inline-block">
+                                                                            <h3 class="heading-242">{{ $pari->title }}
+                                                                                Paris</h3>
+                                                                        </a></div>
+                                                                    <div class="text-block-575">{{ $pari->curre }} {{ $pari->price }} €</div>
+                                                                </div>
+                                                                <div class="div-block-6574">
+                                                                    <div>
+                                                                        <div class="div-block-6573">
+                                                                            <div class="text-block-619">{{ $pari->quantity_of_bricks }}</div>
+                                                                            <div>Briques</div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div>
+                                                                        <div class="div-block-6573">
+                                                                            <div class="text-block-619">{{ \App\Models\Brick::where('portfolio_id', $pari->id)->get()->count() }}</div>
+                                                                            <div>Investisseurs</div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div>
+                                                                        <div class="div-block-6573">
+                                                                            <div class="text-block-619">{{ floor((\App\Models\Brick::where('portfolio_id', $pari->id)->get()->sum('bricks_qty')/$pari->quantity_of_bricks)*100) }}%</div>
+                                                                            <div>Financé</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="vacation-details">
+                                                                    <div id="w-node-ee4e079f-317f-1187-3d10-a1f7e8b34fbd-50a2731d"
+                                                                        class="vacation-price-2">
+                                                                        <div class="subtitle-5 small">A partir de </div>
+                                                                        <div class="dynamic-price-text-2">
+                                                                            <div class="text-block-633">{{ $pari->miniprice }} {{ $pari->curre }}</div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="div-block-6572">
+                                                                        <div class="div-block-6509"><img
+                                                                                src="https://uploads-ssl.webflow.com/604b733c887fc763fe20f216/60e921ca308a0a377371f45b_60dca32b27ab1d092448da94_heart.svg"
+                                                                                loading="lazy" width="20"
+                                                                                id="w-node-_2424ddd5-fac4-d46a-0cae-cd3d84903817-50a2731d"
+                                                                                alt="" /></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
+                                                @empty 
+                                                <div class="w-dyn-empty">
+                                                  <div>No items found.</div>
+                                              </div>
+                                                @endforelse
                                             </div>
                                         </div>
                                         <div data-w-tab="Tab 5" class="w-tab-pane">
                                             <div class="collection-list-wrapper-17 w-dyn-list">
-                                                <div class="w-dyn-empty">
-                                                    <div>No items found.</div>
+                                                @forelse ($bors as $pari)
+                                                <div role="list" class="cities-project-wrapper w-dyn-items">
+                                                    <div role="listitem" class="popular-cities-item-2 w-dyn-item">
+                                                        <div data-w-id="ee4e079f-317f-1187-3d10-a1f7e8b34fab"
+                                                            class="project-verticle-card-3">
+                                                            <div class="verticle-card-image">
+                                                                <div class="hero-background-image-4">
+                                                                    <div data-animation="slide" data-duration="500"
+                                                                        data-infinite="1" class="slider-10 w-slider">
+                                                                        <div class="w-slider-mask">
+                                                                            <div class="w-slide"><img
+                                                                                    src="{{ asset('uploads/portfolios') }}/{{ $pari->image }}"
+                                                                                    loading="lazy" alt=""
+                                                                                    class="image-188" /></div>
+                                                                            <div class="w-slide"></div>
+                                                                        </div>
+                                                                        <div class="w-slider-arrow-left">
+                                                                            <div class="icon-36 w-icon-slider-left">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="w-slider-arrow-right">
+                                                                            <div class="icon-36 w-icon-slider-right">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="slide-nav-8 w-slider-nav w-round">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="vacation-card-bottom">
+                                                                <div class="vacation-card-info">
+                                                                    <div class="div-block-6589">
+                                                                        <div class="div-block-6588">
+                                                                            <div class="text-block-631">Prêt</div>
+                                                                        </div>
+                                                                        <div>
+                                                                            <div style="color:#6a35ff;background-color:#f3efff"
+                                                                                class="text-block-622">Zoom sur</div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="div-block-6508 center"><a
+                                                                            href="/my-villa-prague2" target="_blank"
+                                                                            class="link-block-38 w-inline-block">
+                                                                            <h3 class="heading-242">{{ $pari->title }}
+                                                                                Paris</h3>
+                                                                        </a></div>
+                                                                    <div class="text-block-575">{{ $pari->curre }} {{ $pari->price }} €</div>
+                                                                </div>
+                                                                <div class="div-block-6574">
+                                                                    <div>
+                                                                        <div class="div-block-6573">
+                                                                            <div class="text-block-619">{{ $pari->quantity_of_bricks }}</div>
+                                                                            <div>Briques</div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div>
+                                                                        <div class="div-block-6573">
+                                                                            <div class="text-block-619">{{ \App\Models\Brick::where('portfolio_id', $pari->id)->get()->count() }}</div>
+                                                                            <div>Investisseurs</div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div>
+                                                                        <div class="div-block-6573">
+                                                                            <div class="text-block-619">{{ floor((\App\Models\Brick::where('portfolio_id', $pari->id)->get()->sum('bricks_qty')/$pari->quantity_of_bricks)*100) }}%</div>
+                                                                            <div>Financé</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="vacation-details">
+                                                                    <div id="w-node-ee4e079f-317f-1187-3d10-a1f7e8b34fbd-50a2731d"
+                                                                        class="vacation-price-2">
+                                                                        <div class="subtitle-5 small">A partir de </div>
+                                                                        <div class="dynamic-price-text-2">
+                                                                            <div class="text-block-633">{{ $pari->miniprice }} {{ $pari->curre }}</div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="div-block-6572">
+                                                                        <div class="div-block-6509"><img
+                                                                                src="https://uploads-ssl.webflow.com/604b733c887fc763fe20f216/60e921ca308a0a377371f45b_60dca32b27ab1d092448da94_heart.svg"
+                                                                                loading="lazy" width="20"
+                                                                                id="w-node-_2424ddd5-fac4-d46a-0cae-cd3d84903817-50a2731d"
+                                                                                alt="" /></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
+                                                @empty 
+                                                <div class="w-dyn-empty">
+                                                  <div>No items found.</div>
+                                              </div>
+                                                @endforelse
                                             </div>
                                         </div>
                                     </div>

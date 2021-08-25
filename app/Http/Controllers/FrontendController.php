@@ -68,7 +68,11 @@ class FrontendController extends Controller
    public function cityDetails($name)
    {
       $data = City::where('name', $name)->first(); 
-      return view('frontend.citydetails', compact('data'));
+      $paris      = Portfolio::where('city_name', 'Paris')->get();
+      $lyon       = Portfolio::where('city_name', 'Lyon')->get();
+      $mars       = Portfolio::where('city_name', 'Marseille')->get();
+      $bors       = Portfolio::where('city_name', 'Bordeaux')->get();
+      return view('frontend.citydetails', compact('data', 'paris', 'lyon', 'mars', 'bors'));
    }
 
 // END   
