@@ -32,7 +32,7 @@ use App\Http\Controllers\PricepremiumController;
 Route::get('/', [FrontendController::class, 'index'])->name('frontend.index');
 Route::get('/project/{id}/details', [FrontendController::class, 'details'])->name('project.details');
 Route::get('/make-a-deposit', [FrontendController::class, 'makeDeposit'])->name('make.deposit');
-Route::get('/city-details/{name}', [FrontendController::class, 'cityDetails'])->name('city.details');
+Route::get('/city-details/{country}-{name}', [FrontendController::class, 'cityDetails'])->name('city.details');
 
 // MollieController
 Route::any('/mollie-payment',[MollieController::class, 'preparePayment'])->name('mollie.payment');

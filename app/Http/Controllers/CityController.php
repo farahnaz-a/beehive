@@ -86,7 +86,7 @@ class CityController extends Controller
            
 
             //Success message session
-             return back()->withSuccess('Added Successfully');
+             return redirect('cities.index')->withSuccess('Added Successfully');
     }
 
     /**

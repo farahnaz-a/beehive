@@ -26,7 +26,12 @@ class CustomerController extends Controller
     public function index()
     {
  
-          
+    if(Auth::user()->role == 'admin')
+    {
+        return redirect('/admin/dashboard');
+    }
+    else 
+    {
         if(UserInformation::where('user_id', Auth::id())->doesntExist())
         {
             return view('customer.index');
@@ -39,13 +44,22 @@ class CustomerController extends Controller
         {
             return redirect()->route('customer.dashboard');
         }
+    }       
+
     }
     /**
      * Customer account page 
      */
     public function account()
     {
+        if(Auth::user()->role == 'admin')
+        {
+            return redirect('/admin/dashboard');
+        }
+        else 
+        {
         return view('customer.dashboard');
+        }
     }
 
     /**

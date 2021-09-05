@@ -375,13 +375,9 @@
                                 src="{{ asset('uploads/cities') }}/{{ $data->image }}"
                                 loading="lazy"
                                 sizes="(max-width: 479px) 100vw, (max-width: 767px) 91vw, (max-width: 991px) 79vw, (max-width: 1279px) 33vw, (max-width: 1919px) 34vw, 522.84375px"
-                                srcset="https://uploads-ssl.webflow.com/604b733c887fc763fe20f216/607c741a19c353bb6810cea9_Screenshot%202021-04-18%20at%2020.01.21-p-500.png 500w, https://uploads-ssl.webflow.com/604b733c887fc763fe20f216/607c741a19c353bb6810cea9_Screenshot%202021-04-18%20at%2020.01.21-p-800.png 800w, https://uploads-ssl.webflow.com/604b733c887fc763fe20f216/607c741a19c353bb6810cea9_Screenshot%202021-04-18%20at%2020.01.21-p-1080.png 1080w, https://uploads-ssl.webflow.com/604b733c887fc763fe20f216/607c741a19c353bb6810cea9_Screenshot%202021-04-18%20at%2020.01.21.png 1418w"
-                                alt="" /><img
-                                src="https://uploads-ssl.webflow.com/604b733c887fc763fe20f216/607c73c863c67e2f9fef9078_Screenshot%202021-04-18%20at%2019.58.57.png"
-                                loading="lazy"
-                                sizes="(max-width: 479px) 100vw, (max-width: 767px) 91vw, (max-width: 991px) 79vw, (max-width: 1279px) 33vw, (max-width: 1919px) 34vw, 522.84375px"
-                                srcset="https://uploads-ssl.webflow.com/604b733c887fc763fe20f216/607c73c863c67e2f9fef9078_Screenshot%202021-04-18%20at%2019.58.57-p-500.png 500w, https://uploads-ssl.webflow.com/604b733c887fc763fe20f216/607c73c863c67e2f9fef9078_Screenshot%202021-04-18%20at%2019.58.57-p-800.png 800w, https://uploads-ssl.webflow.com/604b733c887fc763fe20f216/607c73c863c67e2f9fef9078_Screenshot%202021-04-18%20at%2019.58.57.png 1416w"
-                                alt="" /></div>
+                                srcset="{{ asset('uploads/cities') }}/{{ $data->image }} 500w, {{ asset('uploads/cities') }}/{{ $data->image }} 800w, {{ asset('uploads/cities') }}/{{ $data->image }} 1418w"
+                                alt="" />
+                            </div>
                     </div>
                 </div>
             </div>
@@ -484,7 +480,7 @@
                                                                             <h3 class="heading-242">{{ $pari->title }}
                                                                                 Paris</h3>
                                                                         </a></div>
-                                                                    <div class="text-block-575">{{ $pari->curre }} {{ $pari->price }} €</div>
+                                                                    <div class="text-block-575">{{ $pari->curre }} {{ $pari->price }}</div>
                                                                 </div>
                                                                 <div class="div-block-6574">
                                                                     <div>
@@ -581,7 +577,7 @@
                                                                             <h3 class="heading-242">{{ $pari->title }}
                                                                                 Paris</h3>
                                                                         </a></div>
-                                                                    <div class="text-block-575">{{ $pari->curre }} {{ $pari->price }} €</div>
+                                                                    <div class="text-block-575">{{ $pari->curre }} {{ $pari->price }}</div>
                                                                 </div>
                                                                 <div class="div-block-6574">
                                                                     <div>
@@ -678,7 +674,7 @@
                                                                             <h3 class="heading-242">{{ $pari->title }}
                                                                                 Paris</h3>
                                                                         </a></div>
-                                                                    <div class="text-block-575">{{ $pari->curre }} {{ $pari->price }} €</div>
+                                                                    <div class="text-block-575">{{ $pari->curre }} {{ $pari->price }}</div>
                                                                 </div>
                                                                 <div class="div-block-6574">
                                                                     <div>
@@ -775,7 +771,7 @@
                                                                             <h3 class="heading-242">{{ $pari->title }}
                                                                                 Paris</h3>
                                                                         </a></div>
-                                                                    <div class="text-block-575">{{ $pari->curre }} {{ $pari->price }} €</div>
+                                                                    <div class="text-block-575">{{ $pari->curre }} {{ $pari->price }}</div>
                                                                 </div>
                                                                 <div class="div-block-6574">
                                                                     <div>
@@ -896,7 +892,7 @@
                     </div>
                     <div class="footer-menu-devider"></div>
                     <div class="copyrights-and-policy w-clearfix">
-                        <div class="right-content"><a href="#" class="social w-inline-block"><img
+                        <div class="right-content"><a href="{{ url('/') }}" class="social w-inline-block"><img
                                     src="https://uploads-ssl.webflow.com/604b733c887fc763fe20f216/60eaa92a7fe3995260322654_twitter.svg"
                                     width="17" alt="" class="image-2" /></a><a href="#"
                                 class="social w-inline-block"><img
