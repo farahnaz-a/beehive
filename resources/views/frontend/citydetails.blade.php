@@ -302,7 +302,7 @@
                                                         <div id="w-node-_3d5382cf-4f90-fd1c-bd40-deaab59eb8bf-50a2731d"
                                                             class="div-block-6508 left"><a
                                                                 id="w-node-_3d5382cf-4f90-fd1c-bd40-deaab59eb8c0-50a2731d"
-                                                                href=""
+                                                                href="{{ route('project.details', $portfolio->id) }}"
                                                                 class="link-block-34 w-inline-block">
                                                                 <h3 class="heading-242">{{ $portfolio->title }}
                                                                 </h3>
@@ -434,8 +434,8 @@
                                     <div class="cities-tabs-content w-tab-content">
                                         <div data-w-tab="Tab 1" class="w-tab-pane w--tab-active">
                                             <div class="collection-list-wrapper-17 w-dyn-list">
-                                                @forelse ($paris as $pari)
                                                 <div role="list" class="cities-project-wrapper w-dyn-items">
+                                                    @forelse ($paris as $pari)
                                                     <div role="listitem" class="popular-cities-item-2 w-dyn-item">
                                                         <div data-w-id="ee4e079f-317f-1187-3d10-a1f7e8b34fab"
                                                             class="project-verticle-card-3">
@@ -521,18 +521,18 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    @empty 
+                                                    <div class="w-dyn-empty">
+                                                      <div>No items found.</div>
+                                                  </div>
+                                                    @endforelse
                                                 </div>
-                                                @empty 
-                                                <div class="w-dyn-empty">
-                                                  <div>No items found.</div>
-                                              </div>
-                                                @endforelse
                                             </div>
                                         </div>
                                         <div data-w-tab="Tab 3" class="w-tab-pane">
                                             <div class="collection-list-wrapper-17 w-dyn-list">
-                                                @forelse ($lyon as $pari)
                                                 <div role="list" class="cities-project-wrapper w-dyn-items">
+                                                    @forelse ($lyon as $pari)
                                                     <div role="listitem" class="popular-cities-item-2 w-dyn-item">
                                                         <div data-w-id="ee4e079f-317f-1187-3d10-a1f7e8b34fab"
                                                             class="project-verticle-card-3">
@@ -618,18 +618,18 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    @empty 
+                                                    <div class="w-dyn-empty">
+                                                      <div>No items found.</div>
+                                                  </div>
+                                                    @endforelse
                                                 </div>
-                                                @empty 
-                                                <div class="w-dyn-empty">
-                                                  <div>No items found.</div>
-                                              </div>
-                                                @endforelse
                                             </div>
                                         </div>
                                         <div data-w-tab="Tab 4" class="w-tab-pane">
                                             <div class="collection-list-wrapper-17 w-dyn-list">
-                                                @forelse ($mars as $pari)
                                                 <div role="list" class="cities-project-wrapper w-dyn-items">
+                                                    @forelse ($mars as $pari)
                                                     <div role="listitem" class="popular-cities-item-2 w-dyn-item">
                                                         <div data-w-id="ee4e079f-317f-1187-3d10-a1f7e8b34fab"
                                                             class="project-verticle-card-3">
@@ -715,18 +715,18 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    @empty 
+                                                    <div class="w-dyn-empty">
+                                                      <div>No items found.</div>
+                                                  </div>
+                                                    @endforelse
                                                 </div>
-                                                @empty 
-                                                <div class="w-dyn-empty">
-                                                  <div>No items found.</div>
-                                              </div>
-                                                @endforelse
                                             </div>
                                         </div>
                                         <div data-w-tab="Tab 5" class="w-tab-pane">
                                             <div class="collection-list-wrapper-17 w-dyn-list">
-                                                @forelse ($bors as $pari)
                                                 <div role="list" class="cities-project-wrapper w-dyn-items">
+                                                    @forelse ($bors as $pari)
                                                     <div role="listitem" class="popular-cities-item-2 w-dyn-item">
                                                         <div data-w-id="ee4e079f-317f-1187-3d10-a1f7e8b34fab"
                                                             class="project-verticle-card-3">
@@ -812,12 +812,12 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    @empty 
+                                                    <div class="w-dyn-empty">
+                                                      <div>No items found.</div>
+                                                  </div>
+                                                    @endforelse
                                                 </div>
-                                                @empty 
-                                                <div class="w-dyn-empty">
-                                                  <div>No items found.</div>
-                                              </div>
-                                                @endforelse
                                             </div>
                                         </div>
                                     </div>
