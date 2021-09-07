@@ -622,13 +622,13 @@
         </div>
            @endforeach
         </div>
-        <div class="w-layout-grid grid-80">
+        {{-- <div class="w-layout-grid grid-80">
             @foreach ($cities as $city)
             <a href="{{ route('city.details', ['country' => strtolower($city->country), 'name' => strtolower($city->name)]) }}" class="w-inline-block">
               <div>{{ $city->name }}</div>
           </a>
             @endforeach
-        </div>
+        </div> --}}
     </div>
 </div>
 

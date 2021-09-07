@@ -10,7 +10,7 @@
               <h5 class="heading-193">Balance totale<span class="text-span-242"></span></h5>
             </div>
             <div class="div-block-6435">
-              <h3 class="heading-203">{{ Auth::user()->balance }} {{ Auth::user()->currency ?? '€' }}</h3>
+              <h3 class="heading-203">{{ Auth::user()->balance ?? 0 }} {{ Auth::user()->currency ?? '€' }}</h3>
             </div>
           </div>
           <div class="div-block-6432">

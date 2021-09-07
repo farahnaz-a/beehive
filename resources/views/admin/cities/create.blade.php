@@ -54,8 +54,8 @@
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label for="name">City Name</label>
-                                    <input type="text" name="name" id="name" class="form-control" value="{{ old('name') }}" placeholder="Enter City Name">
+                                    <label for="name">City</label>
+                                    <input type="text" name="name" id="name" class="form-control" value="{{ old('name') }}" placeholder="Enter City">
                                     @error('name')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror

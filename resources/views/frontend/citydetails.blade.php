@@ -146,11 +146,10 @@
                                     <div id="w-node-_7338c6ae-fc66-7c55-bbbc-480edecb4e8c-50a2731d"
                                         class="div-block-6582">
                                         <div class="subtitle-wrapper">
-                                            <div class="subtitle-9">Provence-Alpes-Côte d&#x27;
-                                                Azur</div>
+                                            <div class="subtitle-9">{{ $data->region }}</div>
                                         </div>
-                                        <h1 class="heading-228">Montpellier<br /><span
-                                                class="text-span-256">France</span></h1>
+                                        <h1 class="heading-228">{{ $data->name }}<br /><span
+                                                class="text-span-256">{{ $data->country }}</span></h1>
                                     </div><a id="w-node-_7338c6ae-fc66-7c55-bbbc-480edecb4e92-50a2731d" href="#"
                                         class="button-hero w-inline-block">
                                         <div>Afficher la map</div>
@@ -313,7 +312,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="text-block-575">{{ $portfolio->price }} {{ $portfolio->curr }}</div>
+                                                        <div class="text-block-575">@convert($portfolio->price) {{ $portfolio->curr }}</div>
                                                         <div class="w-layout-grid grid-88">
                                                             <div class="div-block-6593">
                                                                 <div class="div-block-6458">
@@ -361,13 +360,17 @@
                         <div class="about-intro">
                             <div class="div-block-6519">
                                 <h1 class="heading-227">{{ $data->title }}<br /></h1>
-                                <div class="text-block-455"><span class="text-span-245">Dernière mise a jour :</span>{{ $data->created_at->format('d M Y') }}</div>
+                                <div class="text-block-455"><span class="text-span-245">Dernière mise a jour : </span>
+                                    @php                                           
+                                    \Carbon\Carbon::setLocale('es');                                              $date_to_show_in_view = $data->created_at->formatLocalized('d M Y');                                            
+                                    @endphp
+                                    {{ $date_to_show_in_view }}</div>
                                 <div class="div-block-6511">
                                     <p class="paragraphe-normal">{{ $data->description_1 }}</p>
                                     <p class="paragraphe-normal">{{ $data->description_2 }}</p>
-                                    <a href="#" class="link-block-24 w-inline-block">
+                                    {{-- <a href="#" class="link-block-24 w-inline-block">
                                         <div class="text-block-581">Afficher plus</div>
-                                    </a>
+                                    </a> --}}
                                 </div>
                             </div>
                         </div>
@@ -480,7 +483,8 @@
                                                                             <h3 class="heading-242">{{ $pari->title }}
                                                                                 Paris</h3>
                                                                         </a></div>
-                                                                    <div class="text-block-575">{{ $pari->curre }} {{ $pari->price }}</div>
+                                                                    <div class="text-block-575">{{ $pari->curre }} 
+                                                                    @convert($pari->price)</div>
                                                                 </div>
                                                                 <div class="div-block-6574">
                                                                     <div>
@@ -507,7 +511,7 @@
                                                                         class="vacation-price-2">
                                                                         <div class="subtitle-5 small">A partir de </div>
                                                                         <div class="dynamic-price-text-2">
-                                                                            <div class="text-block-633">{{ $pari->miniprice }} {{ $pari->curre }}</div>
+                                                                            <div class="text-block-633">@convert($pari->miniprice) {{ $pari->curre }}</div>
                                                                         </div>
                                                                     </div>
                                                                     <div class="div-block-6572">
@@ -577,7 +581,7 @@
                                                                             <h3 class="heading-242">{{ $pari->title }}
                                                                                 Paris</h3>
                                                                         </a></div>
-                                                                    <div class="text-block-575">{{ $pari->curre }} {{ $pari->price }}</div>
+                                                                    <div class="text-block-575">{{ $pari->curre }} @convert($pari->price)</div>
                                                                 </div>
                                                                 <div class="div-block-6574">
                                                                     <div>
@@ -604,7 +608,7 @@
                                                                         class="vacation-price-2">
                                                                         <div class="subtitle-5 small">A partir de </div>
                                                                         <div class="dynamic-price-text-2">
-                                                                            <div class="text-block-633">{{ $pari->miniprice }} {{ $pari->curre }}</div>
+                                                                            <div class="text-block-633">@convert($pari->miniprice) {{ $pari->curre }}</div>
                                                                         </div>
                                                                     </div>
                                                                     <div class="div-block-6572">
@@ -674,7 +678,7 @@
                                                                             <h3 class="heading-242">{{ $pari->title }}
                                                                                 Paris</h3>
                                                                         </a></div>
-                                                                    <div class="text-block-575">{{ $pari->curre }} {{ $pari->price }}</div>
+                                                                    <div class="text-block-575">{{ $pari->curre }} @convert($pari->price)</div>
                                                                 </div>
                                                                 <div class="div-block-6574">
                                                                     <div>
@@ -701,7 +705,7 @@
                                                                         class="vacation-price-2">
                                                                         <div class="subtitle-5 small">A partir de </div>
                                                                         <div class="dynamic-price-text-2">
-                                                                            <div class="text-block-633">{{ $pari->miniprice }} {{ $pari->curre }}</div>
+                                                                            <div class="text-block-633">@convert($pari->miniprice) {{ $pari->curre }}</div>
                                                                         </div>
                                                                     </div>
                                                                     <div class="div-block-6572">
@@ -771,7 +775,7 @@
                                                                             <h3 class="heading-242">{{ $pari->title }}
                                                                                 Paris</h3>
                                                                         </a></div>
-                                                                    <div class="text-block-575">{{ $pari->curre }} {{ $pari->price }}</div>
+                                                                    <div class="text-block-575">{{ $pari->curre }} @convert($pari->price)</div>
                                                                 </div>
                                                                 <div class="div-block-6574">
                                                                     <div>
@@ -798,7 +802,7 @@
                                                                         class="vacation-price-2">
                                                                         <div class="subtitle-5 small">A partir de </div>
                                                                         <div class="dynamic-price-text-2">
-                                                                            <div class="text-block-633">{{ $pari->miniprice }} {{ $pari->curre }}</div>
+                                                                            <div class="text-block-633">@convert($pari->miniprice) {{ $pari->curre }}</div>
                                                                         </div>
                                                                     </div>
                                                                     <div class="div-block-6572">
@@ -925,9 +929,9 @@
                 src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=604b733c887fc763fe20f216"
                 type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
                 crossorigin="anonymous"></script>
-            <script src="https://uploads-ssl.webflow.com/604b733c887fc763fe20f216/js/webflow.998ac717e.js"
-                type="text/javascript"></script>
-                <script src="//cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script>
+             <script src="{{ asset('new.js') }}"
+                type="text/javascript"></script> 
+                <script src="//cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script> 
               
         </body>
 

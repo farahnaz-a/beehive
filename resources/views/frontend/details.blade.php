@@ -124,9 +124,17 @@
         @endif
         <div class="container">
             <div class="project_icon d-flex justify-content-end pb-20">
-                <a style="color: #2d3958;" href="">
+                @guest
+                <a style="color: #2d3958; cursor:pointer;" data-toggle="modal"
+                data-target="#exampleModalCenter">
                     <h4><i class="far fa-heart"></i>Favoris</h4>
                 </a>
+                @endguest
+                @auth
+                <a style="color: #2d3958; cursor:pointer;">
+                    <h4><i class="far fa-heart"></i>Favoris</h4>
+                </a>
+                @endauth
                 <a style="color : #2d3958;" href="https://www.facebook.com/sharer/sharer.php?u={{ Request::url() }}&display=popup">
                 <h4>
                         <i class="fas fa-external-link-alt"></i>Partager
@@ -401,16 +409,16 @@
                         </div>
                         <div class="cities_grid">
                             <div class="row no-gutters justify-content-center">
-                                @foreach ($invests as $invest)
+                                @foreach ($cities as $city)
                                     
                                 <div class="col-xl-2 col-lg-3 col-md-3 col-sm-6 col-12">
                                     <div class="city_card">
                                         <div class="city_image">
-                                            <img src="{{ asset('uploads/invests') }}/{{ $invest->image }}" class="img-fluid w-100" alt="not-found">
+                                            <img src="{{ asset('uploads/cities') }}/{{ $city->slider_image }}" class="img-fluid w-100" alt="not-found">
                                         </div>
                                         <div class="city_text">
-                                            <h3>{{ ucwords($invest->name) }}</h3>
-                                            <a href="#" class="btn">Explore</a>
+                                            <h3>{{ ucwords($city->name) }}</h3>
+                                            <a href="{{ route('city.details', ['country' => strtolower($city->country), 'name' => strtolower($city->name)]) }}" class="btn">Explore</a>
                                         </div>
                                     </div>
                                 </div>
@@ -421,13 +429,13 @@
                             <div class="row no-gutters">
                           
 
-                              @foreach ($cities->chunk(4) as $array)
+                              {{-- @foreach ($cities->chunk(4) as $array)
                               <div class="city_names_column col-xl col-lg-2 col-md-3 col-sm-4 col-6">
                                   @foreach ($array as $city)
                                   <a href="#">{{ $city->name }}</a>
                                   @endforeach
                               </div>
-                              @endforeach
+                              @endforeach --}}
 
                             </div>
                         </div>
