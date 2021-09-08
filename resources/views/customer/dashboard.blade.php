@@ -913,7 +913,7 @@
                             $city = \App\Models\City::where('id', $project->city_name)->first();
                         @endphp
                         <div class="w-layout-grid table-row">
-                          <div id="w-node-c9409832-747e-90cf-d36b-71a49a898375-9dc5fdf1" class="table-title">{{ $city->country }}</div>
+                          <div id="w-node-c9409832-747e-90cf-d36b-71a49a898375-9dc5fdf1" class="table-title">{{ $city->country ?? 'France' }}</div>
                           <div id="w-node-eda99167-4ddd-59d4-573d-5a492270a72e-9dc5fdf1" class="paragraph">{{ $city->name }}</div>
                           <div class="table-avatar-row">
                             <img src="{{ Auth::user()->profile_photo_url }}" loading="lazy" alt="" class="in-row-avatar first">

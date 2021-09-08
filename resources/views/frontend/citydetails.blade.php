@@ -362,7 +362,8 @@
                                 <h1 class="heading-227">{{ $data->title }}<br /></h1>
                                 <div class="text-block-455"><span class="text-span-245">Dernière mise a jour : </span>
                                     @php                                           
-                                    \Carbon\Carbon::setLocale('es');                                              $date_to_show_in_view = $data->created_at->format('d M Y');                                            
+                                    \Carbon\Carbon::setLocale('es'); 
+                                    $date_to_show_in_view = $data->created_at->format('d M Y');                                            
                                     @endphp
                                     {{ $date_to_show_in_view }}</div>
                                 <div class="div-block-6511">
