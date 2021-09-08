@@ -567,7 +567,23 @@
 </body>
 </html> --}}
 
+@php
+    $six = \App\Models\Portfolio::where('created_at', \Carbon\Carbon::now()->subDays(6))->get()->count();
+    $daysix = \Carbon\Carbon::now()->subDays(6)->format('d M');
+    $dayfive = \Carbon\Carbon::now()->subDays(5)->format('d M');
+    $dayfour = \Carbon\Carbon::now()->subDays(4)->format('d M');
+    $daythree = \Carbon\Carbon::now()->subDays(3)->format('d M');
+    $daytwo = \Carbon\Carbon::now()->subDays(2)->format('d M');
+    $dayone = \Carbon\Carbon::now()->subDays(1)->format('d M');
+    $five = \App\Models\Portfolio::where('created_at', \Carbon\Carbon::now()->subDays(5))->get()->count();
+    $four = \App\Models\Portfolio::where('created_at', \Carbon\Carbon::now()->subDays(4))->get()->count();
+    $three = \App\Models\Portfolio::where('created_at', \Carbon\Carbon::now()->subDays(3))->get()->count();
+    $two = \App\Models\Portfolio::where('created_at', \Carbon\Carbon::now()->subDays(2))->get()->count();
+    $one = \App\Models\Portfolio::where('created_at', \Carbon\Carbon::now()->subDays(1))->get()->count();
 
+    $data = [$six, $five, $four, $three, $two, $one];
+    $day = [$daysix, $dayfive, $dayfour, $daythree, $daytwo, $dayone];
+@endphp
 <!DOCTYPE html><!--  This site was created in Webflow. http://www.webflow.com  -->
 <!--  Last Published: Fri Aug 20 2021 20:26:58 GMT+0000 (Coordinated Universal Time)  -->
 <html data-wf-page="6086c918a477ec939dc5fdf1" data-wf-site="604b733c887fc763fe20f216" lang="en">
@@ -729,9 +745,10 @@
                   <a href="#" class="options-2 w-dropdown-link">Cette année</a>
                 </nav>
               </div>
-           </div><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" alt="" class="image-189">
-          </div>  
-          {{-- <canvas id="myChart" width="400" height="400"></canvas> --}}
+         </div>
+         <div> <canvas id="myChart"></canvas> </div>
+          </div>   
+          
           <div class="table-module-2">
             <div class="table-header">
               <h4 class="no-space-bottom-3">Notifications et parametres</h4>
@@ -913,7 +930,7 @@
                             $city = \App\Models\City::where('id', $project->city_name)->first();
                         @endphp
                         <div class="w-layout-grid table-row">
-                          <div id="w-node-c9409832-747e-90cf-d36b-71a49a898375-9dc5fdf1" class="table-title">{{ $city->country ?? 'France' }}</div>
+                          <div id="w-node-c9409832-747e-90cf-d36b-71a49a898375-9dc5fdf1" class="table-title">{{ $city->country }}</div>
                           <div id="w-node-eda99167-4ddd-59d4-573d-5a492270a72e-9dc5fdf1" class="paragraph">{{ $city->name }}</div>
                           <div class="table-avatar-row">
                             <img src="{{ Auth::user()->profile_photo_url }}" loading="lazy" alt="" class="in-row-avatar first">
@@ -1089,16 +1106,25 @@
       </div>
     </div>
   </div>
+
+
+
+
+
+
+
+
+
   <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=604b733c887fc763fe20f216" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
   <script>
     var ctx = document.getElementById('myChart').getContext('2d');
     var myChart = new Chart(ctx, {
-        type: 'bar',
+        type: 'line',
         data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            labels: @json($day),
             datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
+                label: '# of Projects',
+                data: @json($data),
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',

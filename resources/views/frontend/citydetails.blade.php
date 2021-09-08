@@ -1,6 +1,5 @@
 @php
     $projects = \App\Models\Portfolio::where('city_name', $data->id)->get();
- 
 @endphp
 <!DOCTYPE html>
         <!-- Last Published: Tue Aug 24 2021 20:29:02 GMT+0000 (Coordinated Universal Time) -->
@@ -64,6 +63,7 @@
         </head>
 
         <body class="body-24">
+            @auth
             <div data-collapse="medium" data-animation="over-left" data-duration="400" data-doc-height="1" role="banner"
                 class="nav-top connected w-nav">
                 <div class="navigation-container w-container">
@@ -137,6 +137,83 @@
                     </div>
                 </div>
             </div>
+            @endauth 
+            @guest
+            <div data-collapse="medium" data-animation="over-left" data-duration="400" role="banner" class="nav-top homepage w-nav">
+                <div class="navigation-container w-container">
+                  <div class="div-block-6387">
+                    <div class="menu-button-9 w-nav-button"><img src="https://uploads-ssl.webflow.com/604b733c887fc763fe20f216/60e9816bd34c3d51041643fb_60dca32b27ab1d2e3248dab3_menu.svg" loading="lazy" alt=""></div>
+                    <div class="navigation-left">
+                      <a href="{{ url('/') }}" class="brand-8 w-nav-brand"><img src="https://uploads-ssl.webflow.com/604b733c887fc763fe20f216/611666db24b4ca371ecda4e8_Untitled-3.png" loading="lazy" width="40" alt="b.hives Logo"></a>
+                    </div>
+                    <nav role="navigation" class="nav-menu-18 w-nav-menu">
+                      <div class="nav-menu-links-3">
+                        <a href="#steps" class="nav-link-31 w-inline-block">
+                          <div class="link-text-3">Comment ca marche</div>
+                          <div class="link-cover header"></div>
+                        </a>
+                        <a href="#last" class="nav-link-31 w-inline-block">
+                          <div class="link-text-3">Derniers projets</div>
+                          <div class="link-cover header"></div>
+                        </a>
+                        <a href="#prices" class="nav-link-31 w-inline-block">
+                          <div class="link-text-3">Tarifs</div>
+                          <div class="link-cover header"></div>
+                        </a>
+                        <a href="#FAQ" class="nav-link-31 w-inline-block">
+                          <div class="link-text-3">Aide / FAQ</div>
+                          <div class="link-cover header"></div>
+                        </a>
+                      </div>
+                      <div class="mobile-destinations-wrapper">
+                        <div class="subtitle-intro-wrapper-2">
+                          <div class="subtitle-12">Destinations</div>
+                          <div id="w-node-_76ddff02-2f6c-8f77-cdf2-ce0e3fe564ab-3fe5648d" class="horizontal-line-2"></div>
+                        </div>
+                        <div class="mobile-destinations w-dyn-list">
+                          <div role="list" class="mobile-destinations-list w-dyn-items">
+                            <div role="listitem" class="w-dyn-item"></div>
+                          </div>
+                          <div class="w-dyn-empty">
+                            <div>No items found.</div>
+                          </div>
+                        </div>
+                      </div>
+                    </nav>
+                    <div class="navigation-right">
+                      <div data-hover="false" data-delay="400" id="w-node-_76ddff02-2f6c-8f77-cdf2-ce0e3fe564b3-3fe5648d" data-w-id="76ddff02-2f6c-8f77-cdf2-ce0e3fe564b3" class="nav-button-2 w-dropdown">
+                        <div data-w-id="76ddff02-2f6c-8f77-cdf2-ce0e3fe564b4" class="button create-an-account w-dropdown-toggle">
+                          <div>Créer un compte</div>
+                          <div data-w-id="76ddff02-2f6c-8f77-cdf2-ce0e3fe564b7" data-animation-type="lottie" data-src="https://uploads-ssl.webflow.com/60c7009561a1025ac26bd3ae/60c7009561a10224436bd411_Light-dropdown.json" data-loop="0" data-direction="1" data-autoplay="0" data-is-ix2-target="1" data-renderer="svg" data-default-duration="2" data-duration="0" data-ix2-initial-state="50" class="dropdown-lottie"></div>
+                        </div>
+                        <nav class="dropdown-list-14 flex-left w-dropdown-list">
+                          <div class="dropdown-wrapper-2">
+                            <div id="w-node-_76ddff02-2f6c-8f77-cdf2-ce0e3fe564ba-3fe5648d" class="subtitle-intro-wrapper-2">
+                              <div class="subtitle-11">Type de compte</div>
+                              <div id="w-node-_76ddff02-2f6c-8f77-cdf2-ce0e3fe564bd-3fe5648d" class="horizontal-line-2"></div>
+                            </div>
+                            <div class="div-block-6591">
+                              <div>
+                                <h4 class="heading-247">Investisseurs</h4>
+                              </div>
+                              <div>
+                                <h4 class="heading-247">Propriétaires</h4>
+                              </div>
+                              <div>
+                                <h4 class="heading-247">Professionnels <span class="text-span-253">Bientôt</span></h4>
+                              </div>
+                            </div>
+                          </div>
+                        </nav>
+                      </div>
+                      <div class="div-block-6523">
+                        <a data-authpack="open" href="{{ route('login') }}" class="button-hero small w-button">Connexion</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            @endguest
             <div class="listingprojectstown wf-section">
                 <div class="grid-wrapper-5">
                     <div id="w-node-_7338c6ae-fc66-7c55-bbbc-480edecb4e86-50a2731d" class="projects-dual-grid">
@@ -479,7 +556,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="div-block-6508 center"><a
-                                                                            href="/my-villa-prague2" target="_blank"
+                                                                            href="{{ route('project.details', $pari->id) }}" target="_blank"
                                                                             class="link-block-38 w-inline-block">
                                                                             <h3 class="heading-242">{{ $pari->title }}
                                                                                 Paris</h3>
@@ -577,7 +654,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="div-block-6508 center"><a
-                                                                            href="/my-villa-prague2" target="_blank"
+                                                                            href="{{ route('project.details', $pari->id) }}" target="_blank"
                                                                             class="link-block-38 w-inline-block">
                                                                             <h3 class="heading-242">{{ $pari->title }}
                                                                                 Paris</h3>
@@ -674,7 +751,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="div-block-6508 center"><a
-                                                                            href="/my-villa-prague2" target="_blank"
+                                                                            href="{{ route('project.details', $pari->id) }}" target="_blank"
                                                                             class="link-block-38 w-inline-block">
                                                                             <h3 class="heading-242">{{ $pari->title }}
                                                                                 Paris</h3>
@@ -771,7 +848,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="div-block-6508 center"><a
-                                                                            href="/my-villa-prague2" target="_blank"
+                                                                            href="{{ route('project.details', $pari->id) }}" target="_blank"
                                                                             class="link-block-38 w-inline-block">
                                                                             <h3 class="heading-242">{{ $pari->title }}
                                                                                 Paris</h3>

@@ -63,7 +63,7 @@
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label for="title">Titile</label>
+                                    <label for="title">Title</label>
                                     <input type="text" name="title" id="title" class="form-control" value="{{ old('title') }}" placeholder="Enter Title">
                                     @error('title')
                                         <small class="text-danger">{{ $message }}</small>

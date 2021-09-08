@@ -555,7 +555,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="montant">Montant (Eur)</label>
-                                <input type="text" readonly id="montant" name="amount" class="form-control" placeholder="A partir de {{ $data->miniprice }} €">
+                                <input type="text" readonly id="montant" name="amount" class="form-control" placeholder="A partir de @convert($data->miniprice) €">
                                 @error('amount')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
@@ -570,15 +570,15 @@
                     @endif
                     @endforeach
                     @endif
-                    <p><b>Montant :</b> {{ $bricks->sum('amount') }} € atteint sur {{ $data->price }} €</p>
+                    <p><b>Montant :</b> {{ $bricks->sum('amount') }} € atteint sur @convert($data->price) €</p>
                     <p><b>Briques :</b> 3,500 sur 21,350 </p>
-                    <p class="color_purple"><b>1 brique = {{ $data->miniprice }}{{ $data->curre }}</b></p>
+                    <p class="color_purple"><b>1 brique = @convert($data->miniprice){{ $data->curre }}</b></p>
                     <p class="termsandcondition d-none">
                         <input type="checkbox">
                         Tu reconnais avoir pris connaissance des <span class="color_green">terms et conditions d'utilisation</span>
                     </p>
                     <div class="modal-footer text-center mt-25">
-                        <input type="hidden" name="miniprice" value="{{ $data->miniprice }}">
+                        <input type="hidden" name="miniprice" value="@convert($data->miniprice)">
                         <input type="hidden" name="portfolio_id" value="{{ $data->id }}">
                         <button type="submit" class="continue_btn m-auto">Continuer</button>
                     </div>
@@ -715,7 +715,7 @@
         $(document).ready(function(){
             $("#briques").keyup(function(){
                 let bricks = $("#briques").val(), 
-                    price = bricks * "{{ $data->miniprice }}"; 
+                    price = bricks * "@convert($data->miniprice)"; 
 
                  $("#montant").val(price);
                  
@@ -723,7 +723,7 @@
 
             // $("#montant").keyup(function(){
             //     let amount = $("#montant").val(), 
-            //         bricks = amount / "{{ $data->miniprice }}"; 
+            //         bricks = amount / "@convert($data->miniprice)"; 
 
             //     $("#briques").val(Math.floor(bricks));
             // });
