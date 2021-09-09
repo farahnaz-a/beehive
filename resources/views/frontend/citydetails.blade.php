@@ -207,7 +207,7 @@
                         </nav>
                       </div>
                       <div class="div-block-6523">
-                        <a data-authpack="open" href="{{ route('login') }}" class="button-hero small w-button">Connexion</a>
+                        <a href="{{ route('login') }}" class="button-hero small w-button">Connexion</a>
                       </div>
                     </div>
                   </div>
@@ -562,7 +562,7 @@
                                                                                 Paris</h3>
                                                                         </a></div>
                                                                     <div class="text-block-575">{{ $pari->curre }} 
-                                                                    @convert($pari->price)</div>
+                                                                   @convert($pari->price)</div>
                                                                 </div>
                                                                 <div class="div-block-6574">
                                                                     <div>

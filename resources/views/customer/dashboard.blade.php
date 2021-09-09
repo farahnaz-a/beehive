@@ -568,18 +568,18 @@
 </html> --}}
 
 @php
-    $six = \App\Models\Portfolio::where('created_at', \Carbon\Carbon::now()->subDays(6))->get()->count();
-    $daysix = \Carbon\Carbon::now()->subDays(6)->format('d M');
-    $dayfive = \Carbon\Carbon::now()->subDays(5)->format('d M');
-    $dayfour = \Carbon\Carbon::now()->subDays(4)->format('d M');
-    $daythree = \Carbon\Carbon::now()->subDays(3)->format('d M');
-    $daytwo = \Carbon\Carbon::now()->subDays(2)->format('d M');
-    $dayone = \Carbon\Carbon::now()->subDays(1)->format('d M');
-    $five = \App\Models\Portfolio::where('created_at', \Carbon\Carbon::now()->subDays(5))->get()->count();
-    $four = \App\Models\Portfolio::where('created_at', \Carbon\Carbon::now()->subDays(4))->get()->count();
-    $three = \App\Models\Portfolio::where('created_at', \Carbon\Carbon::now()->subDays(3))->get()->count();
-    $two = \App\Models\Portfolio::where('created_at', \Carbon\Carbon::now()->subDays(2))->get()->count();
-    $one = \App\Models\Portfolio::where('created_at', \Carbon\Carbon::now()->subDays(1))->get()->count();
+    $six = \App\Models\Portfolio::whereDate('created_at',  \Carbon\Carbon::today()->subDays(6))->get()->count();
+    $daysix = \Carbon\Carbon::today()->subDays(6)->format('d M');
+    $dayfive = \Carbon\Carbon::today()->subDays(5)->format('d M');
+    $dayfour = \Carbon\Carbon::today()->subDays(4)->format('d M');
+    $daythree = \Carbon\Carbon::today()->subDays(3)->format('d M');
+    $daytwo = \Carbon\Carbon::today()->subDays(2)->format('d M');
+    $dayone = \Carbon\Carbon::today()->subDays(1)->format('d M');
+    $five = \App\Models\Portfolio::whereDate('created_at', \Carbon\Carbon::today()->subDays(5))->get()->count();
+    $four = \App\Models\Portfolio::whereDate('created_at', \Carbon\Carbon::today()->subDays(4))->get()->count();
+    $three = \App\Models\Portfolio::whereDate('created_at', \Carbon\Carbon::today()->subDays(3))->get()->count();
+    $two = \App\Models\Portfolio::whereDate('created_at', \Carbon\Carbon::today()->subDays(2))->get()->count();
+    $one = \App\Models\Portfolio::whereDate('created_at', \Carbon\Carbon::today()->subDays(1))->get()->count();
 
     $data = [$six, $five, $four, $three, $two, $one];
     $day = [$daysix, $dayfive, $dayfour, $daythree, $daytwo, $dayone];
@@ -919,6 +919,7 @@
                       <div class="w-layout-grid table-headers">
                         <div class="caption-large">Pays</div>
                         <div class="caption-large">Ville</div>
+                        <div class="caption-large">Projet</div>
                         <div class="caption-large">Investisseurs</div>
                         <div class="caption-large">Briques</div>
                         <div class="caption-large">Valeur (€)</div>
@@ -932,6 +933,7 @@
                         <div class="w-layout-grid table-row">
                           <div id="w-node-c9409832-747e-90cf-d36b-71a49a898375-9dc5fdf1" class="table-title">{{ $city->country }}</div>
                           <div id="w-node-eda99167-4ddd-59d4-573d-5a492270a72e-9dc5fdf1" class="paragraph">{{ $city->name }}</div>
+                          <div id="w-node-eda99167-4ddd-59d4-573d-5a492270a72e-9dc5fdf1" class="paragraph">{{ $project->title }}</div>
                           <div class="table-avatar-row">
                             <img src="{{ Auth::user()->profile_photo_url }}" loading="lazy" alt="" class="in-row-avatar first">
                             @foreach (\App\Models\Brick::where('portfolio_id', $brick->portfolio_id)->get() as $item)
@@ -941,9 +943,9 @@
                             @endforeach <img src="{{ \App\Models\User::find($item->user_id)->profile_photo_url }}" loading="lazy" alt="" class="project-avatar">
                           </div>
                           <div class="status">
-                            <div class="paragraph">{{ $project->quantity_of_bricks }}</div>
+                            <div class="paragraph">{{ $brick->bricks_qty }}</div>
                           </div>
-                          <div id="w-node-c9409832-747e-90cf-d36b-71a49a89837f-9dc5fdf1" class="paragraph">{{ $project->price }}</div>
+                          <div id="w-node-c9409832-747e-90cf-d36b-71a49a89837f-9dc5fdf1" class="paragraph">{{ $brick->amount }}</div>
                         </div>
                       </a>
                       @endforeach
@@ -956,7 +958,9 @@
                     <div class="card-header">
                       <h5 class="heading-221">Projets par pays</h5>
                     </div>
-                    <div class="child-content-center"><img src="images/Dash-Chart-04.svg" loading="lazy" alt="" class="cirlce-chart">
+                    <div class="child-content-center">
+                      <canvas id="myChartt" width="400" height="400"></canvas>
+
                       <div class="chart-colors-wrapper">
                         <div class="label-2">
                           <div class="indication-color bg-primary-blue"></div>
@@ -977,7 +981,7 @@
                     <div class="card-header">
                       <h5 class="heading-221">Repartition par pays</h5>
                     </div>
-                    <div class="child-content-center"><img src="images/Dash-Chart-01.svg" loading="lazy" alt="" class="cirlce-chart">
+                    <div class="child-content-center"><img src="{{ asset('new_user_dashboard_assets/images/Dash-Chart-01.svg') }}" loading="lazy" alt="" class="cirlce-chart">
                       <div class="chart-colors-wrapper">
                         <div class="label-2">
                           <div class="indication-color bg-primary-blue"></div>
@@ -1153,6 +1157,91 @@
         }
     });
     </script>
+  
+  
+  
+  <script>
+    var ctx = document.getElementById('myChartt').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bubble',
+        data: {
+            datasets: [{
+                label: 'Paris',
+                data: [{
+                  x: 20,
+                  y: 30,
+                  r: 15
+                }, {
+                  x: 40,
+                  y: 10,
+                  r: 10
+                }, {
+                  x: 60,
+                  y: 20,
+                  r: 10
+                },{
+                  x: 80,
+                  y: 40,
+                  r: 10
+                }, {
+                  x: 10,
+                  y: 30,
+                  r: 10
+                }
+              ],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ]
+              } , {
+                label: 'Lyon',
+                data: [{
+                  x: 10,
+                  y: 30,
+                  r: 15
+                }, {
+                  x: 50,
+                  y: 10,
+                  r: 10
+                }, {
+                  x: 40,
+                  y: 20,
+                  r: 10
+                },{
+                  x: 40,
+                  y: 40,
+                  r: 10
+                }, {
+                  x: 90,
+                  y: 30,
+                  r: 10
+                }
+              ],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ]
+              }   ],
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    </script>
+  
+  
   <script src="  {{ asset('new_user_dashboard_assets/js/webflow.js') }}" type="text/javascript"></script>
   <!-- [if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif] -->
 </body>

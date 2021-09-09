@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
         Paginator::useBootstrap();
         Blade::directive('convert', function ($money) {
-            return "<?php echo number_format($money, 2, ' ' , ' '); ?>";
+            return "<?php echo number_format($money,2); ?>";
         });
     }
 }
