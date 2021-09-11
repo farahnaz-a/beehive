@@ -37,7 +37,7 @@ active
                             </tr>
                             <tr>
                                 <th>City Name</th>
-                                <td>{{ $portfolio->city_name }}</td>
+                                <td>{{ \App\Models\City::where('id', $portfolio->city_name)->first()->name }}</td>
                             </tr>
                             <tr>
                                 <th>Title</th>

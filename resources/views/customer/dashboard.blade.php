@@ -822,8 +822,8 @@
               <div class="div-block-6464">
                 <div class="caption-3">Benefices</div>
                 <div class="numbers-wrapper">
-                  <h3 class="number-3">4,389 €</h3>
-                  <div class="negative-value">(- 10%)</div>
+                  <h3 class="number-3">0 €</h3>
+                  <div class="negative-value">(0%)</div>
                 </div>
               </div>
             </div>
@@ -860,7 +860,7 @@
             <div class="div-block-641">
               <h4 class="heading-222">Projets</h4>
               <div id="w-node-_05b140f6-e512-9b0c-15d1-b34879d485f3-9dc5fdf1" class="form-block-17 w-form">
-                <form id="email-form" name="email-form" data-name="Email Form"><input type="text" class="input-field w-input" maxlength="256" name="name-2" data-name="Name 2" placeholder="Rechercher par nom, mot clés, localisation ..." id="name-2"></form>
+              
                 <div class="w-form-done">
                   <div>Thank you! Your submission has been received!</div>
                 </div>
@@ -883,32 +883,40 @@
                 <div class="div-block-6350">
                   <div class="collection-list-wrapper-32 w-dyn-list">
                     <div role="list" class="collection-list-13 w-dyn-items">
-                      <div role="listitem" class="collection-item-10 w-dyn-item">
-                        <a id="w-node-_18c093c3-e264-6bee-77ef-8f668b0862cb-9dc5fdf1" data-w-id="18c093c3-e264-6bee-77ef-8f668b0862cb" href="#" class="related-vacation w-inline-block">
-                          <div data-w-id="18c093c3-e264-6bee-77ef-8f668b0862cc" class="location-image">
-                            <div class="overlay light"></div>
-                          </div>
-                          <div id="w-node-_18c093c3-e264-6bee-77ef-8f668b0862ce-9dc5fdf1" class="featured-vacation-tag">
-                            <div class="text-block-504">🇫🇷 France</div>
-                          </div>
-                          <div id="w-node-_18c093c3-e264-6bee-77ef-8f668b0862d1-9dc5fdf1" class="related-vacation-info-3">
-                            <h3 id="w-node-_18c093c3-e264-6bee-77ef-8f668b0862d2-9dc5fdf1" class="heading-159"></h3>
-                            <div id="w-node-_18c093c3-e264-6bee-77ef-8f668b0862d4-9dc5fdf1" class="featured-location-price">
-                              <div class="div-block-6352">
-                                <div class="subtitle-6"></div>
-                              </div>
-                              <div class="price-grid">
-                                <div id="w-node-_18c093c3-e264-6bee-77ef-8f668b0862da-9dc5fdf1" class="subtitle-6"></div>
-                                <div id="w-node-_18c093c3-e264-6bee-77ef-8f668b0862d8-9dc5fdf1" class="dolar-sign">€</div>
+                      @forelse (\App\Models\Brick::where('user_id', Auth::id())->get() as $key => $item)
+                        @php
+                            $project = \App\Models\Portfolio::where('id', $item->portfolio_id)->first();
+                        @endphp
+                         <div role="listitem" class="collection-item-10 w-dyn-item">
+                          <a id="w-node-_18c093c3-e264-6bee-77ef-8f668b0862cb-9dc5fdf1" data-w-id="18c093c3-e264-6bee-77ef-8f668b0862cb" href="{{ route('project.details', $project->id) }}" class="related-vacation w-inline-block">
+                            <div data-w-id="18c093c3-e264-6bee-77ef-8f668b0862cc" class="location-image" style="background-image: url({{ asset('uploads/portfolios') }}/{{ $project->image }});">
+                              <div class="overlay light"></div>
+                            </div>
+                            <div id="w-node-_18c093c3-e264-6bee-77ef-8f668b0862ce-9dc5fdf1" class="featured-vacation-tag">
+                              <div class="text-block-504">{{ \App\Models\City::where('id', $project->city_name)->first()->name }}</div>
+                            </div>
+                            <div id="w-node-_18c093c3-e264-6bee-77ef-8f668b0862d1-9dc5fdf1" class="related-vacation-info-3">
+                              <h3 id="w-node-_18c093c3-e264-6bee-77ef-8f668b0862d2-9dc5fdf1" class="heading-159"></h3>
+                              <div id="w-node-_18c093c3-e264-6bee-77ef-8f668b0862d4-9dc5fdf1" class="featured-location-price">
+                                <div class="div-block-6352">
+                                  <div class="subtitle-6"></div>
+                                </div>
+                                <div class="price-grid">
+                                  <div id="w-node-_18c093c3-e264-6bee-77ef-8f668b0862da-9dc5fdf1" class="subtitle-6">{{ $project->price }}</div>
+                                  <div id="w-node-_18c093c3-e264-6bee-77ef-8f668b0862d8-9dc5fdf1" class="dolar-sign">€</div>
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        </a>
-                      </div>
+                          </a>
+                        </div>
+                        @empty
+                        <div class="w-dyn-empty">
+                          <div>No items found.</div>
+                        </div>
+                      @endforelse 
+                      
                     </div>
-                    <div class="w-dyn-empty">
-                      <div>No items found.</div>
-                    </div>
+                   
                   </div>
                 </div>
               </div>
@@ -935,12 +943,7 @@
                           <div id="w-node-eda99167-4ddd-59d4-573d-5a492270a72e-9dc5fdf1" class="paragraph">{{ $city->name }}</div>
                           <div id="w-node-eda99167-4ddd-59d4-573d-5a492270a72e-9dc5fdf1" class="paragraph">{{ $project->title }}</div>
                           <div class="table-avatar-row">
-                            <img src="{{ Auth::user()->profile_photo_url }}" loading="lazy" alt="" class="in-row-avatar first">
-                            @foreach (\App\Models\Brick::where('portfolio_id', $brick->portfolio_id)->get() as $item)
-                            @if($item->user_id != Auth::id())
-                            <img src="{{ \App\Models\User::find($item->user_id)->profile_photo_url }}" loading="lazy" alt="" class="project-avatar">
-                            @endif
-                            @endforeach <img src="{{ \App\Models\User::find($item->user_id)->profile_photo_url }}" loading="lazy" alt="" class="project-avatar">
+                            {{ \App\Models\Brick::where('portfolio_id', $brick->portfolio_id)->get()->count() }}
                           </div>
                           <div class="status">
                             <div class="paragraph">{{ $brick->bricks_qty }}</div>
@@ -962,18 +965,23 @@
                       <canvas id="myChartt" width="400" height="400"></canvas>
 
                       <div class="chart-colors-wrapper">
+                        @foreach (\App\Models\Brick::where('user_id', Auth::id())->get() as $key => $brick)
+                        
                         <div class="label-2">
-                          <div class="indication-color bg-primary-blue"></div>
-                          <div class="small-text">France</div>
+                          <div class="indication-color 
+                            @if($key == 0)
+                            bg-primary-blue
+                            @elseif($key == 1)
+                            bg-primary-orange
+                            @elseif($key == 2)
+                            bg-primary-green
+                            @else
+                            bg-primary-success
+                            @endif
+                          "></div>
+                          <div class="small-text">{{ \App\Models\City::where('id', \App\Models\Portfolio::where('id', $brick->portfolio_id)->first()->city_name)->first()->name }}</div>
                         </div>
-                        <div class="label-2">
-                          <div class="indication-color bg-primary-orange"></div>
-                          <div class="small-text">Allemagne</div>
-                        </div>
-                        <div class="label-2">
-                          <div class="indication-color bg-primary-green"></div>
-                          <div class="small-text">Pologne</div>
-                        </div>
+                        @endforeach
                       </div>
                     </div>
                   </div>
@@ -1112,13 +1120,6 @@
   </div>
 
 
-
-
-
-
-
-
-
   <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=604b733c887fc763fe20f216" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
   <script>
     var ctx = document.getElementById('myChart').getContext('2d');
@@ -1165,71 +1166,38 @@
     var myChart = new Chart(ctx, {
         type: 'bubble',
         data: {
-            datasets: [{
-                label: 'Paris',
+            datasets: [ 
+
+                @foreach(\App\Models\Brick::where('user_id', Auth::id())->get() as $key => $brick)
+                {
+                label: "{{ \App\Models\City::where('id', \App\Models\Portfolio::where('id', $brick->portfolio_id)->first()->city_name)->first()->name }}",
                 data: [{
-                  x: 20,
-                  y: 30,
-                  r: 15
-                }, {
-                  x: 40,
-                  y: 10,
+                  x: Math.random(),
+                  y: 5,
                   r: 10
-                }, {
-                  x: 60,
-                  y: 20,
-                  r: 10
-                },{
-                  x: 80,
-                  y: 40,
-                  r: 10
-                }, {
-                  x: 10,
-                  y: 30,
-                  r: 10
-                }
+                },
               ],
                 backgroundColor: [
+                    @if($key == 0)
                     'rgba(255, 99, 132, 1)',
+                    @elseif($key == 1)
                     'rgba(54, 162, 235, 1)',
+                    @elseif($key == 2)
                     'rgba(255, 206, 86, 1)',
+                    @elseif($key == 3)
                     'rgba(75, 192, 192, 1)',
+                    @elseif($key == 4)
                     'rgba(153, 102, 255, 1)',
+                    @elseif($key == 5)
                     'rgba(255, 159, 64, 1)'
+                    @else 
+                    'rgba(255, 159, 64, 1)'
+                    @endif
                 ]
-              } , {
-                label: 'Lyon',
-                data: [{
-                  x: 10,
-                  y: 30,
-                  r: 15
-                }, {
-                  x: 50,
-                  y: 10,
-                  r: 10
-                }, {
-                  x: 40,
-                  y: 20,
-                  r: 10
-                },{
-                  x: 40,
-                  y: 40,
-                  r: 10
-                }, {
-                  x: 90,
-                  y: 30,
-                  r: 10
-                }
+              },
+                @endforeach
+
               ],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ]
-              }   ],
         },
         options: {
             scales: {
