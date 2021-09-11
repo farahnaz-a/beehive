@@ -150,7 +150,7 @@
                 <div class="d-flex">
                     <h5>{{ $data->quantity_of_bricks }} Briques</h5>
                     <h5>{{ $bricks->count() }} Investisseurs</h5>
-                    <h5>80% Financé</h5>
+                    <h5>{{ number_format((float)($data->price/$bricks->sum('amount'))*100, 2, '.', '') }}% Financé</h5>
                 </div>
             </div>
         </div>
@@ -571,7 +571,7 @@
                     @endforeach
                     @endif
                     <p><b>Montant :</b> {{ $bricks->sum('amount') }} € atteint sur @convert($data->price) €</p>
-                    <p><b>Briques :</b> 3,500 sur 21,350 </p>
+                    <p><b>Briques :</b> {{ \App\Models\Brick::where('portfolio_id', $data->id)->first()->bricks_qty }} sur {{ $data->quantity_of_bricks }}  </p>
                     <p class="color_purple"><b>1 brique = @convert($data->miniprice){{ $data->curre }}</b></p>
                     <p class="termsandcondition d-none">
                         <input type="checkbox">
