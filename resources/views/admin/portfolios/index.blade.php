@@ -28,7 +28,7 @@
                 </div>
                 <div class="card-body">
                 </div>
-                <div class="table-responsive">
+                <div class="table-responsive" style="overflow-x: none !important; ">
                     <table class="table table-bordered table-hover">
                         <thead class="thead-dark">
                             <tr>

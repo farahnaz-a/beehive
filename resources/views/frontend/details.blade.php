@@ -145,7 +145,7 @@
             <div class="project_banner" style="background-image: url({{ asset('uploads/portfolios') }}/{{ $data->image }});">
                 <h2>{{ $data->title }}</h2>
                 <div class="location">
-                    <p><i class="fas fa-map-marker-alt"></i>{{ $data->city_name }}, France</p>
+                    <p><i class="fas fa-map-marker-alt"></i>{{ \App\Models\City::find($data->city_name)->name }}, {{ $data->country }}</p>
                 </div>
                 <div class="d-flex">
                     <h5>{{ $data->quantity_of_bricks }} Briques</h5>
@@ -571,7 +571,7 @@
                     @endforeach
                     @endif
                     <p><b>Montant :</b> {{ $bricks->sum('amount') }} € atteint sur @convert($data->price) €</p>
-                    <p><b>Briques :</b> {{ \App\Models\Brick::where('portfolio_id', $data->id)->first()->bricks_qty }} sur {{ $data->quantity_of_bricks }}  </p>
+                    <p><b>Briques :</b> {{ \App\Models\Brick::where('portfolio_id', $data->id)->first()->bricks_qty ?? '0' }} sur {{ $data->quantity_of_bricks }}  </p>
                     <p class="color_purple"><b>1 brique = @convert($data->miniprice){{ $data->curre }}</b></p>
                     <p class="termsandcondition d-none">
                         <input type="checkbox">
