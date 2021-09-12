@@ -34,7 +34,7 @@
                             <tr>
                                 <th>Sl</th>
                                 <th>Country</th>
-                                <th>City Name</th>
+                                <th>City</th>
                                 <th>Title</th>
                                 <th>Image</th>
                                 <th>Price</th>
