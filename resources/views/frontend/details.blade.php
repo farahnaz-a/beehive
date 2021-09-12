@@ -150,7 +150,7 @@
                 <div class="d-flex">
                     <h5>{{ $data->quantity_of_bricks }} Briques</h5>
                     <h5>{{ $bricks->count() }} Investisseurs</h5>
-                    <h5>{{ number_format((float)($data->price/$bricks->sum('amount'))*100, 2, '.', '') }}% Financé</h5>
+                    <h5>{{ number_format((float)($bricks->sum('amount')/$data->price)*100, 2, '.', '') }}% Financé</h5>
                 </div>
             </div>
         </div>
