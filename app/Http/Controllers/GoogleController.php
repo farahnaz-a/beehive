@@ -36,7 +36,8 @@ class GoogleController extends Controller
        
                 Auth::login($finduser);
       
-                return redirect()->intended('/customer/dashboard');
+                // return redirect()->intended('/customer/dashboard');
+                return redirect('/customer/preventBackHistory');
        
             }else{
                 $newUser = User::create([

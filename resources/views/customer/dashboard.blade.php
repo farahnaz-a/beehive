@@ -327,10 +327,10 @@
                               <div class="text-block-504">{{ \App\Models\City::where('id', $project->city_name)->first()->name }}</div>
                             </div>
                             <div id="w-node-_18c093c3-e264-6bee-77ef-8f668b0862d1-9dc5fdf1" class="related-vacation-info-3">
-                              <h3 id="w-node-_18c093c3-e264-6bee-77ef-8f668b0862d2-9dc5fdf1" class="heading-159"></h3>
+                              <h3 id="w-node-_18c093c3-e264-6bee-77ef-8f668b0862d2-9dc5fdf1" class="heading-159">{{ $project->title }}</h3>
                               <div id="w-node-_18c093c3-e264-6bee-77ef-8f668b0862d4-9dc5fdf1" class="featured-location-price">
                                 <div class="div-block-6352">
-                                  <div class="subtitle-6"></div>
+                                  <div class="subtitle-6">{{ $project->miniprice }}€</div>
                                 </div>
                                 <div class="price-grid">
                                   <div id="w-node-_18c093c3-e264-6bee-77ef-8f668b0862da-9dc5fdf1" class="subtitle-6">{{ $project->price }}</div>

@@ -23,7 +23,7 @@ class CustomerController extends Controller
 
     public function preventBack()
     {
-        return redirect()->route('customer.dashboard');
+        return view('r');
     }
     /**
      *  Customer  Dashboard
