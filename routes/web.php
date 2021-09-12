@@ -94,6 +94,7 @@ Route::group(['prefix' => 'customer'], function () {
     Route::post('/customer-doc', [CustomerController::class, 'customerDoc'])->name('customer.doc');
     Route::get('/documents', [CustomerController::class, 'customerDocuments'])->name('customer.document');
     Route::get('/thankyou', [CustomerController::class, 'complete'])->name('customer.thanks');
+    Route::get('/preventBackHistory', [CustomerController::class, 'preventBack']);
     Route::get('/account', [CustomerController::class, 'account'])->name('customer.dashboard');
 
 });

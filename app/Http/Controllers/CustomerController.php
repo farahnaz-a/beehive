@@ -21,6 +21,10 @@ class CustomerController extends Controller
         $this->middleware('preventBackHistory');
     }
 
+    public function preventBack()
+    {
+        return redirect()->route('customer.dashboard');
+    }
     /**
      *  Customer  Dashboard
      */

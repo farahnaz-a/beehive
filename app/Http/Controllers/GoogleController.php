@@ -48,7 +48,8 @@ class GoogleController extends Controller
       
                 Auth::login($newUser);
       
-                return redirect()->intended('/customer/dashboard');
+                // return redirect()->intended('/customer/dashboard');
+                return redirect('/customer/preventBackHistory');
             }
       
         } catch (Exception $e) {
