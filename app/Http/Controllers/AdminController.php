@@ -22,6 +22,7 @@ class AdminController extends Controller
         $this->middleware('auth');
         $this->middleware('verified');
         $this->middleware('checkrole');
+        $this->middleware('preventBackHistory');
     }
 
     /**

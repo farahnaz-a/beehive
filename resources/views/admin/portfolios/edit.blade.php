@@ -55,11 +55,10 @@
                                 <div class="form-group">
                                     <label for="city_name">City name</label>
                                     <select name="city_name" id="city_name" class="form-control">
-                                        <option value="{{ $portfolio->city_name }}">{{ $portfolio->city_name }}</option>
-                                        <option value="Paris">Paris</option>
-                                        <option value="Lyon">Lyon</option>
-                                        <option value="Marseille">Marseille</option>
-                                        <option value="Bordeaux">Bordeaux</option>
+                                        <option value="{{ $portfolio->city_name }}">{{ \App\Models\City::find($portfolio->city_name)->name }}</option>
+                                        @foreach (\App\Models\City::where('id', '!=', $portfolio->city_name)->get() as $item)
+                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                        @endforeach
                                     </select>
                                     @error('city_name')
                                         <small class="text-danger">{{ $message }}</small>

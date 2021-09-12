@@ -46,10 +46,9 @@
                                 <tr>
                                     <th>Sl</th>
                                     <th>Country</th>
-                                    <th>City Name</th>
+                                    <th>City</th>
                                     <th>Title</th>
                                     <th>Region</th>
-                                    <th>Description</th>
                                     <th>Image</th>
                                     <th>Action</th>
                                 </tr>
@@ -62,7 +61,6 @@
                                     <td>{{ ucfirst($city->name) }}</td>
                                     <td>{{ ucfirst($city->title) }}</td>
                                     <td>{{ ucfirst($city->region) }}</td>
-                                    <td>{{ ucfirst($city->description_1) }}</td>
                                     <td><img src="{{ asset('uploads/cities') }}/{{ $city->image  }}" width="100" alt="No Image"></td>
                                     <td>
                                         <div class="dropdown">
