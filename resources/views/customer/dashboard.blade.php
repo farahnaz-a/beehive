@@ -280,7 +280,7 @@
               <div class="div-block-6464">
                 <div class="caption-3">Niveau</div>
                 <div class="numbers-wrapper">
-                  <h3 class="number-3">12</h3>
+                  <h3 class="number-3">1</h3>
                 </div>
               </div>
             </div>
@@ -291,7 +291,7 @@
             <div class="div-block-641">
               <h4 class="heading-222">Projets</h4>
               <div id="w-node-_05b140f6-e512-9b0c-15d1-b34879d485f3-9dc5fdf1" class="form-block-17 w-form">
-              
+                <form id="email-form" name="email-form" data-name="Email Form"><input type="text" class="input-field w-input" maxlength="256" name="name-2" data-name="Name 2" placeholder="Rechercher par nom, mot clés, localisation ..." id="name-2"></form>
                 <div class="w-form-done">
                   <div>Thank you! Your submission has been received!</div>
                 </div>
@@ -330,10 +330,10 @@
                               <h3 id="w-node-_18c093c3-e264-6bee-77ef-8f668b0862d2-9dc5fdf1" class="heading-159">{{ $project->title }}</h3>
                               <div id="w-node-_18c093c3-e264-6bee-77ef-8f668b0862d4-9dc5fdf1" class="featured-location-price">
                                 <div class="div-block-6352">
-                                  <div class="subtitle-6">{{ $project->miniprice }}€</div>
+                                  <div class="subtitle-6">{{ $item->bricks_qty }} briques</div>
                                 </div>
                                 <div class="price-grid">
-                                  <div id="w-node-_18c093c3-e264-6bee-77ef-8f668b0862da-9dc5fdf1" class="subtitle-6">{{ $project->price }}</div>
+                                  <div id="w-node-_18c093c3-e264-6bee-77ef-8f668b0862da-9dc5fdf1" class="subtitle-6">{{ $item->amount }}</div>
                                   <div id="w-node-_18c093c3-e264-6bee-77ef-8f668b0862d8-9dc5fdf1" class="dolar-sign">€</div>
                                 </div>
                               </div>
@@ -388,7 +388,7 @@
                   </div>
                 </div>
                 <div class="div-block-6382">
-                  <div class="module">
+                  {{-- <div class="module">
                     <div class="card-header">
                       <h5 class="heading-221">Projets par pays</h5>
                     </div>
@@ -415,8 +415,8 @@
                         @endforeach
                       </div>
                     </div>
-                  </div>
-                  <div class="module">
+                  </div> --}}
+                  {{-- <div class="module">
                     <div class="card-header">
                       <h5 class="heading-221">Repartition par pays</h5>
                     </div>
@@ -432,7 +432,7 @@
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> --}}
                 </div>
               </div>
             </div>
