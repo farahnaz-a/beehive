@@ -25,8 +25,6 @@
   <script type="text/javascript">!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script>
   <link href="{{ asset('depo_assets/images/favicon.png') }}" rel="shortcut icon" type="image/x-icon">
   <link href="{{ asset('depo_assets/images/webclip.png') }}" rel="apple-touch-icon">
-  <script src="https://scripts.v1.authpack.io/index.js" data-key="wga-client-key-166b17158ebe25036bb466bc4">
-</script>
 </head>
 <body class="body-9">
   <div data-collapse="medium" data-animation="default" data-duration="600" data-doc-height="1" role="banner" class="navbar-10 w-nav">

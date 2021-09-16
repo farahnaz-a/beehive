@@ -1,17 +1,24 @@
 @php
-    $six = \App\Models\Portfolio::whereDate('created_at',  \Carbon\Carbon::today()->subDays(6))->get()->count();
+    // $six = \App\Models\Portfolio::whereDate('created_at',  \Carbon\Carbon::today()->subDays(6))->get()->count();
+    $six = \App\Models\Wallet::where('user_id', Auth::id())->whereDate('created_at',  \Carbon\Carbon::today()->subDays(6))->get()->count();
     $daysix = \Carbon\Carbon::today()->subDays(6)->format('d M');
     $dayfive = \Carbon\Carbon::today()->subDays(5)->format('d M');
     $dayfour = \Carbon\Carbon::today()->subDays(4)->format('d M');
     $daythree = \Carbon\Carbon::today()->subDays(3)->format('d M');
     $daytwo = \Carbon\Carbon::today()->subDays(2)->format('d M');
     $dayone = \Carbon\Carbon::today()->subDays(1)->format('d M');
-    $five = \App\Models\Portfolio::whereDate('created_at', \Carbon\Carbon::today()->subDays(5))->get()->count();
-    $four = \App\Models\Portfolio::whereDate('created_at', \Carbon\Carbon::today()->subDays(4))->get()->count();
-    $three = \App\Models\Portfolio::whereDate('created_at', \Carbon\Carbon::today()->subDays(3))->get()->count();
-    $two = \App\Models\Portfolio::whereDate('created_at', \Carbon\Carbon::today()->subDays(2))->get()->count();
-    $one = \App\Models\Portfolio::whereDate('created_at', \Carbon\Carbon::today()->subDays(1))->get()->count();
+    // $five = \App\Models\Portfolio::whereDate('created_at', \Carbon\Carbon::today()->subDays(5))->get()->count();
+    $five = \App\Models\Wallet::where('user_id', Auth::id())->whereDate('created_at', \Carbon\Carbon::today()->subDays(5))->get()->count();
+    // $four = \App\Models\Portfolio::whereDate('created_at', \Carbon\Carbon::today()->subDays(4))->get()->count();
+    $four = \App\Models\Wallet::where('user_id', Auth::id())->whereDate('created_at', \Carbon\Carbon::today()->subDays(4))->get()->count();
+    // $three = \App\Models\Portfolio::whereDate('created_at', \Carbon\Carbon::today()->subDays(3))->get()->count();
+    $three = \App\Models\Wallet::where('user_id', Auth::id())->whereDate('created_at', \Carbon\Carbon::today()->subDays(3))->get()->count();
+    // $two = \App\Models\Portfolio::whereDate('created_at', \Carbon\Carbon::today()->subDays(2))->get()->count();
+    $two = \App\Models\Wallet::where('user_id', Auth::id())->whereDate('created_at', \Carbon\Carbon::today()->subDays(2))->get()->count();
+    // $one = \App\Models\Portfolio::whereDate('created_at', \Carbon\Carbon::today()->subDays(1))->get()->count();
+    $one = \App\Models\Wallet::where('user_id', Auth::id())->whereDate('created_at', \Carbon\Carbon::today()->subDays(1))->get()->count();
 
+    // $data = [$six, $five, $four, $three, $two, $one];
     $data = [$six, $five, $four, $three, $two, $one];
     $day = [$daysix, $dayfive, $dayfour, $daythree, $daytwo, $dayone];
 @endphp
@@ -38,6 +45,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js" integrity="sha512-Wt1bJGtlnMtGP0dqNFH1xlkLBNpEodaiQ8ZN5JLA5wpc1sUlk/O5uuOMNgvzddzkpvZ9GLyYNa8w2s7rqiTk5Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   {{--  <script src="https://scripts.v1.authpack.io/index.js" data-key="wga-client-key-166b17158ebe25036bb466bc4">
 </script>  --}}
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
 </head>
 <body class="body-14">
   <div class="project_quote-3">
@@ -177,8 +186,10 @@
                 </nav>
               </div>
          </div>
-         <div> <canvas id="myChart"></canvas> </div>
-          </div>   
+          <div>        <div id="chart">
+          </div> </div>
+          </div>  
+     
           
           <div class="table-module-2">
             <div class="table-header">
@@ -240,7 +251,7 @@
               <div class="div-block-6464">
                 <div class="caption-3">Balance</div>
                 <div class="numbers-wrapper">
-                  <h3 class="number-3">{{ Auth::user()->balance }} {{ Auth::user()->currency ?? '€' }}</h3>
+                  <h3 class="number-3">@convert(Auth::user()->balance) {{ Auth::user()->currency ?? '€' }}</h3>
                 </div>
               </div>
             </div>
@@ -552,7 +563,7 @@
 
 
   <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=604b733c887fc763fe20f216" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-  <script>
+  {{-- <script>
     var ctx = document.getElementById('myChart').getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'line',
@@ -589,56 +600,33 @@
         }
     });
     </script>
-  
-  
-  
-  <script>
-    var ctx = document.getElementById('myChartt').getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'bubble',
-        data: {
-            datasets: [ 
+   --}}
 
-                @foreach(\App\Models\Brick::where('user_id', Auth::id())->get() as $key => $brick)
-                {
-                label: "{{ \App\Models\City::where('id', \App\Models\Portfolio::where('id', $brick->portfolio_id)->first()->city_name)->first()->name }}",
-                data: [{
-                  x: Math.random(),
-                  y: 5,
-                  r: 10
-                },
-              ],
-                backgroundColor: [
-                    @if($key == 0)
-                    'rgba(255, 99, 132, 1)',
-                    @elseif($key == 1)
-                    'rgba(54, 162, 235, 1)',
-                    @elseif($key == 2)
-                    'rgba(255, 206, 86, 1)',
-                    @elseif($key == 3)
-                    'rgba(75, 192, 192, 1)',
-                    @elseif($key == 4)
-                    'rgba(153, 102, 255, 1)',
-                    @elseif($key == 5)
-                    'rgba(255, 159, 64, 1)'
-                    @else 
-                    'rgba(255, 159, 64, 1)'
-                    @endif
-                ]
-              },
-                @endforeach
+   <script>
+     var options = {
+  chart: {
+    type: 'line',
+    height: '300px'
+  },
+  series: [{
+    name: 'deposit',
+    data: @json($data)
+  }, 
+  {
+    name: 'dividents', 
+    data: ['1','7','8','10','6']
+  }],
+  xaxis: {
+    categories: @json($day)
+  }
+}
 
-              ],
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-    </script>
+var chart = new ApexCharts(document.querySelector("#chart"), options);
+
+chart.render();
+   </script>
+  
+
   
   
   <script src="  {{ asset('new_user_dashboard_assets/js/webflow.js') }}" type="text/javascript"></script>
