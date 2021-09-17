@@ -8,6 +8,7 @@ use App\Models\Wallet;
 use Illuminate\Http\Request;
 use App\Models\UserInformation;
 use App\Models\CustomerDocument;
+use Stevebauman\Location\Facades\Location;
 
 class CustomerController extends Controller
 {
@@ -30,6 +31,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
+
  
     if(Auth::user()->role == 'admin')
     {
@@ -57,6 +59,8 @@ class CustomerController extends Controller
      */
     public function account()
     {
+        
+
         if(Auth::user()->role == 'admin')
         {
             return redirect('/admin/dashboard');

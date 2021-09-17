@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '52e9bdd3cfafdcda54dc91e9f8361150a8ab8ef8',
+    'reference' => '0950d0ad62b3ac8b6b12b40511646ef766294cf8',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -210,6 +210,15 @@ private static $installed = array (
       array (
       ),
       'reference' => 'f6560fa90ad2b12e11959fb5addda045d068f224',
+    ),
+    'geoip2/geoip2' => 
+    array (
+      'pretty_version' => 'v2.11.0',
+      'version' => '2.11.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'd01be5894a5c1a3381c58c9b1795cd07f96c30f7',
     ),
     'graham-campbell/result-type' => 
     array (
@@ -532,7 +541,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '52e9bdd3cfafdcda54dc91e9f8361150a8ab8ef8',
+      'reference' => '0950d0ad62b3ac8b6b12b40511646ef766294cf8',
     ),
     'laravel/sail' => 
     array (
@@ -614,6 +623,24 @@ private static $installed = array (
       array (
       ),
       'reference' => 'a4ffb135693e7982e5b982ca203f5dc7a7ae1126',
+    ),
+    'maxmind-db/reader' => 
+    array (
+      'pretty_version' => 'v1.10.1',
+      'version' => '1.10.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '569bd44d97d30a4ec12c7793a33004a76d4caf18',
+    ),
+    'maxmind/web-service-common' => 
+    array (
+      'pretty_version' => 'v0.8.1',
+      'version' => '0.8.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '32f274051c543fc865e5a84d3a2c703913641ea8',
     ),
     'mobiledetect/mobiledetectlib' => 
     array (
@@ -1127,6 +1154,24 @@ private static $installed = array (
       array (
       ),
       'reference' => 'c6c1022351a901512170118436c764e473f6de8c',
+    ),
+    'spatie/geocoder' => 
+    array (
+      'pretty_version' => '3.10.1',
+      'version' => '3.10.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '083438f249cdbfb0d7d8a9b95aa17c60a204d925',
+    ),
+    'stevebauman/location' => 
+    array (
+      'pretty_version' => 'v6.2.0',
+      'version' => '6.2.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'cc2e63fc2b64f17d4404fe206612bc67dca16b10',
     ),
     'swiftmailer/swiftmailer' => 
     array (

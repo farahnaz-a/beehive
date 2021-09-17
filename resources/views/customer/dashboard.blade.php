@@ -47,6 +47,10 @@
 </script>  --}}
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.css' rel='stylesheet' />
+
+
 </head>
 <body class="body-14">
   <div class="project_quote-3">
@@ -320,7 +324,8 @@
             <div class="tabs-content-19 w-tab-content">
               <div data-w-tab="Tab 1" class="w-tab-pane w--tab-active">
                 <div class="div-block-6385">
-                  <div data-widget-latlng="43.610769,3.876716" data-widget-tooltip="Ma Villa 250 m2 sur Montpellier" data-widget-zoom="12" data-widget-style="roadmap" data-enable-scroll="true" data-enable-touch="true" class="map-6 w-widget w-widget-map"></div>
+                  {{-- <div data-widget-latlng="43.610769,3.876716" data-widget-tooltip="Ma Villa 250 m2 sur Montpellier" data-widget-zoom="12" data-widget-style="roadmap" data-enable-scroll="true" data-enable-touch="true" class="map-6 w-widget w-widget-map"></div> --}}
+                  <div id='map' style='width: 100%; height: 450px;'></div>
                 </div>
                 <div class="div-block-6350">
                   <div class="collection-list-wrapper-32 w-dyn-list">
@@ -625,6 +630,30 @@ var chart = new ApexCharts(document.querySelector("#chart"), options);
 
 chart.render();
    </script>
+    <script>
+    // TO MAKE THE MAP APPEAR YOU MUST
+    // ADD YOUR ACCESS TOKEN FROM
+    // https://account.mapbox.com
+        mapboxgl.accessToken = 'pk.eyJ1Ijoic2hpcGx1MTIzIiwiYSI6ImNrdG9yYXowejBmamIyd3Btb3Zvc3oyMnkifQ.7w9CXfUUezrHpsJuCOPO8w';
+        const map = new mapboxgl.Map({
+        container: 'map', // container ID
+        style: 'mapbox://styles/mapbox/streets-v11', // style URL
+        center: [4.835659, 45.764042], // starting position [lng, lat]        
+        zoom: 5 // starting zoom
+        });
+
+        // Create a default Marker and add it to the map.
+        const marker1 = new mapboxgl.Marker()
+        .setLngLat([4.835659, 45.764042])
+        .addTo(map);
+        
+        // Create a default Marker, colored black, rotated 45 degrees.
+        const marker2 = new mapboxgl.Marker({ color: 'black', rotation: 45 })
+        .setLngLat([ 5.369780, 43.296482])
+        .addTo(map);
+    </script> 
+
+
   
 
   
