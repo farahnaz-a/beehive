@@ -177,7 +177,12 @@
         <div class="w-layout-grid _2-1-grid">
           <div class="module-2">
             <div class="div-block-6547">
-              <h4 class="heading-222">Balance totale</h4>
+              @php
+                  $b = Auth::user()->balance; 
+                  $inv = \App\Models\Brick::where('user_id', Auth::id())->first()->amount;
+                  $totl = $b + $inv;
+              @endphp
+              <h4 class="heading-222">Balance totale <br> @convert($totl) €</h4>
               <div data-hover="" data-delay="0" class="dropdown-43 w-dropdown">
                 <div class="dropdown-toggle-46 w-dropdown-toggle">
                   <div class="icon-30 w-icon-dropdown-toggle"></div>
@@ -305,7 +310,7 @@
           <div class="div-block-592">
             <div class="div-block-641">
               <h4 class="heading-222">Projets</h4>
-              <div id="w-node-_05b140f6-e512-9b0c-15d1-b34879d485f3-9dc5fdf1" class="form-block-17 w-form">
+              {{-- <div id="w-node-_05b140f6-e512-9b0c-15d1-b34879d485f3-9dc5fdf1" class="form-block-17 w-form">
                 <form id="email-form" name="email-form" data-name="Email Form"><input type="text" class="input-field w-input" maxlength="256" name="name-2" data-name="Name 2" placeholder="Rechercher par nom, mot clés, localisation ..." id="name-2"></form>
                 <div class="w-form-done">
                   <div>Thank you! Your submission has been received!</div>
@@ -313,7 +318,7 @@
                 <div class="w-form-fail">
                   <div>Oops! Something went wrong while submitting the form.</div>
                 </div>
-              </div>
+              </div> --}}
             </div>
           </div>
           <div data-duration-in="300" data-duration-out="100" class="tabs-23 w-tabs">
@@ -325,9 +330,9 @@
               <div data-w-tab="Tab 1" class="w-tab-pane w--tab-active">
                 <div class="div-block-6385">
                   {{-- <div data-widget-latlng="43.610769,3.876716" data-widget-tooltip="Ma Villa 250 m2 sur Montpellier" data-widget-zoom="12" data-widget-style="roadmap" data-enable-scroll="true" data-enable-touch="true" class="map-6 w-widget w-widget-map"></div> --}}
-                  <div id='map' style='width: 100%; height: 450px;'></div>
+                  <div id='map' style='width: 100%;height: 500px;'></div>
                 </div>
-                <div class="div-block-6350">
+                <div class="">
                   <div class="collection-list-wrapper-32 w-dyn-list">
                     <div role="list" class="collection-list-13 w-dyn-items">
                       @forelse (\App\Models\Brick::where('user_id', Auth::id())->get() as $key => $item)
@@ -340,10 +345,10 @@
                               <div class="overlay light"></div>
                             </div>
                             <div id="w-node-_18c093c3-e264-6bee-77ef-8f668b0862ce-9dc5fdf1" class="featured-vacation-tag">
-                              <div class="text-block-504">{{ \App\Models\City::where('id', $project->city_name)->first()->name }}</div>
+                              <div class="text-block-504">{{ \App\Models\City::where('id', $project->city_name)->first()->name }}, {{ \App\Models\City::where('id', $project->city_name)->first()->country }}</div>
                             </div>
                             <div id="w-node-_18c093c3-e264-6bee-77ef-8f668b0862d1-9dc5fdf1" class="related-vacation-info-3">
-                              <h3 id="w-node-_18c093c3-e264-6bee-77ef-8f668b0862d2-9dc5fdf1" class="heading-159">{{ $project->title }}</h3>
+                              <h3 id="w-node-_18c093c3-e264-6bee-77ef-8f668b0862d2-9dc5fdf1" class="heading-159">{{ Str::limit($project->title, 25) }} {{ (strlen($project->title) > 25) ? '...' : '' }} </h3>
                               <div id="w-node-_18c093c3-e264-6bee-77ef-8f668b0862d4-9dc5fdf1" class="featured-location-price">
                                 <div class="div-block-6352">
                                   <div class="subtitle-6">{{ $item->bricks_qty }} briques</div>
