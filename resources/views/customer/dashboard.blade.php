@@ -641,16 +641,22 @@ chart.render();
         center: [4.835659, 45.764042], // starting position [lng, lat]        
         zoom: 5 // starting zoom
         });
-
+        @foreach (\App\Models\Brick::where('user_id', Auth::id())->get() as $key => $brick)
+        @php
+            $project = \App\Models\Portfolio::where('id', $brick->portfolio_id)->first();
+            $city = \App\Models\City::where('id', $project->city_name)->first();
+            $langlot = \App\Models\LangLot::where('city', $city->name)->first();
+        @endphp
         // Create a default Marker and add it to the map.
-        const marker1 = new mapboxgl.Marker()
-        .setLngLat([4.835659, 45.764042])
+        const marker{{ $key }} = new mapboxgl.Marker()
+        .setLngLat([{{ $langlot->lng }}, {{ $langlot->lat }}])
         .addTo(map);
+        @endforeach
         
-        // Create a default Marker, colored black, rotated 45 degrees.
-        const marker2 = new mapboxgl.Marker({ color: 'black', rotation: 45 })
-        .setLngLat([ 5.369780, 43.296482])
-        .addTo(map);
+        // // Create a default Marker, colored black, rotated 45 degrees.
+        // const marker2 = new mapboxgl.Marker({ color: 'black', rotation: 45 })
+        // .setLngLat([ 5.369780, 43.296482])
+        // .addTo(map);
     </script> 
 
 

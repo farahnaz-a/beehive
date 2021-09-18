@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use Auth;
 use Carbon\Carbon;
+use App\Models\City;
+use App\Models\Brick;
 use App\Models\Wallet;
+use App\Models\LangLot;
+use App\Models\Portfolio;
 use Illuminate\Http\Request;
 use App\Models\UserInformation;
 use App\Models\CustomerDocument;
@@ -66,8 +70,33 @@ class CustomerController extends Controller
             return redirect('/admin/dashboard');
         }
         else 
-        {
-        return view('customer.dashboard');
+        {    // Read File
+
+            // $jsonString = file_get_contents(base_path('resources/views/fr.json'));
+        
+            // $data = json_decode($jsonString, true);
+
+           
+            // foreach(collect($data) as $i)
+            // {
+            //     if(LangLot::where('city', $i['city'])->doesntExist())
+            //     {
+
+            //         LangLot::create([
+            //             'city'     => $i['city'],
+            //             'lat'     => $i['lat'],
+            //             'lng'     => $i['lng'],
+            //             'country'     => $i['country'],
+            //             'created_at'  => Carbon::now(),
+            //         ]);
+            //     }
+            // }
+
+        
+
+
+            
+           return view('customer.dashboard');
         }
     }
 

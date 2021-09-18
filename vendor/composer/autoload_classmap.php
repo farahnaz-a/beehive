@@ -50,6 +50,7 @@ return array(
     'App\\Models\\CustomerDocument' => $baseDir . '/app/Models/CustomerDocument.php',
     'App\\Models\\Faq' => $baseDir . '/app/Models/Faq.php',
     'App\\Models\\Invest' => $baseDir . '/app/Models/Invest.php',
+    'App\\Models\\LangLot' => $baseDir . '/app/Models/LangLot.php',
     'App\\Models\\Portfolio' => $baseDir . '/app/Models/Portfolio.php',
     'App\\Models\\PortfolioImage' => $baseDir . '/app/Models/PortfolioImage.php',
     'App\\Models\\Pricefree' => $baseDir . '/app/Models/Pricefree.php',
