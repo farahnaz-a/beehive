@@ -21,6 +21,13 @@
     // $data = [$six, $five, $four, $three, $two, $one];
     $data = [$six, $five, $four, $three, $two, $one];
     $day = [$daysix, $dayfive, $dayfour, $daythree, $daytwo, $dayone];
+    $balance = [];
+    foreach(\App\Models\Wallet::where('user_id', Auth::id())->get() as $b)
+    {
+      $balance[] = $b->balance;
+    }
+
+
 @endphp
 <!DOCTYPE html><!--  This site was created in Webflow. http://www.webflow.com  -->
 <!--  Last Published: Fri Aug 20 2021 20:26:58 GMT+0000 (Coordinated Universal Time)  -->
@@ -179,7 +186,7 @@
             <div class="div-block-6547">
               @php
                   $b = Auth::user()->balance; 
-                  $inv = \App\Models\Brick::where('user_id', Auth::id())->first()->amount;
+                  $inv = \App\Models\Brick::where('user_id', Auth::id())->first()->amount ?? '0';
                   $totl = $b + $inv;
               @endphp
               <h4 class="heading-222">Balance totale <br> @convert($totl) €</h4>
@@ -258,7 +265,7 @@
                 <div class="light-fill"></div>
               </div>
               <div class="div-block-6464">
-                <div class="caption-3">Balance</div>
+                <div class="caption-3">Balance Disponible</div>
                 <div class="numbers-wrapper">
                   <h3 class="number-3">@convert(Auth::user()->balance) {{ Auth::user()->currency ?? '€' }}</h3>
                 </div>
@@ -274,7 +281,7 @@
                 <div class="caption-3">Benefices</div>
                 <div class="numbers-wrapper">
                   <h3 class="number-3">0 €</h3>
-                  <div class="negative-value">(0%)</div>
+                  {{-- <div class="negative-value">(0%)</div> --}}
                 </div>
               </div>
             </div>
@@ -326,7 +333,7 @@
               <a data-w-tab="Tab 1" class="tab-link-tab-1-81 w-inline-block w-tab-link w--current"><img src="{{ asset('new_user_dashboard_assets/images/60dca32b27ab1d6ee548d753_map.svg') }}" loading="lazy" width="25" height="25" alt="" class="image-169"></a>
               <a data-w-tab="Tab 3" class="tab-link-tab-3-18 w-inline-block w-tab-link"><img src="{{ asset('new_user_dashboard_assets/images/60dca32b27ab1d3af748d74d_list.svg') }}" loading="lazy" width="25" height="25" alt="" class="image-169"></a>
             </div>
-            <div class="tabs-content-19 w-tab-content">
+            <div class="tabs-content-19 w-tab-content" style="margin-top : 16px !important; margin-bottom: 16px !important; border-radius: 16px !important;">
               <div data-w-tab="Tab 1" class="w-tab-pane w--tab-active">
                 <div class="div-block-6385">
                   {{-- <div data-widget-latlng="43.610769,3.876716" data-widget-tooltip="Ma Villa 250 m2 sur Montpellier" data-widget-zoom="12" data-widget-style="roadmap" data-enable-scroll="true" data-enable-touch="true" class="map-6 w-widget w-widget-map"></div> --}}
@@ -616,15 +623,21 @@
      var options = {
   chart: {
     type: 'line',
-    height: '300px'
+    height: '300px',
+
   },
+
   series: [{
     name: 'deposit',
     data: @json($data)
   }, 
   {
-    name: 'dividents', 
+    name: 'dividends', 
     data: ['1','7','8','10','6']
+  }, {
+    name: 'balance totale',
+    color: '#800080',
+    data: @json($balance)
   }],
   xaxis: {
     categories: @json($day)
